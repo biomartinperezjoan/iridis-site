@@ -1,0 +1,103 @@
+# Decap CMS configuration
+# Docs: https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: git-gateway   # works with Netlify Identity, no extra server needed
+  branch: main        # the branch Netlify deploys from
+
+# After publishing, Decap commits a new Markdown file to src/blog/posts/
+# Netlify then rebuilds the site automatically (~30-60 seconds)
+
+media_folder: "src/images/uploads"  # where uploaded images are stored in the repo
+public_folder: "/images/uploads"    # how those images are referenced in pages
+
+collections:
+  - name: "posts"
+    label: "Blog posts"
+    folder: "src/blog/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish date", name: "date", widget: "datetime", format: "yyyy-MM-dd" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "1-2 sentences shown on the blog index card." }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["Medical Writing"]
+        hint: "E.g. Medical Writing, Peer Review, LinkedIn, Digital Health"
+      - { label: "Reading time (minutes)", name: "readingTime", widget: "number", required: false, value_type: "int" }
+      - { label: "Cover image", name: "cover", widget: "image", required: false }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "about"
+    label: "About page"
+    files:
+      - name: "about"
+        label: "About page content"
+        file: "src/_data/about.json"
+        fields:
+          - label: "Intro"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro text", name: "lede", widget: "text" }
+
+          - label: "The name (IRIDIS)"
+            name: "origin"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Small label", name: "label", widget: "string" }
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Intro text", name: "intro", widget: "text", hint: "HTML is allowed, e.g. <em>iris</em>" }
+              - label: "Meanings"
+                name: "meanings"
+                widget: "list"
+                label_singular: "Meaning"
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+
+          - label: "Team"
+            name: "team"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro text", name: "lede", widget: "text" }
+              - label: "Team members"
+                name: "members"
+                widget: "list"
+                label_singular: "Person"
+                summary: "{{fields.name}} — {{fields.role}}"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role / specialty", name: "role", widget: "string" }
+                  - { label: "Bio", name: "bio", widget: "text" }
+                  - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Leave empty to show 'Photo pending'" }
+
+          - label: "How we work"
+            name: "howWeWork"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Cards"
+                name: "items"
+                widget: "list"
+                label_singular: "Card"
+                summary: "{{fields.kicker}}"
+                fields:
+                  - { label: "Small label", name: "kicker", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }

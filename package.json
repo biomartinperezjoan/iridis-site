@@ -1,0 +1,13 @@
+{
+  "name": "iridis-site",
+  "version": "1.0.0",
+  "description": "Iridis website + blog (Eleventy + Decap CMS)",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

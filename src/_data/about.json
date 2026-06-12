@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "eyebrow": "About",
+    "title": "Three people. One shared standard.",
+    "lede": "Iridis was born from the conviction that well-written science is not a concession to popularisation: it is the standard to aspire to. We are a small team on purpose \u2014 every project goes through the same hands that scope it."
+  },
+  "origin": {
+    "label": "The name",
+    "word": "IRIDIS",
+    "intro": "Latin genitive of <em>iris</em>: \"of the iris\", \"of the rainbow\". In scientific nomenclature, the genitive is the standard form. Three readings in a single word:",
+    "meanings": [
+      {
+        "title": "Iridescence",
+        "text": "The hummingbird's structural colour. Not pigment: construction. Like a good text."
+      },
+      {
+        "title": "Iris",
+        "text": "Precision of vision. Seeing clearly what the data says \u2014 and what it doesn't."
+      },
+      {
+        "title": "Iris, the messenger",
+        "text": "The bridge between science and those who need to understand it."
+      }
+    ]
+  },
+  "team": {
+    "eyebrow": "The team",
+    "title": "Who we are",
+    "lede": "Complementary profiles: science, writing and strategy.",
+    "members": [
+      {
+        "name": "Name Surname",
+        "role": "Role \u00b7 Specialty",
+        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
+        "photo": ""
+      },
+      {
+        "name": "Name Surname",
+        "role": "Role \u00b7 Specialty",
+        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
+        "photo": ""
+      },
+      {
+        "name": "Name Surname",
+        "role": "Role \u00b7 Specialty",
+        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
+        "photo": ""
+      }
+    ]
+  },
+  "howWeWork": {
+    "eyebrow": "How we work",
+    "title": "Small on purpose",
+    "items": [
+      {
+        "kicker": "No middlemen",
+        "title": "You talk to the person who writes",
+        "text": "There are no account managers between you and the text. The person who understands your project is the one who writes it."
+      },
+      {
+        "kicker": "Rigour first",
+        "title": "We don't write what the data doesn't say",
+        "text": "If the evidence doesn't support the claim, we'll tell you before a reviewer does. It's cheaper that way."
+      },
+      {
+        "kicker": "A clear process",
+        "title": "Fixed quotes, real deadlines",
+        "text": "Scope defined per deliverable, revision rounds agreed up front, no surprises on the invoice."
+      },
+      {
+        "kicker": "Bilingual",
+        "title": "English and Spanish, native to the field",
+        "text": "We write directly in the target language. We don't translate: we write."
+      }
+    ]
+  }
+}
