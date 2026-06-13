@@ -22,5 +22,127 @@
       });
     }
   </script>
+
+  <!-- ─────────────────────────────────────────
+       LIVE PREVIEW: load the real site's fonts +
+       stylesheet into the preview pane, then a
+       small override so full-screen panels fit
+       inside the small preview area.
+  ───────────────────────────────────────── -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    CMS.registerPreviewStyle('/css/styles.css');
+    CMS.registerPreviewStyle('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+    // Compact the full-screen panels so they fit the preview pane
+    CMS.registerPreviewStyle(
+      '.panel{min-height:auto;padding:28px 24px;} .panel:first-child{margin-top:0;} ' +
+      '.panel-inner{max-width:100%;} .team-grid,.svc-grid,.origin-meanings{grid-template-columns:1fr 1fr;} ' +
+      '@media (max-width:520px){.team-grid,.svc-grid,.origin-meanings{grid-template-columns:1fr;}}',
+      { raw: true }
+    );
+
+    /* ── About page preview ───────────────────────────── */
+    var AboutPreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        var hero = data.get('hero');
+        var origin = data.get('origin');
+        var team = data.get('team');
+        var how = data.get('howWeWork');
+
+        var meanings = origin && origin.get('meanings')
+          ? origin.get('meanings').map(function (m, i) {
+              return h('div', { key: 'mean' + i, className: 'om' },
+                h('b', {}, m.get('title')),
+                h('p', {}, m.get('text'))
+              );
+            }).toArray()
+          : [];
+
+        var members = team && team.get('members')
+          ? team.get('members').map(function (person, i) {
+              var photo = person.get('photo');
+              var photoEl = photo
+                ? h('div', { className: 'team-photo', style: { backgroundImage: 'url(' + getAsset(photo) + ')', backgroundSize: 'cover', backgroundPosition: 'center' } })
+                : h('div', { className: 'team-photo' }, h('span', {}, 'Photo pending'));
+              return h('div', { key: 'member' + i, className: 'team-card' },
+                photoEl,
+                h('div', { className: 'team-body' },
+                  h('h3', {}, person.get('name')),
+                  h('div', { className: 'team-role' }, person.get('role')),
+                  h('p', {}, person.get('bio'))
+                )
+              );
+            }).toArray()
+          : [];
+
+        var howItems = how && how.get('items')
+          ? how.get('items').map(function (item, i) {
+              return h('div', { key: 'how' + i, className: 'svc-card', style: { cursor: 'default' } },
+                h('span', { className: 'sc-kicker' }, item.get('kicker')),
+                h('h3', {}, item.get('title')),
+                h('p', {}, item.get('text'))
+              );
+            }).toArray()
+          : [];
+
+        return h('div', {},
+          hero && h('div', { className: 'panel bg-down' },
+            h('div', { className: 'panel-inner' },
+              h('div', { className: 'eyebrow' }, hero.get('eyebrow')),
+              h('h1', { style: { fontSize: 'clamp(28px,5.2vw,52px)' } }, hero.get('title')),
+              h('p', { className: 'lede' }, hero.get('lede')),
+              origin && h('div', { className: 'origin-box' },
+                h('div', { className: 'eyebrow', style: { marginBottom: '8px' } }, origin.get('label')),
+                h('div', { className: 'origin-word' }, origin.get('word')),
+                h('p', { style: { color: 'var(--slate)', fontSize: '14px', lineHeight: '1.7' }, dangerouslySetInnerHTML: { __html: origin.get('intro') } }),
+                h('div', { className: 'origin-meanings' }, meanings)
+              )
+            )
+          ),
+          team && h('div', { className: 'panel bg-ink' },
+            h('div', { className: 'panel-inner' },
+              h('div', { className: 'eyebrow' }, team.get('eyebrow')),
+              h('h2', { style: { fontSize: 'clamp(24px,4.8vw,38px)' } }, team.get('title')),
+              h('p', { className: 'lede' }, team.get('lede')),
+              h('div', { className: 'team-grid' }, members)
+            )
+          ),
+          how && h('div', { className: 'panel bg-white' },
+            h('div', { className: 'panel-inner' },
+              h('div', { className: 'eyebrow' }, how.get('eyebrow')),
+              h('h2', { style: { fontSize: 'clamp(24px,4.8vw,38px)' } }, how.get('title')),
+              h('div', { className: 'svc-grid', style: { marginTop: '24px' } }, howItems)
+            )
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('about', AboutPreview);
+
+    /* ── Blog post preview ────────────────────────────── */
+    var PostPreview = createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var tags = data.get('tags');
+        var readingTime = data.get('readingTime');
+        return h('div', { className: 'panel bg-down' },
+          h('div', { className: 'panel-inner', style: { maxWidth: '760px' } },
+            h('header', { className: 'post-header' },
+              h('div', { className: 'eyebrow' }, tags ? tags.join(' · ') : ''),
+              h('h1', { style: { fontSize: 'clamp(28px,5.2vw,48px)' } }, data.get('title')),
+              h('div', { className: 'post-meta' },
+                h('time', {}, String(data.get('date') || '')),
+                readingTime ? h('span', {}, ' · ' + readingTime + ' min read') : null
+              )
+            ),
+            h('div', { className: 'prose' }, this.props.widgetFor('body'))
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('posts', PostPreview);
+  </script>
 </body>
 </html>
