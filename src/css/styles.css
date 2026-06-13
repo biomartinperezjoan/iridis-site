@@ -51,15 +51,6 @@ a { color: var(--pinion); }
 }
 .hero-center .lede { text-align: center; margin: 0 auto var(--sp-10); max-width: 58ch; }
 .hero-center .hero-actions { justify-content: center; margin-top: 0; }
-.hero-proofline {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  column-gap: var(--sp-8); row-gap: var(--sp-2);
-  font-family: var(--sans-body); font-size: 13.5px; color: var(--slate);
-  border-top: 1px solid var(--mist);
-  padding-top: var(--sp-8); margin-top: var(--sp-12);
-  width: 100%; max-width: 760px;
-}
-.hero-proofline b { color: var(--ink); font-weight: 600; }
 
 /* featured (3rd line) accent on service cards */
 .svc-card.featured { border-color: rgba(224,96,143,.45); }
@@ -118,13 +109,14 @@ a { color: var(--pinion); }
   font-family: var(--sans-display); font-weight:800; font-size:17px;
   letter-spacing:.18em; text-transform:uppercase; color: var(--down);
 }
-.nav-tabs { display:flex; list-style:none; gap: var(--sp-2); }
+.nav-tabs { display:flex; align-items:center; list-style:none; gap: var(--sp-2); }
 .nav-tabs button, .nav-tabs a {
   font-family: var(--sans-body); font-size:13.5px; font-weight:500;
   color: rgba(241,244,241,.62);
   background:none; border:none; cursor:pointer;
   padding: 8px 14px; border-radius: var(--r-sm);
   text-decoration: none; display:inline-block;
+  line-height: 1; vertical-align: middle;
   transition: color .15s, background .15s;
 }
 .nav-tabs button:hover, .nav-tabs a:hover { color: var(--down); }
@@ -171,7 +163,7 @@ a { color: var(--pinion); }
 .panel {
   min-height: calc(100svh - var(--nav-h));
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-snap-stop: always;
   display:flex; flex-direction:column; justify-content:center;
   padding: var(--sp-16) var(--sp-6);
 }
@@ -610,4 +602,67 @@ h3, .h3 {
   border-top: 1px solid var(--mist);
   padding-top: var(--sp-8);
   text-align:center;
+}
+
+/* ───────── HOME: page dots + down-arrow scroll nav ───────── */
+.page-dots, .scroll-down-btn { display: none; }
+body.on-home .page-dots, body.on-home .scroll-down-btn { display: flex; }
+
+.page-dots {
+  position: fixed;
+  right: var(--sp-5);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(20,36,29,.12);
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(6px);
+}
+.page-dots .dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(90,103,95,.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.page-dots .dot:hover { border-color: var(--pinion); }
+.page-dots .dot.active {
+  background: var(--pinion);
+  border-color: var(--pinion);
+  transform: scale(1.25);
+}
+
+.scroll-down-btn {
+  position: fixed;
+  bottom: var(--sp-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  align-items: center; justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(20,36,29,.12);
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(6px);
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity .25s, transform .2s, background .15s;
+  animation: bob 2.2s ease-in-out infinite;
+}
+.scroll-down-btn:hover { background: var(--pinion); color: var(--down); }
+.scroll-down-btn.is-last { opacity: 0; pointer-events: none; }
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@media (max-width: 860px) {
+  .page-dots, .scroll-down-btn { display: none !important; }
 }
