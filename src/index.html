@@ -64,19 +64,19 @@
       <h2>Three lines of work.<br>One standard.</h2>
       <p class="lede">Anyone can write with AI. Few can tell you whether the science behind your message is actually defensible.</p>
       <div class="svc-grid cols-3">
-        <button class="svc-card" data-goto="services">
+        <button class="svc-card" data-goto="services" data-panel="1">
           <span class="sc-kicker">01 · Publication support</span>
           <h3>From data to accepted manuscript</h3>
           <p>Manuscripts, narrative and systematic reviews, responses to reviewers, and complete journal submission packages.</p>
           <span class="sc-link">See details →</span>
         </button>
-        <button class="svc-card" data-goto="services">
+        <button class="svc-card" data-goto="services" data-panel="2">
           <span class="sc-kicker">02 · Content &amp; medcomms</span>
           <h3>Authority you can publish weekly</h3>
           <p>White papers, technical blogs, LinkedIn ghostwriting, newsletters and scientific decks for biotech, pharma and healthtech teams.</p>
           <span class="sc-link">See details →</span>
         </button>
-        <button class="svc-card" data-goto="services">
+        <button class="svc-card" data-goto="services" data-panel="3">
           <span class="sc-kicker">03 · Science validation</span>
           <h3>Is your science actually defensible?</h3>
           <p>Claim audits, reference checks and evidence reviews for health apps, marketing materials and scientific pitch decks.</p>
@@ -129,7 +129,7 @@
   </div>
 
   <!-- Panel 4 · CTA (Pinion) -->
-  <div class="panel bg-pinion">
+  <div class="panel bg-pinion panel-with-footer">
     <div class="panel-inner center">
       <div class="eyebrow alt">Get started</div>
       <h2>Tell us what you need to communicate.</h2>
@@ -138,6 +138,10 @@
         <button class="btn btn-on-dark" data-goto="contact">Book a call</button>
         <button class="btn btn-ghost-dark" data-goto="work">See our work</button>
       </div>
+    </div>
+    <div class="panel-footer-bar">
+      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
+      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
     </div>
   </div>
 </section>
@@ -151,6 +155,23 @@
       <div class="eyebrow">Services</div>
       <h1 style="font-size:clamp(34px,5.2vw,62px)">Three lines of work.<br>One standard.</h1>
       <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
+      <div class="svc-index">
+        <button class="svc-index-item" onclick="goToPanel(1)">
+          <span class="svc-index-num">01</span>
+          <div><strong>Publication support</strong><span>Manuscripts, reviews, peer responses, submission packages</span></div>
+          <span class="svc-index-arrow">→</span>
+        </button>
+        <button class="svc-index-item" onclick="goToPanel(2)">
+          <span class="svc-index-num">02</span>
+          <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
+          <span class="svc-index-arrow">→</span>
+        </button>
+        <button class="svc-index-item" onclick="goToPanel(3)">
+          <span class="svc-index-num">03</span>
+          <div><strong>Science validation</strong><span>Claim audits, evidence mapping, pre-launch scientific review</span></div>
+          <span class="svc-index-arrow">→</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -199,18 +220,19 @@
   <!-- 03 Science validation / evidence audit (Down) -->
   <div class="panel bg-down">
     <div class="panel-inner">
-      <div class="svc-num">03</div>
-      <h2>Science validation &amp; evidence audit</h2>
-      <p class="lede">AI made building health products easy. It did not make the science behind them reliable. Before your app, landing page or pitch deck reaches users, investors or clinicians, we check whether the claims, the references and the evidence actually support what the product says.</p>
-
-      <div class="svc-panel-grid" style="margin-top: var(--sp-8); align-items:start;">
-        <ul class="svc-list">
-          <li><b>Scientific claim audit</b><span>We review your web, app copy or deck and map every claim against the available evidence. Deliverable: claim matrix with risk levels and reformulations.</span></li>
-          <li><b>Evidence mapping</b><span>The science behind your product, module by module: what's supported, what's extrapolated, what would need a study. Deliverable: evidence dossier.</span></li>
-          <li><b>Scientific positioning &amp; messaging</b><span>Rewriting claims and narrative so they sound credible because they are credible — no pseudoscientific shortcuts.</span></li>
-          <li><b>Pre-launch scientific review</b><span>Claim audit + evidence mapping + user-flow review, combined, before you go to market.</span></li>
-        </ul>
+      <div class="svc-panel-grid">
         <div>
+          <div class="svc-num">03</div>
+          <h2>Science validation &amp; evidence audit</h2>
+          <p class="lede" style="font-size:clamp(14px,1.4vw,16px)">AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.</p>
+          <p style="font-size:12.5px; color:var(--slate); margin-top:var(--sp-3); line-height:1.55"><strong>Note:</strong> This is scientific review of claims and evidence — not regulatory certification or legal assessment. We'll flag when regulatory counsel is needed.</p>
+        </div>
+        <div>
+          <ul class="svc-list" style="margin-bottom:var(--sp-4)">
+            <li><b>Claim audit</b><span>Every claim mapped against evidence. Deliverable: claim matrix with risk levels and reformulations.</span></li>
+            <li><b>Evidence mapping</b><span>The science behind your product, module by module. Deliverable: evidence dossier.</span></li>
+            <li><b>Pre-launch review</b><span>Claim audit + evidence mapping + user-flow review, combined, before you go to market.</span></li>
+          </ul>
           <table class="claim-matrix">
             <thead>
               <tr><th>Product claim</th><th>Evidence</th><th>Risk</th></tr>
@@ -223,7 +245,7 @@
               </tr>
               <tr>
                 <td class="cm-claim">"Reduces anxiety"</td>
-                <td>Weak or extrapolated evidence</td>
+                <td>Weak or extrapolated</td>
                 <td><span class="pill pill-mid">Needs rewording</span></td>
               </tr>
               <tr>
@@ -233,17 +255,13 @@
               </tr>
             </tbody>
           </table>
-          <div class="cm-caption">Excerpt from a claim matrix — the core deliverable of a claim audit.</div>
-          <div class="punchline">Anyone can write with AI. Few can tell you whether the science behind your message is actually defensible.</div>
         </div>
       </div>
-
-      <p class="disclaimer"><strong>What this is not:</strong> a regulatory certification or legal assessment. We provide scientific, evidence-based review of product claims, messaging and supporting literature. For MDR or AI Act compliance, we'll tell you when it's time to bring in regulatory counsel — and we'll have done the groundwork they need.</p>
     </div>
   </div>
 
   <!-- CTA (Pinion) -->
-  <div class="panel bg-pinion">
+  <div class="panel bg-pinion panel-with-footer">
     <div class="panel-inner center">
       <h2>Doesn't fit neatly in a box?</h2>
       <p class="lede" style="margin:0 auto">Almost nothing does. Write to us with what you have — a dataset, an idea, a half-finished draft — and we'll tell you how we would approach it.</p>
@@ -251,31 +269,39 @@
         <button class="btn btn-on-dark" data-goto="contact">Get in touch</button>
       </div>
     </div>
+    <div class="panel-footer-bar">
+      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
+      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
+    </div>
   </div>
 </section>
 
 <!-- ═════════ PAGE: WORK ═════════ -->
 <section class="page" id="page-work">
   <div class="panel bg-down">
-    <div class="panel-inner">
-      <div class="eyebrow">Work</div>
-      <h1 style="font-size:clamp(34px,5.2vw,62px)">Selected work</h1>
-      <p class="lede">A sample of recent projects across our three lines. Much of what we write is published under our clients' names or protected by confidentiality agreements — these cases are anonymised, and we're happy to discuss relevant examples in detail on a call.</p>
-
-      <div class="filter-row" role="group" aria-label="Filter work by service line">
-        <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
-        <button class="filter-chip" aria-pressed="false" data-filter="publications">Publication support</button>
-        <button class="filter-chip" aria-pressed="false" data-filter="content">Content &amp; medcomms</button>
-        <button class="filter-chip" aria-pressed="false" data-filter="validation">Science validation</button>
+    <div class="panel-inner panel-inner-work">
+      <div class="work-header">
+        <div>
+          <div class="eyebrow">Work</div>
+          <h1 style="font-size:clamp(28px,4vw,52px); margin-bottom:var(--sp-3)">Selected work</h1>
+          <p class="lede work-lede" style="margin-bottom:0">A sample of recent projects across our three lines. Much of what we write is published under our clients' names or protected by NDAs — cases are anonymised.</p>
+        </div>
+        <div class="filter-row" role="group" aria-label="Filter work by service line">
+          <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
+          <button class="filter-chip" aria-pressed="false" data-filter="publications">Publication support</button>
+          <button class="filter-chip" aria-pressed="false" data-filter="content">Content &amp; medcomms</button>
+          <button class="filter-chip" aria-pressed="false" data-filter="validation">Science validation</button>
+        </div>
       </div>
 
-      <div class="work-grid" id="workGrid">
+        <div class="nda-note" style="margin-bottom:var(--sp-3); margin-top:0"><strong>On what you don't see:</strong> ghostwritten content carries clients' names, and most validation work is under NDA. References available on request.</div>
+      <div class="work-scroll-track" id="workGrid">
         <article class="work-card" data-line="publications">
           <div class="work-head"></div>
           <div class="work-body">
             <span class="work-kicker">Publication support</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round."</p>
+            <p>Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round.</p>
             <div class="work-meta"><span>Manuscript</span><span>Therapeutic area</span><span>Year</span></div>
           </div>
         </article>
@@ -284,7 +310,7 @@
           <div class="work-body">
             <span class="work-kicker">Publication support</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "Response to reviewers for a contested methods critique — all major points resolved without additional experiments."</p>
+            <p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p>
             <div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div>
           </div>
         </article>
@@ -293,7 +319,7 @@
           <div class="work-body">
             <span class="work-kicker">Content &amp; medcomms</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "White paper for a biotech platform company — now their most-requested sales document, 18 months on."</p>
+            <p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p>
             <div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div>
           </div>
         </article>
@@ -302,7 +328,7 @@
           <div class="work-body">
             <span class="work-kicker">Content &amp; medcomms</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "Six months of LinkedIn ghostwriting for a healthtech founder — follower growth metric, inbound leads metric."</p>
+            <p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p>
             <div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div>
           </div>
         </article>
@@ -311,7 +337,7 @@
           <div class="work-body">
             <span class="work-kicker">Science validation</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated."</p>
+            <p>Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated.</p>
             <div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>Year</span></div>
           </div>
         </article>
@@ -320,18 +346,16 @@
           <div class="work-body">
             <span class="work-kicker">Science validation</span>
             <h3>Case title pending</h3>
-            <p>Placeholder: e.g. "Evidence dossier for a wearable's HRV-based features, used in the company's Series A data room."</p>
+            <p>Evidence dossier for a wearable's HRV-based features, used in the company's Series A data room.</p>
             <div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div>
           </div>
         </article>
       </div>
-
-      <div class="nda-note"><strong>A note on what you don't see here.</strong> Ghostwritten content carries our clients' names, and most validation work is covered by NDAs. That is the nature of the job — the work disappears into the client's voice. References available on request.</div>
     </div>
   </div>
 
-  <!-- Publications strip (White) -->
-  <div class="panel bg-white">
+  <!-- Publications strip (White) with footer -->
+  <div class="panel bg-white panel-with-footer">
     <div class="panel-inner">
       <div class="eyebrow">Publications</div>
       <h2>Peer-reviewed work we've supported</h2>
@@ -344,6 +368,10 @@
       <div class="mt-10">
         <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
       </div>
+    </div>
+    <div class="panel-footer-bar panel-footer-bar--light">
+      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
     </div>
   </div>
 </section>
@@ -397,7 +425,7 @@
   </div>
 
   <!-- How we work (White) -->
-  <div class="panel bg-white">
+  <div class="panel bg-white panel-with-footer">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.howWeWork.eyebrow }}</div>
       <h2>{{ about.howWeWork.title }}</h2>
@@ -411,12 +439,16 @@
         {% endfor %}
       </div>
     </div>
+    <div class="panel-footer-bar panel-footer-bar--light">
+      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
+    </div>
   </div>
 </section>
 
 <!-- ═════════ PAGE: CONTACT ═════════ -->
 <section class="page" id="page-contact">
-  <div class="panel bg-down">
+  <div class="panel bg-down panel-with-footer">
     <div class="panel-inner">
       <div class="eyebrow">Contact</div>
       <h1 style="font-size:clamp(34px,5.2vw,62px)">Tell us about your project</h1>
@@ -458,27 +490,15 @@
         </form>
       </div>
     </div>
+    <div class="panel-footer-bar panel-footer-bar--light">
+      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
+    </div>
   </div>
 </section>
 </main>
 
 <!-- ═════════ FOOTER ═════════ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <div class="f-brand">
-        <img src="/images/mark-dark-bg.png" alt="">
-        <span class="f-wm">IRIDIS</span>
-      </div>
-      <div>Scientific writing with structural clarity.</div>
-    </div>
-    <div style="text-align:right">
-      <div>© 2026 Iridis · Draft v0.2</div>
-      <div style="margin-top:4px">The colour is in the structure, not the surface.</div>
-    </div>
-  </div>
-</footer>
-
 <!-- ═════════ HOME SCROLL NAV (dots + down arrow) ═════════ -->
 <div class="page-dots" id="pageDots" aria-hidden="true"></div>
 <button class="scroll-down-btn" id="scrollDownBtn" aria-label="Next section" aria-hidden="true">
@@ -499,15 +519,17 @@ let scrollObserver = null;
 let currentPanels = [];
 let activeIndex = 0;
 
-function initScrollNav(pageEl) {
-  // Tear down previous observer
-  if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
+// Navigate to a panel index — shared by wheel, arrow, dots and keyboard
+function goToPanel(i) {
+  const target = currentPanels[Math.max(0, Math.min(currentPanels.length - 1, i))];
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-  // Clear dots
+function initScrollNav(pageEl) {
+  if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
 
-  // Hide UI if only 1 panel
   if (currentPanels.length <= 1) {
     dotsEl.classList.remove('visible');
     downBtn.classList.remove('visible');
@@ -515,21 +537,19 @@ function initScrollNav(pageEl) {
   }
 
   dotsEl.classList.add('visible');
-  downBtn.classList.add('visible');
+  downBtn.classList.remove('is-last');
   activeIndex = 0;
 
-  // Build dots
+  // Only show arrow on desktop (≥ 861px)
+  if (window.innerWidth > 860) downBtn.classList.add('visible');
+
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
     dot.setAttribute('aria-label', 'Ir a la sección ' + (i + 1) + ' de ' + currentPanels.length);
-    dot.addEventListener('click', () => {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    dot.addEventListener('click', () => goToPanel(i));
     dotsEl.appendChild(dot);
   });
-
-  downBtn.classList.remove('is-last');
 
   function setActive(i) {
     activeIndex = i;
@@ -545,30 +565,50 @@ function initScrollNav(pageEl) {
 
   currentPanels.forEach(p => scrollObserver.observe(p));
 
-  downBtn.onclick = () => {
-    const next = currentPanels[Math.min(activeIndex + 1, currentPanels.length - 1)];
-    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  downBtn.onclick = () => goToPanel(activeIndex + 1);
 }
+
+// ── Wheel interceptor (desktop only) ──
+// Intercept wheel events and navigate programmatically so mouse scroll
+// feels identical to clicking the arrow — no browser-lag, no mid-panel stops.
+let wheelBusy = false;
+window.addEventListener('wheel', (e) => {
+  if (!currentPanels.length) return;
+  e.preventDefault();
+  if (wheelBusy) return;
+  wheelBusy = true;
+  goToPanel(activeIndex + (e.deltaY > 0 ? 1 : -1));
+  setTimeout(() => { wheelBusy = false; }, 700);
+}, { passive: false });
+
+// ── Keyboard navigation (↑ ↓) ──
+window.addEventListener('keydown', (e) => {
+  if (!currentPanels.length) return;
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goToPanel(activeIndex + 1); }
+  if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); goToPanel(activeIndex - 1); }
+});
 
 function goto(name) {
   pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
   tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.goto === name ? 'true' : 'false'));
   navTabs.classList.remove('open');
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
   history.replaceState(null, '', '#' + name);
-
-  // Reinitialise scroll nav for the new page
   const activePage = document.getElementById('page-' + name);
   if (activePage) initScrollNav(activePage);
 }
 
 document.querySelectorAll('[data-goto]').forEach(el => {
-  el.addEventListener('click', () => goto(el.dataset.goto));
+  el.addEventListener('click', () => {
+    goto(el.dataset.goto);
+    if (el.dataset.panel !== undefined) {
+      // small delay to let initScrollNav finish building currentPanels
+      setTimeout(() => goToPanel(parseInt(el.dataset.panel)), 80);
+    }
+  });
 });
 navToggle.addEventListener('click', () => navTabs.classList.toggle('open'));
 
-// open page from hash
 const initial = location.hash.replace('#','');
 if (initial && document.getElementById('page-' + initial)) {
   goto(initial);
