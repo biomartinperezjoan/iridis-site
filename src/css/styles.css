@@ -17,7 +17,7 @@
 }
 
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; scroll-snap-type: y proximity; scroll-padding-top: var(--nav-h); }
+html { scroll-behavior:smooth; scroll-snap-type: y mandatory; scroll-padding-top: var(--nav-h); }
 body {
   background: var(--down);
   color: var(--ink);
@@ -151,7 +151,7 @@ a { color: var(--pinion); }
     border-bottom: 1px solid rgba(241,244,241,.1);
   }
   .nav-tabs.open { transform: translateY(0); }
-  .nav-tabs button { text-align:left; font-size:16px; padding:12px 8px; }
+  .nav-tabs button, .nav-tabs a { text-align:left; font-size:16px; padding:12px 8px; }
 }
 
 /* ───────── PAGES (tabs) ───────── */
@@ -606,7 +606,7 @@ h3, .h3 {
 
 /* ───────── HOME: page dots + down-arrow scroll nav ───────── */
 .page-dots, .scroll-down-btn { display: none; }
-body.on-home .page-dots, body.on-home .scroll-down-btn { display: flex; }
+.page-dots.visible, .scroll-down-btn.visible { display: flex; }
 
 .page-dots {
   position: fixed;
