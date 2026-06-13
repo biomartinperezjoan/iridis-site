@@ -13,7 +13,7 @@ Every editor has a story about a methodologically sound paper that bounced twice
 
 ## The abstract is the first — and sometimes only — review
 
-zA reviewer forms an opinion before reaching the methods section. If the abstract buries the main finding under three sentences of background, that opinion is already half-formed by the time the real evidence appears.
+A reviewer forms an opinion before reaching the methods section. If the abstract buries the main finding under three sentences of background, that opinion is already half-formed by the time the real evidence appears.
 
 This isn't about dumbing anything down. It's about **sequencing**: lead with what changed, then explain why it matters, then show how you know.
 
