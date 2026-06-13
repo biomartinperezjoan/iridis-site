@@ -45,11 +45,6 @@
           <button class="btn btn-primary" data-goto="services">Explore our services</button>
           <button class="btn btn-secondary" data-goto="contact">Start a project</button>
         </div>
-        <div class="hero-proofline">
-          <span><b>3 specialists</b> — science, writing, strategy</span>
-          <span>Spain · Ireland</span>
-          <span>English · Spanish · Català</span>
-        </div>
       </div>
     </div>
   </div>
@@ -476,6 +471,12 @@
   </div>
 </footer>
 
+<!-- ═════════ HOME SCROLL NAV (dots + down arrow) ═════════ -->
+<div class="page-dots" id="pageDots" aria-hidden="true"></div>
+<button class="scroll-down-btn" id="scrollDownBtn" aria-label="Next section" aria-hidden="true">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+
 <script>
 // ── Tab navigation ──
 const pages = document.querySelectorAll('.page');
@@ -487,6 +488,7 @@ function goto(name) {
   pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
   tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.goto === name ? 'true' : 'false'));
   navTabs.classList.remove('open');
+  document.body.classList.toggle('on-home', name === 'home');
   window.scrollTo(0, 0);
   history.replaceState(null, '', '#' + name);
 }
@@ -498,8 +500,53 @@ navToggle.addEventListener('click', () => navTabs.classList.toggle('open'));
 
 // open page from hash
 const initial = location.hash.replace('#','');
-if (initial && document.getElementById('page-' + initial)) goto(initial);
+if (initial && document.getElementById('page-' + initial)) {
+  goto(initial);
+} else {
+  document.body.classList.add('on-home');
+}
 
+// ── Home page-by-page scroll nav (dots + down arrow) ──
+(function () {
+  const homePanels = Array.from(document.querySelectorAll('#page-home .panel'));
+  const dotsEl = document.getElementById('pageDots');
+  const downBtn = document.getElementById('scrollDownBtn');
+  if (!homePanels.length) return;
+
+  homePanels.forEach((panel, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', 'Go to section ' + (i + 1) + ' of ' + homePanels.length);
+    dot.addEventListener('click', () => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    dotsEl.appendChild(dot);
+  });
+  const dots = Array.from(dotsEl.children);
+
+  let activeIndex = 0;
+  function setActive(i) {
+    activeIndex = i;
+    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    downBtn.classList.toggle('is-last', i === homePanels.length - 1);
+  }
+  setActive(0);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(homePanels.indexOf(entry.target));
+      }
+    });
+  }, { threshold: 0.55 });
+  homePanels.forEach(p => observer.observe(p));
+
+  downBtn.addEventListener('click', () => {
+    const next = homePanels[Math.min(activeIndex + 1, homePanels.length - 1)];
+    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
+<script>
 // ── Before/after demos ──
 const DEMOS = {
   demo1: {
