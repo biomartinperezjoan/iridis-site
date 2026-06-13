@@ -491,14 +491,76 @@ const pages = document.querySelectorAll('.page');
 const tabs  = document.querySelectorAll('.nav-tabs button');
 const navTabs = document.getElementById('navTabs');
 const navToggle = document.getElementById('navToggle');
+const dotsEl = document.getElementById('pageDots');
+const downBtn = document.getElementById('scrollDownBtn');
+
+// ── Scroll nav (dots + down arrow) — works on any page ──
+let scrollObserver = null;
+let currentPanels = [];
+let activeIndex = 0;
+
+function initScrollNav(pageEl) {
+  // Tear down previous observer
+  if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
+
+  // Clear dots
+  dotsEl.innerHTML = '';
+  currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
+
+  // Hide UI if only 1 panel
+  if (currentPanels.length <= 1) {
+    dotsEl.classList.remove('visible');
+    downBtn.classList.remove('visible');
+    return;
+  }
+
+  dotsEl.classList.add('visible');
+  downBtn.classList.add('visible');
+  activeIndex = 0;
+
+  // Build dots
+  currentPanels.forEach((panel, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ir a la sección ' + (i + 1) + ' de ' + currentPanels.length);
+    dot.addEventListener('click', () => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  downBtn.classList.remove('is-last');
+
+  function setActive(i) {
+    activeIndex = i;
+    Array.from(dotsEl.children).forEach((d, j) => d.classList.toggle('active', j === i));
+    downBtn.classList.toggle('is-last', i === currentPanels.length - 1);
+  }
+
+  scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(currentPanels.indexOf(entry.target));
+    });
+  }, { threshold: 0.55 });
+
+  currentPanels.forEach(p => scrollObserver.observe(p));
+
+  downBtn.onclick = () => {
+    const next = currentPanels[Math.min(activeIndex + 1, currentPanels.length - 1)];
+    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+}
 
 function goto(name) {
   pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
   tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.goto === name ? 'true' : 'false'));
   navTabs.classList.remove('open');
-  document.body.classList.toggle('on-home', name === 'home');
   window.scrollTo(0, 0);
   history.replaceState(null, '', '#' + name);
+
+  // Reinitialise scroll nav for the new page
+  const activePage = document.getElementById('page-' + name);
+  if (activePage) initScrollNav(activePage);
 }
 
 document.querySelectorAll('[data-goto]').forEach(el => {
@@ -511,47 +573,8 @@ const initial = location.hash.replace('#','');
 if (initial && document.getElementById('page-' + initial)) {
   goto(initial);
 } else {
-  document.body.classList.add('on-home');
+  goto('home');
 }
-
-// ── Home page-by-page scroll nav (dots + down arrow) ──
-(function () {
-  const homePanels = Array.from(document.querySelectorAll('#page-home .panel'));
-  const dotsEl = document.getElementById('pageDots');
-  const downBtn = document.getElementById('scrollDownBtn');
-  if (!homePanels.length) return;
-
-  homePanels.forEach((panel, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'dot';
-    dot.setAttribute('aria-label', 'Go to section ' + (i + 1) + ' of ' + homePanels.length);
-    dot.addEventListener('click', () => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-    dotsEl.appendChild(dot);
-  });
-  const dots = Array.from(dotsEl.children);
-
-  let activeIndex = 0;
-  function setActive(i) {
-    activeIndex = i;
-    dots.forEach((d, j) => d.classList.toggle('active', j === i));
-    downBtn.classList.toggle('is-last', i === homePanels.length - 1);
-  }
-  setActive(0);
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setActive(homePanels.indexOf(entry.target));
-      }
-    });
-  }, { threshold: 0.55 });
-  homePanels.forEach(p => observer.observe(p));
-
-  downBtn.addEventListener('click', () => {
-    const next = homePanels[Math.min(activeIndex + 1, homePanels.length - 1)];
-    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-})();
 </script>
 
 <script>
