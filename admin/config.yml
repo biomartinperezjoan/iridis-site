@@ -5,7 +5,7 @@ backend:
   name: github
   repo: biomartinperezjoan/iridis-site
   branch: main
-  base_url: https://iridis-cms-auth.biomartinperezjoan.workers.dev
+  base_url: https://iridis-cms-auth.bio-martinperez-joan.workers.dev
 
 # After publishing, Decap commits to GitHub and Cloudflare Pages rebuilds automatically
 
