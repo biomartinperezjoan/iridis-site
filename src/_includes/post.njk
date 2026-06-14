@@ -1,35 +1,33 @@
 ---
 layout: base.njk
 ---
-<div class="panel bg-down" style="display:block;">
-  <div class="panel-inner" style="max-width: 760px;">
+<div class="post-page">
 
-    <a class="back-link" href="/blog/">← Back to blog</a>
+  <a class="back-link" href="/blog/">← Back to blog</a>
 
-    <header class="post-header">
-      <div class="eyebrow">{{ tags | join(" · ") }}</div>
-      <h1>{{ title }}</h1>
-      <div class="post-meta">
-        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
-        {% if readingTime %}<span>·</span><span>{{ readingTime }} min read</span>{% endif %}
-      </div>
-    </header>
-
-    <div class="prose">
-      {{ content | safe }}
+  <header class="post-header">
+    <div class="eyebrow">{{ tags | join(" · ") }}</div>
+    <h1>{{ title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      {% if readingTime %}<span>·</span><span>{{ readingTime }} min read</span>{% endif %}
     </div>
+  </header>
 
-    {% if tags %}
-    <div class="post-tags">
-      {% for tag in tags %}<span class="tag tag-pinion">{{ tag }}</span>{% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="post-cta">
-      <h2 style="font-size: clamp(24px,3vw,32px)">Working on something similar?</h2>
-      <p class="lede" style="margin: 0 auto var(--sp-6)">We'd be glad to take a look — get in touch and tell us what you're working on.</p>
-      <a class="btn btn-primary" href="/#contact">Start a project</a>
-    </div>
-
+  <div class="prose">
+    {{ content | safe }}
   </div>
+
+  {% if tags %}
+  <div class="post-tags">
+    {% for tag in tags %}<span class="tag tag-pinion">{{ tag }}</span>{% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="post-cta">
+    <h2 style="font-size: clamp(24px,3vw,32px)">Working on something similar?</h2>
+    <p class="lede" style="margin: 0 auto var(--sp-6)">We'd be glad to take a look — get in touch and tell us what you're working on.</p>
+    <a class="btn btn-primary" href="/#contact">Start a project</a>
+  </div>
+
 </div>
