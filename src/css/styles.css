@@ -831,16 +831,21 @@ h3, .h3 {
 }
 
 @media (max-width: 860px) {
-  /* ── Free scroll on mobile: no panel snapping, natural heights ── */
-  html { scroll-snap-type: none; }
+  /* ── Free scroll on mobile: no panel snapping, natural heights ──
+     Force snap off on every relevant element + !important so no base rule
+     can re-introduce paging on touch devices. */
+  html, body { scroll-snap-type: none !important; }
   .panel {
-    min-height: 0;
-    scroll-snap-align: none; scroll-snap-stop: normal;
+    min-height: 0 !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
     padding: var(--sp-12) var(--sp-5);
   }
   .panel:first-child { padding-top: calc(var(--nav-h) + var(--sp-10)); }
   .panel-with-footer { padding-bottom: 0; }
   .panel-with-footer .panel-inner { padding-bottom: var(--sp-10); }
+  /* specific panels that hard-set a screen height must release it on mobile */
+  .blog-index-panel { min-height: 0 !important; }
 
   /* hide the desktop scroll indicators entirely */
   .page-dots, .scroll-down-btn { display: none !important; }
