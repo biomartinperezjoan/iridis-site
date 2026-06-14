@@ -278,13 +278,14 @@
 
 <!-- ═════════ PAGE: WORK ═════════ -->
 <section class="page" id="page-work">
-  <div class="panel bg-down">
+  <div class="panel bg-down panel-with-footer">
     <div class="panel-inner panel-inner-work">
+
       <div class="work-header">
         <div>
           <div class="eyebrow">Work</div>
           <h1 style="font-size:clamp(28px,4vw,52px); margin-bottom:var(--sp-3)">Selected work</h1>
-          <p class="lede work-lede" style="margin-bottom:0">A sample of recent projects across our three lines. Much of what we write is published under our clients' names or protected by NDAs — cases are anonymised.</p>
+          <p class="lede work-lede">A sample of recent projects across our three lines. Much of what we write is published under our clients&rsquo; names or protected by NDAs — cases are anonymised.</p>
         </div>
         <div class="filter-row" role="group" aria-label="Filter work by service line">
           <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
@@ -294,8 +295,16 @@
         </div>
       </div>
 
-        <div class="nda-note" style="margin-bottom:var(--sp-3); margin-top:0"><strong>On what you don't see:</strong> ghostwritten content carries clients' names, and most validation work is under NDA. References available on request.</div>
-      <div class="work-scroll-track" id="workGrid">
+      <!-- The track is filled with .work-page blocks (6 cards each) by JS. -->
+      <div class="work-scroll-track" id="workTrack"></div>
+
+      <div class="work-footer-row">
+        <div class="nda-note"><strong>On what you don&rsquo;t see:</strong> ghostwritten content carries clients&rsquo; names, and most validation work is under NDA. References available on request.</div>
+        <div class="work-pager" id="workPager" aria-label="Work pages"></div>
+      </div>
+
+      <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
+      <div id="workSource" hidden>
         <article class="work-card" data-line="publications">
           <div class="work-head"></div>
           <div class="work-body">
@@ -346,31 +355,15 @@
           <div class="work-body">
             <span class="work-kicker">Science validation</span>
             <h3>Case title pending</h3>
-            <p>Evidence dossier for a wearable's HRV-based features, used in the company's Series A data room.</p>
+            <p>Evidence dossier for a wearable&rsquo;s HRV-based features, used in the company&rsquo;s Series A data room.</p>
             <div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div>
           </div>
         </article>
       </div>
-    </div>
-  </div>
 
-  <!-- Publications strip (White) with footer -->
-  <div class="panel bg-white panel-with-footer">
-    <div class="panel-inner">
-      <div class="eyebrow">Publications</div>
-      <h2>Peer-reviewed work we've supported</h2>
-      <p class="lede">Papers where our contribution is acknowledged or where authors have agreed to be listed as references. List pending — entries will follow standard citation format.</p>
-      <ul class="pub-list">
-        <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-      </ul>
-      <div class="mt-10">
-        <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
-      </div>
     </div>
-    <div class="panel-footer-bar panel-footer-bar--light">
-      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+    <div class="panel-footer-bar">
+      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
       <div>© 2026 Iridis · Scientific writing with structural clarity</div>
     </div>
   </div>
@@ -439,8 +432,8 @@
         {% endfor %}
       </div>
     </div>
-    <div class="panel-footer-bar panel-footer-bar--light">
-      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+    <div class="panel-footer-bar">
+      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
       <div>© 2026 Iridis · Scientific writing with structural clarity</div>
     </div>
   </div>
@@ -490,15 +483,14 @@
         </form>
       </div>
     </div>
-    <div class="panel-footer-bar panel-footer-bar--light">
-      <div class="f-brand-light"><img src="/images/mark-light-bg.png" alt=""> <span class="f-wm-light">IRIDIS</span></div>
+    <div class="panel-footer-bar">
+      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
       <div>© 2026 Iridis · Scientific writing with structural clarity</div>
     </div>
   </div>
 </section>
 </main>
 
-<!-- ═════════ FOOTER ═════════ -->
 <!-- ═════════ HOME SCROLL NAV (dots + down arrow) ═════════ -->
 <div class="page-dots" id="pageDots" aria-hidden="true"></div>
 <button class="scroll-down-btn" id="scrollDownBtn" aria-label="Next section" aria-hidden="true">
@@ -519,7 +511,6 @@ let scrollObserver = null;
 let currentPanels = [];
 let activeIndex = 0;
 
-// Navigate to a panel index — shared by wheel, arrow, dots and keyboard
 function goToPanel(i) {
   const target = currentPanels[Math.max(0, Math.min(currentPanels.length - 1, i))];
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -540,13 +531,12 @@ function initScrollNav(pageEl) {
   downBtn.classList.remove('is-last');
   activeIndex = 0;
 
-  // Only show arrow on desktop (≥ 861px)
   if (window.innerWidth > 860) downBtn.classList.add('visible');
 
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Ir a la sección ' + (i + 1) + ' de ' + currentPanels.length);
+    dot.setAttribute('aria-label', 'Go to section ' + (i + 1) + ' of ' + currentPanels.length);
     dot.addEventListener('click', () => goToPanel(i));
     dotsEl.appendChild(dot);
   });
@@ -569,8 +559,6 @@ function initScrollNav(pageEl) {
 }
 
 // ── Wheel interceptor (desktop only) ──
-// Intercept wheel events and navigate programmatically so mouse scroll
-// feels identical to clicking the arrow — no browser-lag, no mid-panel stops.
 let wheelBusy = false;
 window.addEventListener('wheel', (e) => {
   if (!currentPanels.length) return;
@@ -602,7 +590,6 @@ document.querySelectorAll('[data-goto]').forEach(el => {
   el.addEventListener('click', () => {
     goto(el.dataset.goto);
     if (el.dataset.panel !== undefined) {
-      // small delay to let initScrollNav finish building currentPanels
       setTimeout(() => goToPanel(parseInt(el.dataset.panel)), 80);
     }
   });
@@ -645,16 +632,65 @@ Object.keys(DEMOS).forEach(id => {
   after.addEventListener('click', () => set(true));
 });
 
-// ── Work filters ──
-const chips = document.querySelectorAll('.filter-chip');
-const works = document.querySelectorAll('.work-card');
-chips.forEach(chip => {
-  chip.addEventListener('click', () => {
-    chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-    const f = chip.dataset.filter;
-    works.forEach(w => w.classList.toggle('hidden', f !== 'all' && w.dataset.line !== f));
+// ── Work: build 6-up pages, filter, paginate ──
+(function () {
+  const source = document.getElementById('workSource');
+  const track  = document.getElementById('workTrack');
+  const pager  = document.getElementById('workPager');
+  if (!source || !track || !pager) return;
+
+  const allCards = Array.from(source.querySelectorAll('.work-card'));
+  const PER_PAGE = 6;
+  let currentFilter = 'all';
+
+  function render() {
+    const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
+    track.innerHTML = '';
+    pager.innerHTML = '';
+
+    const pageCount = Math.max(1, Math.ceil(cards.length / PER_PAGE));
+
+    for (let p = 0; p < pageCount; p++) {
+      const page = document.createElement('div');
+      page.className = 'work-page';
+      cards.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE).forEach(card => {
+        page.appendChild(card.cloneNode(true));
+      });
+      track.appendChild(page);
+    }
+
+    if (pageCount > 1) {
+      for (let p = 0; p < pageCount; p++) {
+        const dot = document.createElement('button');
+        dot.className = 'wp-dot' + (p === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to work page ' + (p + 1));
+        dot.addEventListener('click', () => {
+          const ps = track.querySelectorAll('.work-page');
+          if (ps[p]) ps[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+        pager.appendChild(dot);
+      }
+      track.onscroll = () => {
+        const idx = Math.round(track.scrollLeft / track.clientWidth);
+        pager.querySelectorAll('.wp-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      };
+    } else {
+      track.onscroll = null;
+    }
+    track.scrollLeft = 0;
+  }
+
+  document.querySelectorAll('#page-work .filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#page-work .filter-chip')
+        .forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      currentFilter = chip.dataset.filter;
+      render();
+    });
   });
-});
+
+  render();
+})();
 </script>
 </body>
 </html>
