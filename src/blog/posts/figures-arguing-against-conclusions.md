@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "Your figures are arguing against your conclusions"
+date: 2026-03-14
+excerpt: If your strongest evidence is referenced last, in passing, the figures are telling a different story than your conclusions. Fix the sequence.
 tags:
-  - Medical Writing
-  - Peer Review
-readingTime: 6
+  - Scientific Writing
+  - Data Visualisation
+readingTime: 5
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "Your figures are arguing against your conclusions". Replace it with the real article when ready.
 
 ## A first section
 

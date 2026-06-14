@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "Systematic reviews: the search strategy is the paper"
+date: 2026-03-28
+excerpt: In a systematic review, the search strategy isn't preliminary work, it is the contribution. Get it wrong and the synthesis collapses.
 tags:
-  - Medical Writing
   - Peer Review
-readingTime: 6
+  - Medical Writing
+readingTime: 7
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "Systematic reviews: the search strategy is the paper". Replace it with the real article when ready.
 
 ## A first section
 

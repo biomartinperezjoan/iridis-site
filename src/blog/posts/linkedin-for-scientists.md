@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "LinkedIn for scientists: authority without the cringe"
+date: 2026-04-22
+excerpt: Posting as a scientist doesn't mean performing for an algorithm. Authority comes from saying something only you could say, clearly.
 tags:
-  - Medical Writing
-  - Peer Review
-readingTime: 6
+  - LinkedIn
+  - Content Strategy
+readingTime: 5
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "LinkedIn for scientists: authority without the cringe". Replace it with the real article when ready.
 
 ## A first section
 

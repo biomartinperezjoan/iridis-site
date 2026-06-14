@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "The difference between a claim and a defensible claim"
+date: 2026-02-29
+excerpt: Improves sleep and improves sleep quality with p below 0.05 are not the same claim. One is marketing; the other is defensible.
 tags:
-  - Medical Writing
-  - Peer Review
+  - Science Validation
+  - Regulatory
 readingTime: 6
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "The difference between a claim and a defensible claim". Replace it with the real article when ready.
 
 ## A first section
 

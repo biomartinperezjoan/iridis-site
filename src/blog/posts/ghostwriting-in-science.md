@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "Ghostwriting in science: whose voice is it anyway"
+date: 2026-02-18
+excerpt: When we write under a client's name, whose voice carries the argument? The ethics of scientific ghostwriting, and where we draw the line.
 tags:
-  - Medical Writing
-  - Peer Review
-readingTime: 6
+  - Medcomms
+  - Ethics
+readingTime: 4
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "Ghostwriting in science: whose voice is it anyway". Replace it with the real article when ready.
 
 ## A first section
 

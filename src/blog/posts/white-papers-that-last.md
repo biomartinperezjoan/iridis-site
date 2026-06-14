@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "White papers that still work eighteen months later"
+date: 2026-05-03
+excerpt: The long document is where credibility is won. A well-built white paper keeps generating leads years after it ships.
 tags:
-  - Medical Writing
-  - Peer Review
+  - Medcomms
+  - Content Strategy
 readingTime: 6
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "White papers that still work eighteen months later". Replace it with the real article when ready.
 
 ## A first section
 

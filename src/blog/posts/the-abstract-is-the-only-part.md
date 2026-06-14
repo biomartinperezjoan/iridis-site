@@ -1,14 +1,14 @@
 ---
-title: "Why manuscripts get rejected: it's rarely the science"
-date: 2026-06-01
-excerpt: Reviewers reject solid work for reasons unrelated to methodology. Structure and abstract legibility do more work than most researchers admit.
+title: "The abstract is the only part most people read"
+date: 2026-05-24
+excerpt: A reviewer forms an opinion before the methods section. If the abstract buries the finding, the verdict is half-formed before the evidence appears.
 tags:
   - Medical Writing
-  - Peer Review
-readingTime: 6
+  - Scientific Writing
+readingTime: 5
 layout: post.njk
 ---
-This is placeholder body copy for the post "Why manuscripts get rejected: it's rarely the science". Replace it with the real article when ready.
+This is placeholder body copy for the post "The abstract is the only part most people read". Replace it with the real article when ready.
 
 ## A first section
 
