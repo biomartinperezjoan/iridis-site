@@ -849,34 +849,44 @@ h3, .h3 {
     padding-top: var(--sp-10); padding-bottom: var(--sp-3);
   }
   .work-scroll-track {
+    flex: none;
     flex-direction: row;
     overflow-x: auto; overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    flex: none;            /* don't shrink to nothing */
+    min-height: 0;
   }
   .work-page {
     flex: 0 0 100%;
+    width: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: none;          /* let each card take its natural height */
-    grid-auto-rows: minmax(150px, auto);
+    grid-template-rows: none;
+    grid-auto-rows: minmax(165px, auto);   /* each card gets real height */
     gap: var(--sp-4);
   }
-  .work-scroll-track .work-body { overflow: visible; }   /* show full text */
-  .work-header { flex-direction: column; gap: var(--sp-4); }
+  .work-scroll-track .work-card { min-height: 165px; }
+  .work-scroll-track .work-body {
+    overflow: visible;                      /* show the full description */
+    justify-content: flex-start;
+    gap: var(--sp-2);
+  }
+  .work-scroll-track .work-body p { -webkit-line-clamp: unset; }
+  .work-header { flex-direction: column; gap: var(--sp-4); align-items: stretch; }
   .work-header > div:first-child { flex: none; max-width: 100%; }
   /* arrows hidden on touch; dots + swipe drive navigation */
   .work-arrow { display: none; }
   .work-footer-row { gap: var(--sp-4); margin-top: var(--sp-5); }
   .work-nav { margin-left: 0; width: 100%; justify-content: center; }
 
-  /* filter chips: horizontal scroll instead of pushing the page wide */
+  /* filter chips: horizontal scroll instead of pushing the page wide.
+     min-width:0 + flex-shrink:1 are REQUIRED so the row can shrink and scroll. */
+  .work-header .filter-row { align-self: stretch; flex-shrink: 1; }
   .filter-row {
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    width: 100%;
-    margin-left: 0; margin-right: 0;
+    width: 100%; min-width: 0; max-width: 100%;
+    margin: var(--sp-2) 0 0;
     padding-bottom: var(--sp-2);
   }
   .filter-row::-webkit-scrollbar { display: none; }
