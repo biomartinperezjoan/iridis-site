@@ -6,7 +6,6 @@
 <title>Iridis · Scientific writing with structural clarity</title>
 <meta name="description" content="Iridis is a scientific and medical writing agency. We write, edit and validate scientific communication for researchers, biotech teams and digital health companies.">
 <link rel="canonical" href="https://iridiswriting.com/">
-<!-- Open Graph (LinkedIn, WhatsApp previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://iridiswriting.com/">
 <meta property="og:title" content="Iridis · Scientific writing with structural clarity">
@@ -57,7 +56,7 @@
     </div>
   </div>
 
-  <!-- Panel 2 · What we do (Ink) — white cards on dark -->
+  <!-- Panel 2 · What we do (Ink) -->
   <div class="panel bg-ink">
     <div class="panel-inner">
       <div class="eyebrow">What we do</div>
@@ -86,7 +85,7 @@
     </div>
   </div>
 
-  <!-- Panel 3 · Why Iridis (Down) — concept + live demo -->
+  <!-- Panel 3 · Why Iridis (Down) -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="concept-cols">
@@ -153,7 +152,7 @@
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="eyebrow">Services</div>
-      <h1 style="font-size:clamp(34px,5.2vw,62px)">Three lines of work.<br>One standard.</h1>
+      <h1>Three lines of work.<br>One standard.</h1>
       <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
       <div class="svc-index">
         <button class="svc-index-item" onclick="goToPanel(1)">
@@ -224,7 +223,7 @@
         <div>
           <div class="svc-num">03</div>
           <h2>Science validation &amp; evidence audit</h2>
-          <p class="lede" style="font-size:clamp(14px,1.4vw,16px)">AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.</p>
+          <p class="lede">AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.</p>
           <p style="font-size:12.5px; color:var(--slate); margin-top:var(--sp-3); line-height:1.55"><strong>Note:</strong> This is scientific review of claims and evidence — not regulatory certification or legal assessment. We'll flag when regulatory counsel is needed.</p>
         </div>
         <div>
@@ -284,7 +283,7 @@
       <div class="work-header">
         <div>
           <div class="eyebrow">Work</div>
-          <h1 style="font-size:clamp(28px,4vw,52px); margin-bottom:var(--sp-3)">Selected work</h1>
+          <h1>Selected work</h1>
           <p class="lede work-lede">A sample of recent projects across our three lines. Much of what we write is published under our clients&rsquo; names or protected by NDAs — cases are anonymised.</p>
         </div>
         <div class="filter-row" role="group" aria-label="Filter work by service line">
@@ -295,69 +294,67 @@
         </div>
       </div>
 
-      <!-- The track is filled with .work-page blocks (6 cards each) by JS. -->
+      <!-- Filled with .work-page blocks (6 cards each) by JS -->
       <div class="work-scroll-track" id="workTrack"></div>
 
       <div class="work-footer-row">
         <div class="nda-note"><strong>On what you don&rsquo;t see:</strong> ghostwritten content carries clients&rsquo; names, and most validation work is under NDA. References available on request.</div>
-        <div class="work-pager" id="workPager" aria-label="Work pages"></div>
+        <div class="work-nav">
+          <button class="work-arrow" id="workPrev" aria-label="Previous page">‹</button>
+          <div class="work-pager" id="workPager" aria-label="Work pages"></div>
+          <button class="work-arrow" id="workNext" aria-label="Next page">›</button>
+        </div>
       </div>
 
       <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
       <div id="workSource" hidden>
         <article class="work-card" data-line="publications">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Publication support</span>
-            <h3>Case title pending</h3>
-            <p>Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round.</p>
-            <div class="work-meta"><span>Manuscript</span><span>Therapeutic area</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round.</p><div class="work-meta"><span>Manuscript</span><span>Therapeutic area</span><span>Year</span></div></div>
         </article>
         <article class="work-card" data-line="publications">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Publication support</span>
-            <h3>Case title pending</h3>
-            <p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p>
-            <div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p><div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="publications">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Systematic review with a pre-registered search strategy — published in a specialty journal and cited within months.</p><div class="work-meta"><span>Systematic review</span><span>Field</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="publications">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Full submission package — cover letter, graphical abstract and journal formatting — accepted on first submission.</p><div class="work-meta"><span>Submission package</span><span>Therapeutic area</span><span>Year</span></div></div>
         </article>
         <article class="work-card" data-line="content">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Content &amp; medcomms</span>
-            <h3>Case title pending</h3>
-            <p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p>
-            <div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p><div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div></div>
         </article>
         <article class="work-card" data-line="content">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Content &amp; medcomms</span>
-            <h3>Case title pending</h3>
-            <p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p>
-            <div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p><div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="content">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Recurring technical newsletter for a diagnostics company — opened and forwarded across their clinical network.</p><div class="work-meta"><span>Newsletter</span><span>Diagnostics</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="content">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Conference deck for a Series B pitch — the science sequenced to land with non-specialist investors.</p><div class="work-meta"><span>Scientific deck</span><span>Biotech</span><span>Year</span></div></div>
         </article>
         <article class="work-card" data-line="validation">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Science validation</span>
-            <h3>Case title pending</h3>
-            <p>Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated.</p>
-            <div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated.</p><div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>Year</span></div></div>
         </article>
         <article class="work-card" data-line="validation">
           <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">Science validation</span>
-            <h3>Case title pending</h3>
-            <p>Evidence dossier for a wearable&rsquo;s HRV-based features, used in the company&rsquo;s Series A data room.</p>
-            <div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div>
-          </div>
+          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Evidence dossier for a wearable&rsquo;s HRV-based features, used in the company&rsquo;s Series A data room.</p><div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="validation">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Pre-launch review for a nutrition platform — reference check and user-flow audit before public release.</p><div class="work-meta"><span>Pre-launch review</span><span>Nutrition</span><span>Year</span></div></div>
+        </article>
+        <article class="work-card" data-line="validation">
+          <div class="work-head"></div>
+          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Reference check for a marketing campaign — every cited study verified against its actual findings.</p><div class="work-meta"><span>Reference check</span><span>Healthtech</span><span>Year</span></div></div>
         </article>
       </div>
 
@@ -376,7 +373,7 @@
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.hero.eyebrow }}</div>
-      <h1 style="font-size:clamp(34px,5.2vw,62px)">{{ about.hero.title }}</h1>
+      <h1>{{ about.hero.title }}</h1>
       <p class="lede">{{ about.hero.lede }}</p>
 
       <div class="origin-box">
@@ -444,7 +441,7 @@
   <div class="panel bg-down panel-with-footer">
     <div class="panel-inner">
       <div class="eyebrow">Contact</div>
-      <h1 style="font-size:clamp(34px,5.2vw,62px)">Tell us about your project</h1>
+      <h1>Tell us about your project</h1>
       <p class="lede">We reply within 48 working hours. If you have a draft, a dataset or a link, even better: we'll arrive at the call with our homework done.</p>
 
       <div class="contact-grid">
@@ -506,7 +503,6 @@ const navToggle = document.getElementById('navToggle');
 const dotsEl = document.getElementById('pageDots');
 const downBtn = document.getElementById('scrollDownBtn');
 
-// ── Scroll nav (dots + down arrow) — works on any page ──
 let scrollObserver = null;
 let currentPanels = [];
 let activeIndex = 0;
@@ -530,7 +526,6 @@ function initScrollNav(pageEl) {
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
   activeIndex = 0;
-
   if (window.innerWidth > 860) downBtn.classList.add('visible');
 
   currentPanels.forEach((panel, i) => {
@@ -554,11 +549,9 @@ function initScrollNav(pageEl) {
   }, { threshold: 0.55 });
 
   currentPanels.forEach(p => scrollObserver.observe(p));
-
   downBtn.onclick = () => goToPanel(activeIndex + 1);
 }
 
-// ── Wheel interceptor (desktop only) ──
 let wheelBusy = false;
 window.addEventListener('wheel', (e) => {
   if (!currentPanels.length) return;
@@ -569,7 +562,6 @@ window.addEventListener('wheel', (e) => {
   setTimeout(() => { wheelBusy = false; }, 700);
 }, { passive: false });
 
-// ── Keyboard navigation (↑ ↓) ──
 window.addEventListener('keydown', (e) => {
   if (!currentPanels.length) return;
   if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goToPanel(activeIndex + 1); }
@@ -632,23 +624,41 @@ Object.keys(DEMOS).forEach(id => {
   after.addEventListener('click', () => set(true));
 });
 
-// ── Work: build 6-up pages, filter, paginate ──
+// ── Work: 6-up pages, fixed card size, filter + arrows + dots ──
 (function () {
   const source = document.getElementById('workSource');
   const track  = document.getElementById('workTrack');
   const pager  = document.getElementById('workPager');
+  const prev   = document.getElementById('workPrev');
+  const next   = document.getElementById('workNext');
   if (!source || !track || !pager) return;
 
   const allCards = Array.from(source.querySelectorAll('.work-card'));
   const PER_PAGE = 6;
   let currentFilter = 'all';
+  let pageCount = 1;
+
+  function currentIndex() {
+    return Math.round(track.scrollLeft / track.clientWidth);
+  }
+
+  function syncControls() {
+    const idx = currentIndex();
+    pager.querySelectorAll('.wp-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    if (prev) prev.disabled = idx <= 0;
+    if (next) next.disabled = idx >= pageCount - 1;
+  }
+
+  function goToPage(p) {
+    const pgs = track.querySelectorAll('.work-page');
+    if (pgs[p]) pgs[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  }
 
   function render() {
     const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
     track.innerHTML = '';
     pager.innerHTML = '';
-
-    const pageCount = Math.max(1, Math.ceil(cards.length / PER_PAGE));
+    pageCount = Math.max(1, Math.ceil(cards.length / PER_PAGE));
 
     for (let p = 0; p < pageCount; p++) {
       const page = document.createElement('div');
@@ -659,26 +669,24 @@ Object.keys(DEMOS).forEach(id => {
       track.appendChild(page);
     }
 
-    if (pageCount > 1) {
-      for (let p = 0; p < pageCount; p++) {
-        const dot = document.createElement('button');
-        dot.className = 'wp-dot' + (p === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to work page ' + (p + 1));
-        dot.addEventListener('click', () => {
-          const ps = track.querySelectorAll('.work-page');
-          if (ps[p]) ps[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-        });
-        pager.appendChild(dot);
-      }
-      track.onscroll = () => {
-        const idx = Math.round(track.scrollLeft / track.clientWidth);
-        pager.querySelectorAll('.wp-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
-      };
-    } else {
-      track.onscroll = null;
+    for (let p = 0; p < pageCount; p++) {
+      const dot = document.createElement('button');
+      dot.className = 'wp-dot' + (p === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to work page ' + (p + 1));
+      dot.addEventListener('click', () => goToPage(p));
+      pager.appendChild(dot);
     }
+
     track.scrollLeft = 0;
+    // hide the whole nav cluster if there's only one page
+    const navCluster = track.parentElement.querySelector('.work-nav');
+    if (navCluster) navCluster.style.visibility = pageCount > 1 ? 'visible' : 'hidden';
+    syncControls();
   }
+
+  track.addEventListener('scroll', syncControls);
+  if (prev) prev.addEventListener('click', () => goToPage(currentIndex() - 1));
+  if (next) next.addEventListener('click', () => goToPage(currentIndex() + 1));
 
   document.querySelectorAll('#page-work .filter-chip').forEach(chip => {
     chip.addEventListener('click', () => {
