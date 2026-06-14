@@ -6,8 +6,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("admin");
-  // src/index.html is now templated by Eleventy (njk) so it can read
-  // src/_data/about.json — no passthrough needed for it.
 
   // Human-friendly date filter, e.g. "12 June 2026"
   eleventyConfig.addFilter("readableDate", (dateObj) => {
@@ -22,6 +20,15 @@ module.exports = function (eleventyConfig) {
   // Collection of blog posts, newest first
   eleventyConfig.addCollection("posts", (collectionApi) => {
     return collectionApi.getFilteredByGlob("src/blog/posts/*.md").reverse();
+  });
+
+  // Unique list of all tags used across posts (for the topic filter)
+  eleventyConfig.addCollection("postTags", (collectionApi) => {
+    const tags = new Set();
+    collectionApi.getFilteredByGlob("src/blog/posts/*.md").forEach((post) => {
+      (post.data.tags || []).forEach((t) => tags.add(t));
+    });
+    return [...tags].sort();
   });
 
   return {
