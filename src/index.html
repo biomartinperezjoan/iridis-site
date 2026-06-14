@@ -499,12 +499,16 @@ function goToPanel(i) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function isMobile() { return window.innerWidth <= 860; }
+
 function initScrollNav(pageEl) {
   if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
 
-  if (currentPanels.length <= 1) {
+  // On mobile: free native scroll — no dots, no panel snapping, no interceptors.
+  if (isMobile() || currentPanels.length <= 1) {
+    currentPanels = [];
     dotsEl.classList.remove('visible');
     downBtn.classList.remove('visible');
     return;
@@ -513,7 +517,7 @@ function initScrollNav(pageEl) {
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
   activeIndex = 0;
-  if (window.innerWidth > 860) downBtn.classList.add('visible');
+  downBtn.classList.add('visible');
 
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
@@ -541,7 +545,7 @@ function initScrollNav(pageEl) {
 
 let wheelBusy = false;
 window.addEventListener('wheel', (e) => {
-  if (!currentPanels.length) return;
+  if (isMobile() || !currentPanels.length) return;
   e.preventDefault();
   if (wheelBusy) return;
   wheelBusy = true;
@@ -550,9 +554,19 @@ window.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 window.addEventListener('keydown', (e) => {
-  if (!currentPanels.length) return;
+  if (isMobile() || !currentPanels.length) return;
   if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goToPanel(activeIndex + 1); }
   if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); goToPanel(activeIndex - 1); }
+});
+
+// Re-evaluate scroll nav when crossing the mobile/desktop breakpoint
+let wasMobile = isMobile();
+window.addEventListener('resize', () => {
+  if (isMobile() !== wasMobile) {
+    wasMobile = isMobile();
+    const active = document.querySelector('.page.active');
+    if (active) initScrollNav(active);
+  }
 });
 
 function goto(name) {
