@@ -442,7 +442,6 @@ h3, .h3 {
   color: var(--pinion); min-width: 48px;
 }
 .pub-list .pub-src { color: var(--slate); font-style: italic; }
-
 /* ───────── ABOUT ───────── */
 .origin-box {
   background:#fff; border:1px solid var(--mist); border-radius: var(--r-lg);
@@ -538,9 +537,15 @@ h3, .h3 {
 }
 
 /* ───────── SERVICE INDEX (Services panel 1) ───────── */
+/* 2-column layout: intro left, service list right (matches svc-panel-grid) */
+.svc-intro-grid {
+  display: grid; grid-template-columns: .9fr 1.1fr;
+  gap: var(--sp-12); align-items: center;
+}
+@media (max-width: 860px) { .svc-intro-grid { grid-template-columns: 1fr; gap: var(--sp-8); } }
 .svc-index {
   display: flex; flex-direction: column; gap: var(--sp-2);
-  margin-top: var(--sp-8); max-width: 680px;
+  margin-top: 0; width: 100%;
 }
 .svc-index-item {
   display: flex; align-items: center; gap: var(--sp-5);
@@ -565,15 +570,17 @@ h3, .h3 {
 .svc-index-item span { font-family: var(--sans-body); font-size: 13px; color: var(--slate); }
 .svc-index-arrow { font-size: 18px; color: var(--pinion); font-weight: 600; transition: transform .15s; }
 .svc-index-item:hover .svc-index-arrow { transform: translateX(4px); }
-@media (max-width: 860px) { .svc-index { max-width: 100%; } }
 
 /* ───────── WORK: 6-UP GRID, FIXED CARD SIZE, HORIZONTAL PAGING ───────── */
+/* The Work cards panel fills exactly one screen; its inner wrapper owns the
+   vertical rhythm, so the parent .panel drops its vertical padding. */
+#page-work .panel:first-child { padding-top: 0; padding-bottom: 0; }
 .panel-inner-work {
   display: flex; flex-direction: column;
   height: calc(100svh - var(--nav-h));
   overflow: hidden;
   padding-top: var(--sp-12);
-  padding-bottom: var(--sp-3);
+  padding-bottom: var(--sp-6);
 }
 .work-header {
   display: flex; align-items: flex-start; justify-content: space-between;
