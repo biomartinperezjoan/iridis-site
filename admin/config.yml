@@ -2,11 +2,12 @@
 # Docs: https://decapcms.org/docs/configuration-options/
 
 backend:
-  name: git-gateway   # works with Netlify Identity, no extra server needed
-  branch: main        # the branch Netlify deploys from
+  name: github
+  repo: biomartinperezjoan/iridis-site
+  branch: main
+  base_url: https://iridis-cms-auth.biomartinperezjoan.workers.dev
 
-# After publishing, Decap commits a new Markdown file to src/blog/posts/
-# Netlify then rebuilds the site automatically (~30-60 seconds)
+# After publishing, Decap commits to GitHub and Cloudflare Pages rebuilds automatically
 
 media_folder: "src/images/uploads"  # where uploaded images are stored in the repo
 public_folder: "/images/uploads"    # how those images are referenced in pages
