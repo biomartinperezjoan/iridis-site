@@ -534,6 +534,8 @@ h3, .h3 {
 .blog-topics { display:flex; gap: var(--sp-2); flex-wrap:wrap; }
 
 /* pagination */
+.blog-pagination[hidden] { display: none !important; }
+.blog-noresults[hidden] { display: none !important; }
 .blog-pagination {
   display:flex; align-items:center; justify-content:center; gap: var(--sp-2);
   margin-top: var(--sp-10);
@@ -840,21 +842,31 @@ h3, .h3 {
   .page-dots .dot { width: 7px; height: 7px; }
 
   /* ── Work on mobile: each page = 3 cards stacked, swipe for next 3 ── */
-  .panel-inner-work { height: calc(100svh - var(--nav-h)); max-height: none; overflow: hidden; padding-top: var(--sp-10); }
+  /* Drop the fixed one-screen height so cards get real vertical room. */
+  #page-work .panel:first-child { padding-top: 0; padding-bottom: var(--sp-8); }
+  .panel-inner-work {
+    height: auto; max-height: none; overflow: visible;
+    padding-top: var(--sp-10); padding-bottom: var(--sp-3);
+  }
   .work-scroll-track {
     flex-direction: row;
     overflow-x: auto; overflow-y: hidden;
     scroll-snap-type: x mandatory;
+    flex: none;            /* don't shrink to nothing */
   }
   .work-page {
     flex: 0 0 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);   /* 3 stacked per page */
-    gap: var(--sp-3);
+    grid-template-rows: none;          /* let each card take its natural height */
+    grid-auto-rows: minmax(150px, auto);
+    gap: var(--sp-4);
   }
+  .work-scroll-track .work-body { overflow: visible; }   /* show full text */
+  .work-header { flex-direction: column; gap: var(--sp-4); }
+  .work-header > div:first-child { flex: none; max-width: 100%; }
   /* arrows hidden on touch; dots + swipe drive navigation */
   .work-arrow { display: none; }
-  .work-footer-row { gap: var(--sp-4); }
+  .work-footer-row { gap: var(--sp-4); margin-top: var(--sp-5); }
   .work-nav { margin-left: 0; width: 100%; justify-content: center; }
 
   /* filter chips: horizontal scroll instead of pushing the page wide */
@@ -863,12 +875,12 @@ h3, .h3 {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    margin-left: calc(-1 * var(--sp-6));
-    margin-right: calc(-1 * var(--sp-6));
-    padding: 0 var(--sp-6);
+    width: 100%;
+    margin-left: 0; margin-right: 0;
+    padding-bottom: var(--sp-2);
   }
   .filter-row::-webkit-scrollbar { display: none; }
-  .filter-chip { flex: 0 0 auto; }
+  .filter-chip { flex: 0 0 auto; white-space: nowrap; }
 
   /* Services 03: the claim table must not overflow the panel */
   .claim-matrix { font-size: 12px; }
