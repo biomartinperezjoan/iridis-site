@@ -838,9 +838,58 @@ h3, .h3 {
   .scroll-down-btn { display: none !important; }
   .page-dots { right: var(--sp-3); gap: 8px; padding: 10px 7px; }
   .page-dots .dot { width: 7px; height: 7px; }
-  /* Work on mobile: scroll naturally, hide arrows */
-  .panel-inner-work { height: auto; max-height: none; overflow: visible; }
-  .work-scroll-track { flex-direction: column; overflow-x: visible; scroll-snap-type: none; }
-  .work-page { flex: none; }
+
+  /* ── Work on mobile: each page = 3 cards stacked, swipe for next 3 ── */
+  .panel-inner-work { height: calc(100svh - var(--nav-h)); max-height: none; overflow: hidden; padding-top: var(--sp-10); }
+  .work-scroll-track {
+    flex-direction: row;
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+  .work-page {
+    flex: 0 0 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);   /* 3 stacked per page */
+    gap: var(--sp-3);
+  }
+  /* arrows hidden on touch; dots + swipe drive navigation */
   .work-arrow { display: none; }
+  .work-footer-row { gap: var(--sp-4); }
+  .work-nav { margin-left: 0; width: 100%; justify-content: center; }
+
+  /* filter chips: horizontal scroll instead of pushing the page wide */
+  .filter-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: calc(-1 * var(--sp-6));
+    margin-right: calc(-1 * var(--sp-6));
+    padding: 0 var(--sp-6);
+  }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-chip { flex: 0 0 auto; }
+
+  /* Services 03: the claim table must not overflow the panel */
+  .claim-matrix { font-size: 12px; }
+  .claim-matrix th, .claim-matrix td { padding: var(--sp-2) var(--sp-3); }
+
+  /* blog topics row: same horizontal-scroll treatment */
+  .blog-topics {
+    flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; width: 100%;
+  }
+  .blog-topics::-webkit-scrollbar { display: none; }
+  .blog-topics .filter-chip { flex: 0 0 auto; }
+  .blog-search { flex: 1 1 100%; }
+}
+
+/* ── Global guard: nothing escapes horizontally ── */
+html, body { overflow-x: hidden; max-width: 100%; }
+.panel, .panel-inner { max-width: 100%; }
+.claim-matrix { max-width: 100%; }
+/* tables that still don't fit get an internal scroll rather than breaking layout */
+@media (max-width: 600px) {
+  .svc-panel-grid > div { min-width: 0; }
+  .claim-matrix { display: block; overflow-x: auto; }
 }
