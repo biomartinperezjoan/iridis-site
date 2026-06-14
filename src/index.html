@@ -148,28 +148,32 @@
 <!-- ═════════ PAGE: SERVICES ═════════ -->
 <section class="page" id="page-services">
 
-  <!-- Intro (Down) -->
+  <!-- Intro (Down) — 2 columns: text left, service list right -->
   <div class="panel bg-down">
     <div class="panel-inner">
-      <div class="eyebrow">Services</div>
-      <h1>Three lines of work.<br>One standard.</h1>
-      <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
-      <div class="svc-index">
-        <button class="svc-index-item" onclick="goToPanel(1)">
-          <span class="svc-index-num">01</span>
-          <div><strong>Publication support</strong><span>Manuscripts, reviews, peer responses, submission packages</span></div>
-          <span class="svc-index-arrow">→</span>
-        </button>
-        <button class="svc-index-item" onclick="goToPanel(2)">
-          <span class="svc-index-num">02</span>
-          <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
-          <span class="svc-index-arrow">→</span>
-        </button>
-        <button class="svc-index-item" onclick="goToPanel(3)">
-          <span class="svc-index-num">03</span>
-          <div><strong>Science validation</strong><span>Claim audits, evidence mapping, pre-launch scientific review</span></div>
-          <span class="svc-index-arrow">→</span>
-        </button>
+      <div class="svc-intro-grid">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h1>Three lines of work.<br>One standard.</h1>
+          <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
+        </div>
+        <div class="svc-index">
+          <button class="svc-index-item" onclick="goToPanel(1)">
+            <span class="svc-index-num">01</span>
+            <div><strong>Publication support</strong><span>Manuscripts, reviews, peer responses, submission packages</span></div>
+            <span class="svc-index-arrow">→</span>
+          </button>
+          <button class="svc-index-item" onclick="goToPanel(2)">
+            <span class="svc-index-num">02</span>
+            <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
+            <span class="svc-index-arrow">→</span>
+          </button>
+          <button class="svc-index-item" onclick="goToPanel(3)">
+            <span class="svc-index-num">03</span>
+            <div><strong>Science validation</strong><span>Claim audits, evidence mapping, pre-launch scientific review</span></div>
+            <span class="svc-index-arrow">→</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -277,7 +281,9 @@
 
 <!-- ═════════ PAGE: WORK ═════════ -->
 <section class="page" id="page-work">
-  <div class="panel bg-down panel-with-footer">
+
+  <!-- Panel 1 · Selected work (cards, paginated 6 per page) -->
+  <div class="panel bg-down">
     <div class="panel-inner panel-inner-work">
 
       <div class="work-header">
@@ -308,56 +314,37 @@
 
       <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
       <div id="workSource" hidden>
-        <article class="work-card" data-line="publications">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round.</p><div class="work-meta"><span>Manuscript</span><span>Therapeutic area</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="publications">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p><div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="publications">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Systematic review with a pre-registered search strategy — published in a specialty journal and cited within months.</p><div class="work-meta"><span>Systematic review</span><span>Field</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="publications">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Full submission package — cover letter, graphical abstract and journal formatting — accepted on first submission.</p><div class="work-meta"><span>Submission package</span><span>Therapeutic area</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="content">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p><div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="content">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p><div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="content">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Recurring technical newsletter for a diagnostics company — opened and forwarded across their clinical network.</p><div class="work-meta"><span>Newsletter</span><span>Diagnostics</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="content">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Conference deck for a Series B pitch — the science sequenced to land with non-specialist investors.</p><div class="work-meta"><span>Scientific deck</span><span>Biotech</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="validation">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated.</p><div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="validation">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Evidence dossier for a wearable&rsquo;s HRV-based features, used in the company&rsquo;s Series A data room.</p><div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="validation">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Pre-launch review for a nutrition platform — reference check and user-flow audit before public release.</p><div class="work-meta"><span>Pre-launch review</span><span>Nutrition</span><span>Year</span></div></div>
-        </article>
-        <article class="work-card" data-line="validation">
-          <div class="work-head"></div>
-          <div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Reference check for a marketing campaign — every cited study verified against its actual findings.</p><div class="work-meta"><span>Reference check</span><span>Healthtech</span><span>Year</span></div></div>
-        </article>
+        <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Manuscript rejected twice for structural issues; restructured and accepted in a Q1 journal after one revision round.</p><div class="work-meta"><span>Manuscript</span><span>Therapeutic area</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p><div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Systematic review with a pre-registered search strategy — published in a specialty journal and cited within months.</p><div class="work-meta"><span>Systematic review</span><span>Field</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Full submission package — cover letter, graphical abstract and journal formatting — accepted on first submission.</p><div class="work-meta"><span>Submission package</span><span>Therapeutic area</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p><div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p><div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Recurring technical newsletter for a diagnostics company — opened and forwarded across their clinical network.</p><div class="work-meta"><span>Newsletter</span><span>Diagnostics</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Conference deck for a Series B pitch — the science sequenced to land with non-specialist investors.</p><div class="work-meta"><span>Scientific deck</span><span>Biotech</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="validation"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Claim audit for a sleep app pre-launch — 14 claims mapped, 3 flagged as medical device territory, all reformulated.</p><div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="validation"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Evidence dossier for a wearable&rsquo;s HRV-based features, used in the company&rsquo;s Series A data room.</p><div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="validation"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Pre-launch review for a nutrition platform — reference check and user-flow audit before public release.</p><div class="work-meta"><span>Pre-launch review</span><span>Nutrition</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="validation"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Case title pending</h3><p>Reference check for a marketing campaign — every cited study verified against its actual findings.</p><div class="work-meta"><span>Reference check</span><span>Healthtech</span><span>Year</span></div></div></article>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Panel 2 · Publications strip (White) with footer -->
+  <div class="panel bg-white panel-with-footer">
+    <div class="panel-inner">
+      <div class="eyebrow">Publications</div>
+      <h2>Peer-reviewed work we&rsquo;ve supported</h2>
+      <p class="lede">Papers where our contribution is acknowledged or where authors have agreed to be listed as references. List pending — entries will follow standard citation format.</p>
+      <ul class="pub-list">
+        <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+        <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+        <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+      </ul>
+      <div class="mt-10">
+        <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
+      </div>
     </div>
     <div class="panel-footer-bar">
       <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
