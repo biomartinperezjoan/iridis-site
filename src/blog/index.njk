@@ -56,10 +56,9 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
     {% if pagination.pages.length > 1 %}
     <nav class="blog-pagination" id="blogPagination" aria-label="Blog pages">
       {% if pagination.href.previous %}<a class="blog-page-arrow" href="{{ pagination.href.previous }}" aria-label="Previous page">‹</a>{% else %}<span class="blog-page-arrow disabled">‹</span>{% endif %}
-      {% for pageEntry in pagination.pages %}
-        {% set pageUrl = pagination.hrefs[loop.index0] %}
+      {%- for pageUrl in pagination.hrefs -%}
         <a class="blog-page-num{% if page.url == pageUrl %} active{% endif %}" href="{{ pageUrl }}">{{ loop.index }}</a>
-      {% endfor %}
+      {%- endfor -%}
       {% if pagination.href.next %}<a class="blog-page-arrow" href="{{ pagination.href.next }}" aria-label="Next page">›</a>{% else %}<span class="blog-page-arrow disabled">›</span>{% endif %}
     </nav>
     {% endif %}
@@ -71,7 +70,7 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
     <!-- Full post index (all posts) as data for client-side search/filter -->
     <script id="blogData" type="application/json">
     [
-      {% for post in collections.posts %}
+      {%- for post in collections.posts -%}
       {
         "url": "{{ post.url }}",
         "title": {{ post.data.title | dump | safe }},
@@ -81,7 +80,7 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
         "tags": {{ post.data.tags | dump | safe }},
         "cover": "{{ post.data.cover }}"
       }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      {%- endfor -%}
     ]
     </script>
 
@@ -97,53 +96,63 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
 
 <script>
 (function () {
-  const data = JSON.parse(document.getElementById('blogData').textContent);
-  const search = document.getElementById('blogSearch');
-  const topics = document.getElementById('blogTopics');
-  const paged = document.getElementById('blogGridPaged');
+  const dataEl = document.getElementById('blogData');
+  if (!dataEl) return;
+  let data = [];
+  try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+  const search     = document.getElementById('blogSearch');
+  const topics     = document.getElementById('blogTopics');
+  const paged      = document.getElementById('blogGridPaged');
   const pagination = document.getElementById('blogPagination');
-  const results = document.getElementById('blogGridResults');
-  const noResults = document.getElementById('blogNoResults');
+  const results    = document.getElementById('blogGridResults');
+  const noResults  = document.getElementById('blogNoResults');
 
   let topic = 'all';
   let query = '';
 
+  function esc(s) { return String(s == null ? '' : s); }
+
   function cardHTML(p) {
     const head = p.cover
-      ? '<div class="blog-head has-cover" style="background-image:url(\'' + p.cover + '\')"></div>'
-      : '<div class="blog-head blog-head-fallback"><img class="blog-head-mark" src="/images/mark-dark-bg.png" alt=""><span class="tag">' + (p.tags[0] || '') + '</span></div>';
-    const meta = p.date + (p.readingTime ? ' · ' + p.readingTime + ' min' : '');
-    return '<a class="blog-card-link" href="' + p.url + '"><article class="blog-card">' + head +
-      '<div class="blog-body"><div class="blog-meta">' + meta + '</div><h3>' + p.title + '</h3><p>' + p.excerpt + '</p></div></article></a>';
+      ? '<div class="blog-head has-cover" style="background-image:url(\'' + esc(p.cover) + '\')"></div>'
+      : '<div class="blog-head blog-head-fallback"><img class="blog-head-mark" src="/images/mark-dark-bg.png" alt=""><span class="tag">' + esc((p.tags || [])[0]) + '</span></div>';
+    const meta = esc(p.date) + (p.readingTime ? ' · ' + p.readingTime + ' min' : '');
+    return '<a class="blog-card-link" href="' + esc(p.url) + '"><article class="blog-card">' + head +
+      '<div class="blog-body"><div class="blog-meta">' + meta + '</div><h3>' + esc(p.title) + '</h3><p>' + esc(p.excerpt) + '</p></div></article></a>';
   }
 
-  function active() { return topic !== 'all' || query.trim() !== ''; }
+  function isActive() { return topic !== 'all' || query.trim() !== ''; }
 
   function apply() {
-    if (!active()) {
+    if (!isActive()) {
       paged.hidden = false;
       if (pagination) pagination.hidden = false;
       results.hidden = true;
       noResults.hidden = true;
+      results.innerHTML = '';
       return;
     }
     const q = query.trim().toLowerCase();
-    const filtered = data.filter(p => {
-      const okTopic = topic === 'all' || (p.tags || []).includes(topic);
-      const okQuery = !q || (p.title + ' ' + p.excerpt + ' ' + (p.tags || []).join(' ')).toLowerCase().includes(q);
+    const filtered = data.filter(function (p) {
+      const okTopic = topic === 'all' || (p.tags || []).indexOf(topic) !== -1;
+      const hay = (esc(p.title) + ' ' + esc(p.excerpt) + ' ' + (p.tags || []).join(' ')).toLowerCase();
+      const okQuery = !q || hay.indexOf(q) !== -1;
       return okTopic && okQuery;
     });
     paged.hidden = true;
     if (pagination) pagination.hidden = true;
-    results.hidden = false;
     results.innerHTML = filtered.map(cardHTML).join('');
-    noResults.hidden = filtered.length > 0;
+    results.hidden = filtered.length === 0;
+    noResults.hidden = filtered.length !== 0;
   }
 
-  search.addEventListener('input', () => { query = search.value; apply(); });
-  topics.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      topics.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+  if (search) search.addEventListener('input', function () { query = search.value; apply(); });
+  if (topics) topics.querySelectorAll('.filter-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      topics.querySelectorAll('.filter-chip').forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
       topic = chip.dataset.topic;
       apply();
     });
