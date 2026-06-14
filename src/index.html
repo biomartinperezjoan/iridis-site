@@ -304,7 +304,6 @@
       <div class="work-scroll-track" id="workTrack"></div>
 
       <div class="work-footer-row">
-        <div class="nda-note"><strong>On what you don&rsquo;t see:</strong> ghostwritten content carries clients&rsquo; names, and most validation work is under NDA. References available on request.</div>
         <div class="work-nav">
           <button class="work-arrow" id="workPrev" aria-label="Previous page">‹</button>
           <div class="work-pager" id="workPager" aria-label="Work pages"></div>
@@ -517,7 +516,9 @@ function initScrollNav(pageEl) {
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
   activeIndex = 0;
-  downBtn.classList.add('visible');
+  // Work has its own ‹ › pager at the bottom; the down-arrow would overlap it.
+  if (pageEl.id !== 'page-work') downBtn.classList.add('visible');
+  else downBtn.classList.remove('visible');
 
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
