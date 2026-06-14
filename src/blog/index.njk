@@ -2,22 +2,45 @@
 layout: base.njk
 title: Blog
 description: Analysis on scientific writing, peer review and biotech communication.
+pagination:
+  data: collections.posts
+  size: 6
+  alias: pagePosts
+permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ---
 <div class="panel bg-down panel-with-footer blog-index-panel">
   <div class="panel-inner">
 
     <div class="eyebrow">Blog</div>
-    <h1 style="font-size:clamp(34px,5.2vw,62px)">Where scientific communication breaks down — and how to fix it</h1>
+    <h1>Where scientific communication breaks down — and how to fix it</h1>
     <p class="lede">Analysis on scientific writing, peer review and biotech communication, from the team behind Iridis.</p>
 
-    <div class="blog-grid">
-      {% for post in collections.posts %}
+    <!-- Search + topic filter -->
+    <div class="blog-controls">
+      <div class="blog-search">
+        <span class="blog-search-icon" aria-hidden="true">⌕</span>
+        <input type="search" id="blogSearch" class="blog-search-input" placeholder="Search posts…" aria-label="Search posts">
+      </div>
+      <div class="blog-topics" id="blogTopics" role="group" aria-label="Filter by topic">
+        <button class="filter-chip" aria-pressed="true" data-topic="all">All topics</button>
+        {% for tag in collections.postTags %}
+        <button class="filter-chip" aria-pressed="false" data-topic="{{ tag }}">{{ tag }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- DEFAULT (paginated) grid — shown when no search/filter is active -->
+    <div class="blog-grid" id="blogGridPaged">
+      {% for post in pagePosts %}
       <a class="blog-card-link" href="{{ post.url }}">
         <article class="blog-card">
           {% if post.data.cover %}
-          <div class="blog-head" style="background-image:url('{{ post.data.cover }}'); background-size:cover; background-position:center;"></div>
+          <div class="blog-head has-cover" style="background-image:url('{{ post.data.cover }}')"></div>
           {% else %}
-          <div class="blog-head"><span class="tag">{{ post.data.tags[0] }}</span></div>
+          <div class="blog-head blog-head-fallback">
+            <img class="blog-head-mark" src="/images/mark-dark-bg.png" alt="">
+            <span class="tag">{{ post.data.tags[0] }}</span>
+          </div>
           {% endif %}
           <div class="blog-body">
             <div class="blog-meta">{{ post.data.date | readableDate }}{% if post.data.readingTime %} · {{ post.data.readingTime }} min{% endif %}</div>
@@ -29,9 +52,38 @@ description: Analysis on scientific writing, peer review and biotech communicati
       {% endfor %}
     </div>
 
-    {% if collections.posts.length == 0 %}
-    <p class="lede" style="margin-top:var(--sp-8)">No posts yet — check back soon.</p>
+    <!-- Pagination (hidden while searching/filtering) -->
+    {% if pagination.pages.length > 1 %}
+    <nav class="blog-pagination" id="blogPagination" aria-label="Blog pages">
+      {% if pagination.href.previous %}<a class="blog-page-arrow" href="{{ pagination.href.previous }}" aria-label="Previous page">‹</a>{% else %}<span class="blog-page-arrow disabled">‹</span>{% endif %}
+      {% for pageEntry in pagination.pages %}
+        {% set pageUrl = pagination.hrefs[loop.index0] %}
+        <a class="blog-page-num{% if page.url == pageUrl %} active{% endif %}" href="{{ pageUrl }}">{{ loop.index }}</a>
+      {% endfor %}
+      {% if pagination.href.next %}<a class="blog-page-arrow" href="{{ pagination.href.next }}" aria-label="Next page">›</a>{% else %}<span class="blog-page-arrow disabled">›</span>{% endif %}
+    </nav>
     {% endif %}
+
+    <!-- SEARCH RESULTS grid — populated by JS from the full post index -->
+    <div class="blog-grid" id="blogGridResults" hidden></div>
+    <p class="blog-noresults" id="blogNoResults" hidden>No posts match your search.</p>
+
+    <!-- Full post index (all posts) as data for client-side search/filter -->
+    <script id="blogData" type="application/json">
+    [
+      {% for post in collections.posts %}
+      {
+        "url": "{{ post.url }}",
+        "title": {{ post.data.title | dump | safe }},
+        "excerpt": {{ post.data.excerpt | dump | safe }},
+        "date": "{{ post.data.date | readableDate }}",
+        "readingTime": {{ post.data.readingTime or 0 }},
+        "tags": {{ post.data.tags | dump | safe }},
+        "cover": "{{ post.data.cover }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+    </script>
 
   </div>
   <div class="panel-footer-bar">
@@ -42,3 +94,59 @@ description: Analysis on scientific writing, peer review and biotech communicati
     <div>© 2026 Iridis · Scientific writing with structural clarity</div>
   </div>
 </div>
+
+<script>
+(function () {
+  const data = JSON.parse(document.getElementById('blogData').textContent);
+  const search = document.getElementById('blogSearch');
+  const topics = document.getElementById('blogTopics');
+  const paged = document.getElementById('blogGridPaged');
+  const pagination = document.getElementById('blogPagination');
+  const results = document.getElementById('blogGridResults');
+  const noResults = document.getElementById('blogNoResults');
+
+  let topic = 'all';
+  let query = '';
+
+  function cardHTML(p) {
+    const head = p.cover
+      ? '<div class="blog-head has-cover" style="background-image:url(\'' + p.cover + '\')"></div>'
+      : '<div class="blog-head blog-head-fallback"><img class="blog-head-mark" src="/images/mark-dark-bg.png" alt=""><span class="tag">' + (p.tags[0] || '') + '</span></div>';
+    const meta = p.date + (p.readingTime ? ' · ' + p.readingTime + ' min' : '');
+    return '<a class="blog-card-link" href="' + p.url + '"><article class="blog-card">' + head +
+      '<div class="blog-body"><div class="blog-meta">' + meta + '</div><h3>' + p.title + '</h3><p>' + p.excerpt + '</p></div></article></a>';
+  }
+
+  function active() { return topic !== 'all' || query.trim() !== ''; }
+
+  function apply() {
+    if (!active()) {
+      paged.hidden = false;
+      if (pagination) pagination.hidden = false;
+      results.hidden = true;
+      noResults.hidden = true;
+      return;
+    }
+    const q = query.trim().toLowerCase();
+    const filtered = data.filter(p => {
+      const okTopic = topic === 'all' || (p.tags || []).includes(topic);
+      const okQuery = !q || (p.title + ' ' + p.excerpt + ' ' + (p.tags || []).join(' ')).toLowerCase().includes(q);
+      return okTopic && okQuery;
+    });
+    paged.hidden = true;
+    if (pagination) pagination.hidden = true;
+    results.hidden = false;
+    results.innerHTML = filtered.map(cardHTML).join('');
+    noResults.hidden = filtered.length > 0;
+  }
+
+  search.addEventListener('input', () => { query = search.value; apply(); });
+  topics.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      topics.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      topic = chip.dataset.topic;
+      apply();
+    });
+  });
+})();
+</script>
