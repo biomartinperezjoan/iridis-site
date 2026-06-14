@@ -127,9 +127,12 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
   function apply() {
     if (!isActive()) {
       paged.hidden = false;
-      if (pagination) pagination.hidden = false;
+      paged.style.display = '';
+      if (pagination) pagination.style.display = '';
       results.hidden = true;
+      results.style.display = 'none';
       noResults.hidden = true;
+      noResults.style.display = 'none';
       results.innerHTML = '';
       return;
     }
@@ -141,10 +144,13 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1
       return okTopic && okQuery;
     });
     paged.hidden = true;
-    if (pagination) pagination.hidden = true;
+    paged.style.display = 'none';
+    if (pagination) pagination.style.display = 'none';
     results.innerHTML = filtered.map(cardHTML).join('');
     results.hidden = filtered.length === 0;
+    results.style.display = filtered.length === 0 ? 'none' : '';
     noResults.hidden = filtered.length !== 0;
+    noResults.style.display = filtered.length !== 0 ? 'none' : '';
   }
 
   if (search) search.addEventListener('input', function () { query = search.value; apply(); });
