@@ -896,11 +896,13 @@ h3, .h3 {
   .blog-search { flex: 1 1 100%; }
 }
 
-/* ── Global guard: nothing escapes horizontally ── */
-html, body { overflow-x: hidden; max-width: 100%; }
-.panel, .panel-inner { max-width: 100%; }
-.claim-matrix { max-width: 100%; }
-/* tables that still don't fit get an internal scroll rather than breaking layout */
+/* ── Mobile-only horizontal-overflow guard (must NOT be global: overflow-x
+   on html breaks the desktop scroll-snap and the fixed nav) ── */
+@media (max-width: 860px) {
+  body { overflow-x: hidden; }
+  .panel, .panel-inner { max-width: 100%; }
+  .claim-matrix { max-width: 100%; }
+}
 @media (max-width: 600px) {
   .svc-panel-grid > div { min-width: 0; }
   .claim-matrix { display: block; overflow-x: auto; }
