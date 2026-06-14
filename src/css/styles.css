@@ -842,9 +842,19 @@ h3, .h3 {
 }
 
 @media (max-width: 860px) {
-  .scroll-down-btn { display: none !important; }
-  .page-dots { right: var(--sp-3); gap: 8px; padding: 10px 7px; }
-  .page-dots .dot { width: 7px; height: 7px; }
+  /* ── Free scroll on mobile: no panel snapping, natural heights ── */
+  html { scroll-snap-type: none; }
+  .panel {
+    min-height: 0;
+    scroll-snap-align: none; scroll-snap-stop: normal;
+    padding: var(--sp-12) var(--sp-5);
+  }
+  .panel:first-child { padding-top: calc(var(--nav-h) + var(--sp-10)); }
+  .panel-with-footer { padding-bottom: 0; }
+  .panel-with-footer .panel-inner { padding-bottom: var(--sp-10); }
+
+  /* hide the desktop scroll indicators entirely */
+  .page-dots, .scroll-down-btn { display: none !important; }
 
   /* ── Work on mobile: each page = 3 cards stacked, swipe for next 3 ── */
   /* Drop the fixed one-screen height so cards get real vertical room. */
