@@ -611,7 +611,7 @@ Object.keys(DEMOS).forEach(id => {
   after.addEventListener('click', () => set(true));
 });
 
-// ── Work: 6-up pages, fixed card size, filter + arrows + dots ──
+// ── Work: 6-up pages (3 on mobile), fixed card size, filter + arrows + dots ──
 (function () {
   const source = document.getElementById('workSource');
   const track  = document.getElementById('workTrack');
@@ -621,9 +621,10 @@ Object.keys(DEMOS).forEach(id => {
   if (!source || !track || !pager) return;
 
   const allCards = Array.from(source.querySelectorAll('.work-card'));
-  const PER_PAGE = 6;
   let currentFilter = 'all';
   let pageCount = 1;
+
+  function perPage() { return window.innerWidth <= 860 ? 3 : 6; }
 
   function currentIndex() {
     return Math.round(track.scrollLeft / track.clientWidth);
@@ -642,6 +643,7 @@ Object.keys(DEMOS).forEach(id => {
   }
 
   function render() {
+    const PER_PAGE = perPage();
     const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
     track.innerHTML = '';
     pager.innerHTML = '';
@@ -665,7 +667,6 @@ Object.keys(DEMOS).forEach(id => {
     }
 
     track.scrollLeft = 0;
-    // hide the whole nav cluster if there's only one page
     const navCluster = track.parentElement.querySelector('.work-nav');
     if (navCluster) navCluster.style.visibility = pageCount > 1 ? 'visible' : 'hidden';
     syncControls();
@@ -682,6 +683,12 @@ Object.keys(DEMOS).forEach(id => {
       currentFilter = chip.dataset.filter;
       render();
     });
+  });
+
+  // re-paginate when crossing the mobile/desktop breakpoint
+  let lastPer = perPage();
+  window.addEventListener('resize', () => {
+    if (perPage() !== lastPer) { lastPer = perPage(); render(); }
   });
 
   render();
