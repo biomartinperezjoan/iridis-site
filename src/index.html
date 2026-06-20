@@ -15,6 +15,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/styles.css">
+<style>
+  .svc-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 860px) { .svc-grid.cols-2 { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
@@ -62,7 +66,7 @@
       <div class="eyebrow">What we do</div>
       <h2>Four lines of work.<br>One standard.</h2>
       <p class="lede">Anyone can write with AI. Few can tell you whether the science behind your message is actually clear, credible, and defensible.</p>
-      <div class="svc-grid cols-3">
+      <div class="svc-grid cols-2">
         <button class="svc-card" data-goto="services" data-panel="1">
           <span class="sc-kicker">01 · Publication support</span>
           <h3>From data to accepted manuscript</h3>
@@ -70,13 +74,19 @@
           <span class="sc-link">See details →</span>
         </button>
         <button class="svc-card" data-goto="services" data-panel="2">
-          <span class="sc-kicker">02 · Content &amp; medcomms</span>
+          <span class="sc-kicker">02 · Funding &amp; grant writing</span>
+          <h3>From research idea to fundable proposal</h3>
+          <p>Grant applications, fellowship proposals, project narratives, impact sections, lay summaries and reviewer-facing revisions.</p>
+          <span class="sc-link">See details →</span>
+        </button>
+        <button class="svc-card" data-goto="services" data-panel="3">
+          <span class="sc-kicker">03 · Content &amp; medcomms</span>
           <h3>Authority you can publish weekly</h3>
           <p>White papers, technical blogs, LinkedIn ghostwriting, newsletters and scientific decks for biotech, pharma and healthtech teams.</p>
           <span class="sc-link">See details →</span>
         </button>
-        <button class="svc-card" data-goto="services" data-panel="3">
-          <span class="sc-kicker">03 · Science validation</span>
+        <button class="svc-card" data-goto="services" data-panel="4">
+          <span class="sc-kicker">04 · Science validation</span>
           <h3>Is your science actually defensible?</h3>
           <p>Claim audits, reference checks and evidence reviews for health apps, marketing materials and scientific pitch decks.</p>
           <span class="sc-link">See details →</span>
@@ -154,7 +164,7 @@
       <div class="svc-intro-grid">
         <div>
           <div class="eyebrow">Services</div>
-          <h1>Three lines of work.<br>One standard.</h1>
+          <h1>Four lines of work.<br>One standard.</h1>
           <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
         </div>
         <div class="svc-index">
@@ -165,11 +175,16 @@
           </button>
           <button class="svc-index-item" onclick="goToPanel(2)">
             <span class="svc-index-num">02</span>
-            <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
+            <div><strong>Funding &amp; grant writing</strong><span>Grant applications, fellowships, impact sections, lay summaries</span></div>
             <span class="svc-index-arrow">→</span>
           </button>
           <button class="svc-index-item" onclick="goToPanel(3)">
             <span class="svc-index-num">03</span>
+            <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
+            <span class="svc-index-arrow">→</span>
+          </button>
+          <button class="svc-index-item" onclick="goToPanel(4)">
+            <span class="svc-index-num">04</span>
             <div><strong>Science validation</strong><span>Claim audits, evidence mapping, pre-launch scientific review</span></div>
             <span class="svc-index-arrow">→</span>
           </button>
@@ -201,12 +216,35 @@
     </div>
   </div>
 
-  <!-- 02 Scientific content & medcomms (Ink) -->
+  <!-- 02 Funding & grant writing (Ink) -->
   <div class="panel bg-ink">
     <div class="panel-inner">
       <div class="svc-panel-grid">
         <div>
           <div class="svc-num">02</div>
+          <h2>Funding &amp; grant writing</h2>
+          <p class="lede">From research idea to fundable proposal. We help turn scientific rationale, work packages and expected impact into a proposal reviewers can understand, trust and defend.</p>
+          <div class="mt-8">
+            <span class="tag tag-pinion">Grant writing</span>
+            <span class="tag tag-slate">Funding strategy</span>
+          </div>
+        </div>
+        <ul class="svc-list">
+          <li><b>Grant applications</b><span>Scientific rationale, objectives, methodology, work packages and project narratives built around a clear fundable argument.</span></li>
+          <li><b>Fellowship proposals</b><span>Personal research statements, training plans, career development sections and host-institution fit.</span></li>
+          <li><b>Impact and lay summaries</b><span>Plain-language and reviewer-facing sections that explain why the project matters beyond the technical niche.</span></li>
+          <li><b>Reviewer-facing revisions</b><span>Resubmissions, rebuttals and targeted improvements after panel or reviewer feedback.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 Scientific content & medcomms (White) -->
+  <div class="panel bg-white">
+    <div class="panel-inner">
+      <div class="svc-panel-grid">
+        <div>
+          <div class="svc-num">03</div>
           <h2>Scientific content &amp; medical communications</h2>
           <p class="lede">Your team knows the science. We turn it into material that builds authority over time: for clients, for investors, for the field. Judgement, not just presence.</p>
         </div>
@@ -220,12 +258,12 @@
     </div>
   </div>
 
-  <!-- 03 Science validation / evidence audit (Down) -->
+  <!-- 04 Science validation / evidence audit (Down) -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="svc-panel-grid">
         <div>
-          <div class="svc-num">03</div>
+          <div class="svc-num">04</div>
           <h2>Science validation &amp; evidence audit</h2>
           <p class="lede">AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.</p>
           <p style="font-size:12.5px; color:var(--slate); margin-top:var(--sp-3); line-height:1.55"><strong>Note:</strong> This is scientific review of claims and evidence — not regulatory certification or legal assessment. We'll flag when regulatory counsel is needed.</p>
@@ -290,11 +328,12 @@
         <div>
           <div class="eyebrow">Work</div>
           <h1>Selected work</h1>
-          <p class="lede work-lede">A sample of recent projects across our three lines. Much of what we write is published under our clients&rsquo; names or protected by NDAs — cases are anonymised.</p>
+          <p class="lede work-lede">A sample of recent projects across our four lines. Much of what we write is published under our clients&rsquo; names or protected by NDAs — cases are anonymised.</p>
         </div>
         <div class="filter-row" role="group" aria-label="Filter work by service line">
           <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
           <button class="filter-chip" aria-pressed="false" data-filter="publications">Publication support</button>
+          <button class="filter-chip" aria-pressed="false" data-filter="funding">Funding &amp; grant writing</button>
           <button class="filter-chip" aria-pressed="false" data-filter="content">Content &amp; medcomms</button>
           <button class="filter-chip" aria-pressed="false" data-filter="validation">Science validation</button>
         </div>
@@ -317,6 +356,10 @@
         <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p><div class="work-meta"><span>Reviewer response</span><span>Field</span><span>Year</span></div></div></article>
         <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Systematic review with a pre-registered search strategy — published in a specialty journal and cited within months.</p><div class="work-meta"><span>Systematic review</span><span>Field</span><span>Year</span></div></div></article>
         <article class="work-card" data-line="publications"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Case title pending</h3><p>Full submission package — cover letter, graphical abstract and journal formatting — accepted on first submission.</p><div class="work-meta"><span>Submission package</span><span>Therapeutic area</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="funding"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Case title pending</h3><p>Grant proposal restructured around a clearer scientific rationale, work plan and expected impact before resubmission.</p><div class="work-meta"><span>Grant application</span><span>Academic research</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="funding"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Case title pending</h3><p>Fellowship application edited for narrative coherence, host fit and reviewer-facing clarity.</p><div class="work-meta"><span>Fellowship</span><span>Career development</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="funding"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Case title pending</h3><p>Impact and lay summary rewritten so a non-specialist panel could understand the value of the project.</p><div class="work-meta"><span>Impact section</span><span>Funding panel</span><span>Year</span></div></div></article>
+        <article class="work-card" data-line="funding"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Case title pending</h3><p>Reviewer feedback translated into a sharper resubmission strategy and revised project narrative.</p><div class="work-meta"><span>Resubmission</span><span>Reviewer response</span><span>Year</span></div></div></article>
         <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p><div class="work-meta"><span>White paper</span><span>Biotech</span><span>Year</span></div></div></article>
         <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p><div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>Year</span></div></div></article>
         <article class="work-card" data-line="content"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Case title pending</h3><p>Recurring technical newsletter for a diagnostics company — opened and forwarded across their clinical network.</p><div class="work-meta"><span>Newsletter</span><span>Diagnostics</span><span>Year</span></div></div></article>
@@ -452,6 +495,7 @@
             <label class="field-label" for="f-type">Project type</label>
             <select class="field-select" id="f-type">
               <option>Publication support</option>
+              <option>Funding / grant writing</option>
               <option>Scientific content / medcomms</option>
               <option>Science validation / claim audit</option>
               <option>Other / not sure yet</option>
