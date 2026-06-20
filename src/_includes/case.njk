@@ -1,0 +1,39 @@
+---
+layout: base.njk
+---
+<article class="post-page case-page">
+
+  <a class="back-link" href="/#work">← Back to work</a>
+
+  <header class="post-header case-header">
+    <div class="case-header-meta">
+      <span class="work-kicker">{{ line }}</span>
+      <div class="post-meta">
+        <span>{{ format }}</span>
+        {% if area %}<span>{{ area }}</span>{% endif %}
+        {% if year %}<span>{{ year }}</span>{% endif %}
+      </div>
+    </div>
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="lede">{{ summary }}</p>{% endif %}
+  </header>
+
+  <!-- Key result highlight -->
+  {% if result %}
+  <div class="case-result">
+    <span class="case-result-label">Result</span>
+    <p class="case-result-text">{{ result }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Main case body -->
+  <div class="prose case-prose">
+    {{ content | safe }}
+  </div>
+
+  <div class="post-cta">
+    <p>Working on something similar?</p>
+    <a class="btn btn-primary" href="/#contact">Tell us about your project</a>
+  </div>
+
+</article>
