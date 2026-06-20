@@ -7,12 +7,14 @@ backend:
   branch: main
   base_url: https://iridis-cms-auth.bio-martinperez-joan.workers.dev
 
-# After publishing, Decap commits to GitHub and Cloudflare Pages rebuilds automatically
-
-media_folder: "src/images/uploads"  # where uploaded images are stored in the repo
-public_folder: "/images/uploads"    # how those images are referenced in pages
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
+
+  # ─────────────────────────────────────────
+  # BLOG POSTS
+  # ─────────────────────────────────────────
   - name: "posts"
     label: "Blog posts"
     folder: "src/blog/posts"
@@ -34,6 +36,9 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  # ─────────────────────────────────────────
+  # WORK CASES
+  # ─────────────────────────────────────────
   - name: "cases"
     label: "Work cases"
     folder: "src/work/cases"
@@ -42,7 +47,7 @@ collections:
     extension: "md"
     format: "frontmatter"
     fields:
-      - { label: "Title", name: "title", widget: "string", hint: "Shown as the page H1 and card heading." }
+      - { label: "Title", name: "title", widget: "string", hint: "Shown as the card heading and page H1." }
       - { label: "Summary", name: "summary", widget: "text", hint: "1-2 sentences shown on the card and as the page lede." }
       - label: "Service line"
         name: "line"
@@ -55,26 +60,184 @@ collections:
       - { label: "Format", name: "format", widget: "string", hint: "E.g. Manuscript, White paper, Claim audit." }
       - { label: "Area / sector", name: "area", widget: "string", required: false, hint: "E.g. Biotech, Digital health, Academic research." }
       - { label: "Year", name: "year", widget: "string", required: false, hint: "E.g. 2024 or 202X if anonymised." }
-      - { label: "Key result", name: "result", widget: "text", hint: "One sentence — the outcome in plain language. Shown as a highlighted callout on the case page." }
+      - { label: "Key result", name: "result", widget: "text", hint: "One sentence — the outcome. Shown as a highlighted callout on the case page." }
       - { label: "Layout", name: "layout", widget: "hidden", default: "case.njk" }
-      - { label: "Body", name: "body", widget: "markdown", hint: "Use H2 headings for sections: The situation / What we did / The outcome." }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Use ## headings: The situation / What we did / The outcome." }
 
-  - name: "about"
-    label: "About page"
+  # ─────────────────────────────────────────
+  # PAGES (JSON files)
+  # ─────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
     files:
-      - name: "about"
-        label: "About page content"
-        file: "src/_data/about.json"
+
+      # ── HOME ──────────────────────────────
+      - name: "home"
+        label: "Home"
+        file: "src/_data/home.json"
         fields:
-          - label: "Intro"
+          - label: "Hero panel"
             name: "hero"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Tagline (small text above title)", name: "tagline", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro paragraph", name: "lede", widget: "text" }
+              - { label: "Primary button text", name: "cta_primary", widget: "string" }
+              - { label: "Secondary button text", name: "cta_secondary", widget: "string" }
+          - label: "What we do panel"
+            name: "whatWeDo"
             widget: "object"
             collapsed: true
             fields:
               - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Intro text", name: "lede", widget: "text" }
+              - { label: "Intro", name: "lede", widget: "text" }
+              - label: "Service cards (4)"
+                name: "cards"
+                widget: "list"
+                hint: "These 4 cards link to the Services page."
+                fields:
+                  - { label: "Kicker (small top label)", name: "kicker", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "text", widget: "text" }
+          - label: "Why Iridis panel"
+            name: "whyIridis"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "lede", widget: "text" }
+              - label: "Three pillars"
+                name: "pillars"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+              - label: "Gap demo 1 (manuscript)"
+                name: "demo1"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Before text", name: "before", widget: "text" }
+                  - { label: "After text", name: "after", widget: "text" }
+                  - { label: "Note", name: "note", widget: "string" }
+              - label: "Gap demo 2 (product claim)"
+                name: "demo2"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Before text", name: "before", widget: "text" }
+                  - { label: "After text", name: "after", widget: "text" }
+                  - { label: "Note", name: "note", widget: "string" }
+          - label: "CTA panel"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "lede", widget: "text" }
+              - { label: "Primary button text", name: "cta_primary", widget: "string" }
+              - { label: "Secondary button text", name: "cta_secondary", widget: "string" }
 
+      # ── SERVICES ──────────────────────────
+      - name: "services"
+        label: "Services"
+        file: "src/_data/services.json"
+        fields:
+          - label: "Intro panel"
+            name: "intro"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "lede", widget: "text" }
+              - label: "Service lines index (left column)"
+                name: "lines"
+                widget: "list"
+                hint: "The 4 clickable rows in the intro panel."
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Service lines (detail panels)"
+            name: "lines"
+            widget: "list"
+            hint: "One entry per service line. Order matches the panels."
+            fields:
+              - { label: "Number (e.g. 01)", name: "number", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro paragraph", name: "lede", widget: "text" }
+              - { label: "Note (optional small text)", name: "note", widget: "text", required: false }
+              - label: "Deliverables list"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Deliverable name", name: "title", widget: "string" }
+                  - { label: "Description", name: "text", widget: "text" }
+          - label: "CTA panel"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "lede", widget: "text" }
+              - { label: "Button text", name: "cta", widget: "string" }
+
+      # ── WORK PAGE ─────────────────────────
+      - name: "work"
+        label: "Work page"
+        file: "src/_data/work-page.json"
+        fields:
+          - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Intro paragraph", name: "lede", widget: "text" }
+          - label: "Publications strip"
+            name: "publications"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro", name: "lede", widget: "text" }
+
+      # ── CONTACT ───────────────────────────
+      - name: "contact"
+        label: "Contact"
+        file: "src/_data/contact.json"
+        fields:
+          - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Intro paragraph", name: "lede", widget: "text" }
+          - label: "Aside (left column)"
+            name: "aside"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Section title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Email address", name: "email", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Languages", name: "languages", widget: "string" }
+
+      # ── ABOUT ─────────────────────────────
+      - name: "about"
+        label: "About"
+        file: "src/_data/about.json"
+        fields:
+          - label: "Intro"
+            name: "hero"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Intro text", name: "lede", widget: "text" }
           - label: "The name (IRIDIS)"
             name: "origin"
             widget: "object"
@@ -82,14 +245,13 @@ collections:
             fields:
               - { label: "Small label", name: "label", widget: "string" }
               - { label: "Word", name: "word", widget: "string" }
-              - { label: "Intro text", name: "intro", widget: "text", hint: "HTML is allowed." }
+              - { label: "Intro text", name: "intro", widget: "text", hint: "HTML allowed." }
               - label: "Three meanings"
                 name: "meanings"
                 widget: "list"
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Text", name: "text", widget: "text" }
-
           - label: "Team"
             name: "team"
             widget: "object"
@@ -106,7 +268,6 @@ collections:
                   - { label: "Role", name: "role", widget: "string" }
                   - { label: "Bio", name: "bio", widget: "text" }
                   - { label: "Photo", name: "photo", widget: "image", required: false }
-
           - label: "How we work"
             name: "howWeWork"
             widget: "object"
