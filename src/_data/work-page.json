@@ -1,0 +1,10 @@
+{
+  "eyebrow": "Work",
+  "title": "Selected work",
+  "lede": "A sample of recent projects across our four lines. Much of what we write is published under our clients' names or protected by NDAs — cases are anonymised.",
+  "publications": {
+    "eyebrow": "Publications",
+    "title": "Peer-reviewed work we've supported",
+    "lede": "Papers where our contribution is acknowledged or where authors have agreed to be listed as references. List pending — entries will follow standard citation format."
+  }
+}
