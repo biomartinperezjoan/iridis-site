@@ -1,0 +1,125 @@
+{
+  "intro": {
+    "eyebrow": "Services",
+    "title": "Four lines of work. One standard.",
+    "lede": "Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.",
+    "lines": [
+      {
+        "title": "Publication support",
+        "subtitle": "Manuscripts, reviews, peer responses, submission packages"
+      },
+      {
+        "title": "Funding & grant writing",
+        "subtitle": "Grant applications, fellowships, impact sections, lay summaries"
+      },
+      {
+        "title": "Content & medcomms",
+        "subtitle": "White papers, blogs, LinkedIn ghostwriting, scientific decks"
+      },
+      {
+        "title": "Science validation",
+        "subtitle": "Claim audits, evidence mapping, pre-launch scientific review"
+      }
+    ]
+  },
+  "lines": [
+    {
+      "number": "01",
+      "title": "Publication support",
+      "lede": "From data to accepted manuscript. We work with your results and your team so the paper says exactly what the evidence allows — and reads the way it deserves.",
+      "tags": ["Medical writing", "Peer review"],
+      "items": [
+        {
+          "title": "Manuscripts",
+          "text": "Full papers from data and protocol: IMRaD structure, results narrative, honest discussion. Substantive editing of existing drafts too."
+        },
+        {
+          "title": "Reviews",
+          "text": "Narrative and systematic reviews: search strategy, evidence synthesis, and a structure that earns the citation."
+        },
+        {
+          "title": "Responses to reviewers",
+          "text": "Point-by-point letters that concede what should be conceded — and defend what shouldn't."
+        },
+        {
+          "title": "Journal submission packages",
+          "text": "Cover letter, formatting to journal requirements, graphical abstract and highlights. Ready to submit."
+        }
+      ]
+    },
+    {
+      "number": "02",
+      "title": "Funding & grant writing",
+      "lede": "From research idea to fundable proposal. We help turn scientific rationale, work packages and expected impact into a proposal reviewers can understand, trust and defend.",
+      "tags": ["Grant writing", "Funding strategy"],
+      "items": [
+        {
+          "title": "Grant applications",
+          "text": "Scientific rationale, objectives, methodology, work packages and project narratives built around a clear fundable argument."
+        },
+        {
+          "title": "Fellowship proposals",
+          "text": "Personal research statements, training plans, career development sections and host-institution fit."
+        },
+        {
+          "title": "Impact and lay summaries",
+          "text": "Plain-language and reviewer-facing sections that explain why the project matters beyond the technical niche."
+        },
+        {
+          "title": "Reviewer-facing revisions",
+          "text": "Resubmissions, rebuttals and targeted improvements after panel or reviewer feedback."
+        }
+      ]
+    },
+    {
+      "number": "03",
+      "title": "Scientific content & medical communications",
+      "lede": "Your team knows the science. We turn it into material that builds authority over time: for clients, for investors, for the field. Judgement, not just presence.",
+      "tags": [],
+      "items": [
+        {
+          "title": "White papers",
+          "text": "Research, argument structure and writing. The long document is where credibility is won — and it works for years."
+        },
+        {
+          "title": "Technical blogs and newsletters",
+          "text": "Recurring editorial content a scientist can read without raising an eyebrow."
+        },
+        {
+          "title": "LinkedIn ghostwriting",
+          "text": "Posts and articles for founders, researchers and company pages — written in your voice, from interviews and your own material."
+        },
+        {
+          "title": "Scientific decks",
+          "text": "Pitch and conference presentations: the science first, the design in service of the argument."
+        }
+      ]
+    },
+    {
+      "number": "04",
+      "title": "Science validation & evidence audit",
+      "lede": "AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.",
+      "note": "This is scientific review of claims and evidence — not regulatory certification or legal assessment. We'll flag when regulatory counsel is needed.",
+      "tags": [],
+      "items": [
+        {
+          "title": "Claim audit",
+          "text": "Every claim mapped against evidence. Deliverable: claim matrix with risk levels and reformulations."
+        },
+        {
+          "title": "Evidence mapping",
+          "text": "The science behind your product, module by module. Deliverable: evidence dossier."
+        },
+        {
+          "title": "Pre-launch review",
+          "text": "Claim audit + evidence mapping + user-flow review, combined, before you go to market."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Doesn't fit neatly in a box?",
+    "lede": "Almost nothing does. Write to us with what you have — a dataset, an idea, a half-finished draft — and we'll tell you how we would approach it.",
+    "cta": "Get in touch"
+  }
+}
