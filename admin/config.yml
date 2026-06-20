@@ -34,6 +34,31 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  - name: "cases"
+    label: "Work cases"
+    folder: "src/work/cases"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "Shown as the page H1 and card heading." }
+      - { label: "Summary", name: "summary", widget: "text", hint: "1-2 sentences shown on the card and as the page lede." }
+      - label: "Service line"
+        name: "line"
+        widget: "select"
+        options:
+          - { label: "Publication support", value: "Publication support" }
+          - { label: "Funding & grant writing", value: "Funding & grant writing" }
+          - { label: "Content & medcomms", value: "Content & medcomms" }
+          - { label: "Science validation", value: "Science validation" }
+      - { label: "Format", name: "format", widget: "string", hint: "E.g. Manuscript, White paper, Claim audit." }
+      - { label: "Area / sector", name: "area", widget: "string", required: false, hint: "E.g. Biotech, Digital health, Academic research." }
+      - { label: "Year", name: "year", widget: "string", required: false, hint: "E.g. 2024 or 202X if anonymised." }
+      - { label: "Key result", name: "result", widget: "text", hint: "One sentence — the outcome in plain language. Shown as a highlighted callout on the case page." }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "case.njk" }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Use H2 headings for sections: The situation / What we did / The outcome." }
+
   - name: "about"
     label: "About page"
     files:
@@ -57,12 +82,10 @@ collections:
             fields:
               - { label: "Small label", name: "label", widget: "string" }
               - { label: "Word", name: "word", widget: "string" }
-              - { label: "Intro text", name: "intro", widget: "text", hint: "HTML is allowed, e.g. <em>iris</em>" }
-              - label: "Meanings"
+              - { label: "Intro text", name: "intro", widget: "text", hint: "HTML is allowed." }
+              - label: "Three meanings"
                 name: "meanings"
                 widget: "list"
-                label_singular: "Meaning"
-                summary: "{{fields.title}}"
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Text", name: "text", widget: "text" }
@@ -72,33 +95,29 @@ collections:
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Intro text", name: "lede", widget: "text" }
-              - label: "Team members"
+              - { label: "Intro", name: "lede", widget: "text" }
+              - label: "Members"
                 name: "members"
                 widget: "list"
-                label_singular: "Person"
-                summary: "{{fields.name}} — {{fields.role}}"
                 fields:
                   - { label: "Name", name: "name", widget: "string" }
-                  - { label: "Role / specialty", name: "role", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string" }
                   - { label: "Bio", name: "bio", widget: "text" }
-                  - { label: "Photo", name: "photo", widget: "image", required: false, hint: "Leave empty to show 'Photo pending'" }
+                  - { label: "Photo", name: "photo", widget: "image", required: false }
 
           - label: "How we work"
             name: "howWeWork"
             widget: "object"
             collapsed: true
             fields:
-              - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
               - label: "Cards"
                 name: "items"
                 widget: "list"
-                label_singular: "Card"
-                summary: "{{fields.kicker}}"
                 fields:
-                  - { label: "Small label", name: "kicker", widget: "string" }
+                  - { label: "Kicker", name: "kicker", widget: "string" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Text", name: "text", widget: "text" }
