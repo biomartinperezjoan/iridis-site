@@ -31,6 +31,11 @@ module.exports = function (eleventyConfig) {
     return [...tags].sort();
   });
 
+  // Collection of work cases
+  eleventyConfig.addCollection("cases", (collectionApi) => {
+    return collectionApi.getFilteredByGlob("src/work/cases/*.md");
+  });
+
   return {
     dir: {
       input: "src",
