@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "tagline": "Scientific writing with structural clarity",
+    "title": "Science should not become weaker when it becomes clearer.",
+    "lede": "Iridis writes, edits, and validates scientific communication for researchers, biotech teams, and digital health products. From manuscripts and grant proposals to scientific content and evidence reviews, we help turn complex data into messages that are clear, rigorous, and defensible. The gap between evidence, interpretation, and understanding: that is where we work.",
+    "cta_primary": "Explore our services",
+    "cta_secondary": "Start a project"
+  },
+  "whatWeDo": {
+    "eyebrow": "What we do",
+    "title": "Four lines of work. One standard.",
+    "lede": "Anyone can write with AI. Few can tell you whether the science behind your message is actually clear, credible, and defensible.",
+    "cards": [
+      {
+        "kicker": "01 · Publication support",
+        "title": "From data to accepted manuscript",
+        "text": "Manuscripts, narrative and systematic reviews, responses to reviewers, and complete journal submission packages."
+      },
+      {
+        "kicker": "02 · Funding & grant writing",
+        "title": "From research idea to fundable proposal",
+        "text": "Grant applications, fellowship proposals, project narratives, impact sections, lay summaries and reviewer-facing revisions."
+      },
+      {
+        "kicker": "03 · Content & medcomms",
+        "title": "Authority you can publish weekly",
+        "text": "White papers, technical blogs, LinkedIn ghostwriting, newsletters and scientific decks for biotech, pharma and healthtech teams."
+      },
+      {
+        "kicker": "04 · Science validation",
+        "title": "Is your science actually defensible?",
+        "text": "Claim audits, reference checks and evidence reviews for health apps, marketing materials and scientific pitch decks."
+      }
+    ]
+  },
+  "whyIridis": {
+    "eyebrow": "Why Iridis",
+    "title": "The colour is in the structure, not the surface.",
+    "lede": "The hummingbird's green is not pigment — it is structure. A scientific text works the same way: the same data can dazzle or go unnoticed depending on how it is built.",
+    "pillars": [
+      {
+        "title": "Structural clarity",
+        "text": "The argument and the hierarchy of evidence are what a reviewer, an investor or a client reads first."
+      },
+      {
+        "title": "The gap",
+        "text": "Between what a study says and what a headline reports. We close it without losing rigour."
+      },
+      {
+        "title": "Precision in flight",
+        "text": "The hummingbird hovers perfectly still — controlled force. Rigour and clarity enable each other."
+      }
+    ],
+    "demo1": {
+      "label": "The manuscript · same finding, two texts",
+      "before": "\"A statistically significant trend towards amelioration of the evaluated parameters was observed in the intervention cohort, which could potentially suggest therapeutic implications that may warrant further exploration in subsequent investigations.\"",
+      "after": "\"The intervention reduced symptom severity by 34% over 12 weeks (p = 0.003) — a clinically meaningful difference using validated outcome measures.\"",
+      "note": "This is what we do: close the gap between the data and its reading."
+    },
+    "demo2": {
+      "label": "The product claim · same app, two messages",
+      "before": "\"Our AI optimizes your nervous system through vagus nerve activation.\"",
+      "after": "\"Our breathing exercises are based on paced respiration techniques shown to reduce self-reported stress in controlled studies.\"",
+      "note": "From our science validation line — claims that survive a clinician's reading."
+    }
+  },
+  "cta": {
+    "eyebrow": "Get started",
+    "title": "Tell us what you need to communicate.",
+    "lede": "A 30-minute call, no strings attached. We arrive with questions, not a catalogue.",
+    "cta_primary": "Book a call",
+    "cta_secondary": "See our work"
+  }
+}
