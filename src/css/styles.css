@@ -408,12 +408,12 @@ h3, .h3 {
 }
 
 #page-home .svc-grid.cols-2 .svc-card {
-  min-height: 270px;
-  padding: 36px 34px;
+  min-height: 0;
+  padding: 28px 30px;
 }
 
 #page-home .svc-grid.cols-2 .svc-card p {
-  flex: 1;
+  flex: none;
 }
 
 @media (max-width: 860px) {
