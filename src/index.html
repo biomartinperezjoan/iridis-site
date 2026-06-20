@@ -697,7 +697,7 @@ Object.keys(DEMOS).forEach(id => {
     if (pgs[p]) pgs[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
   }
 
-  function render() {
+function render() {
     const PER_PAGE = perPage();
     const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
     track.innerHTML = '';
@@ -708,7 +708,17 @@ Object.keys(DEMOS).forEach(id => {
       const page = document.createElement('div');
       page.className = 'work-page';
       cards.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE).forEach(card => {
-        page.appendChild(card.cloneNode(true));
+        const slug = card.dataset.slug;
+        if (slug) {
+          const link = document.createElement('a');
+          link.className = 'work-card-link';
+          link.href = '/work/' + slug + '/';
+          link.setAttribute('aria-label', card.querySelector('h3') ? card.querySelector('h3').textContent : 'View case');
+          link.appendChild(card.cloneNode(true));
+          page.appendChild(link);
+        } else {
+          page.appendChild(card.cloneNode(true));
+        }
       });
       track.appendChild(page);
     }
