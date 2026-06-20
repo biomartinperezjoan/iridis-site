@@ -1,3 +1,7 @@
+---
+layout: false
+permalink: /index.html
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,108 +44,92 @@
 <main>
 <section class="page active" id="page-home">
 
-  <!-- Panel 1 · Hero (Down, centered) -->
+  <!-- Panel 1 · Hero -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="hero-center">
         <img class="hero-mark" src="/images/mark-light-bg.png" alt="">
-        <div class="hero-tagline" style="margin-bottom:0">Scientific writing with structural clarity</div>
-        <h1 class="hero-display">Science should not become weaker when it becomes clearer.</h1>
-        <p class="lede" style="max-width:62ch">Iridis writes, edits, and validates scientific communication for researchers, biotech teams, and digital health products. From manuscripts and grant proposals to scientific content and evidence reviews, we help turn complex data into messages that are clear, rigorous, and defensible. The gap between evidence, interpretation, and understanding: that is where we work.</p>
+        <div class="hero-tagline" style="margin-bottom:0">{{ home.hero.tagline }}</div>
+        <h1 class="hero-display">{{ home.hero.title }}</h1>
+        <p class="lede" style="max-width:62ch">{{ home.hero.lede }}</p>
         <div class="hero-actions">
-          <button class="btn btn-primary" data-goto="services">Explore our services</button>
-          <button class="btn btn-secondary" data-goto="contact">Start a project</button>
+          <button class="btn btn-primary" data-goto="services">{{ home.hero.cta_primary }}</button>
+          <button class="btn btn-secondary" data-goto="contact">{{ home.hero.cta_secondary }}</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Panel 2 · What we do (Ink) -->
+  <!-- Panel 2 · What we do -->
   <div class="panel bg-ink">
     <div class="panel-inner">
-      <div class="eyebrow">What we do</div>
-      <h2>Four lines of work.<br>One standard.</h2>
-      <p class="lede">Anyone can write with AI. Few can tell you whether the science behind your message is actually clear, credible, and defensible.</p>
+      <div class="eyebrow">{{ home.whatWeDo.eyebrow }}</div>
+      <h2>{{ home.whatWeDo.title }}</h2>
+      <p class="lede">{{ home.whatWeDo.lede }}</p>
       <div class="svc-grid cols-2">
-        <button class="svc-card" data-goto="services" data-panel="1">
-          <span class="sc-kicker">01 · Publication support</span>
-          <h3>From data to accepted manuscript</h3>
-          <p>Manuscripts, narrative and systematic reviews, responses to reviewers, and complete journal submission packages.</p>
+        {% for card in home.whatWeDo.cards %}
+        <button class="svc-card" data-goto="services" data-panel="{{ loop.index }}">
+          <span class="sc-kicker">{{ card.kicker }}</span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
           <span class="sc-link">See details →</span>
         </button>
-        <button class="svc-card" data-goto="services" data-panel="2">
-          <span class="sc-kicker">02 · Funding &amp; grant writing</span>
-          <h3>From research idea to fundable proposal</h3>
-          <p>Grant applications, fellowship proposals, project narratives, impact sections, lay summaries and reviewer-facing revisions.</p>
-          <span class="sc-link">See details →</span>
-        </button>
-        <button class="svc-card" data-goto="services" data-panel="3">
-          <span class="sc-kicker">03 · Content &amp; medcomms</span>
-          <h3>Authority you can publish weekly</h3>
-          <p>White papers, technical blogs, LinkedIn ghostwriting, newsletters and scientific decks for biotech, pharma and healthtech teams.</p>
-          <span class="sc-link">See details →</span>
-        </button>
-        <button class="svc-card" data-goto="services" data-panel="4">
-          <span class="sc-kicker">04 · Science validation</span>
-          <h3>Is your science actually defensible?</h3>
-          <p>Claim audits, reference checks and evidence reviews for health apps, marketing materials and scientific pitch decks.</p>
-          <span class="sc-link">See details →</span>
-        </button>
+        {% endfor %}
       </div>
     </div>
   </div>
 
-  <!-- Panel 3 · Why Iridis (Down) -->
+  <!-- Panel 3 · Why Iridis -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="concept-cols">
         <div>
-          <div class="eyebrow">Why Iridis</div>
-          <h2>The colour is in the structure, not the surface.</h2>
-          <p class="lede">The hummingbird&rsquo;s green is not pigment — it is structure. A scientific text works the same way: the same data can dazzle or go unnoticed depending on how it is built.</p>
+          <div class="eyebrow">{{ home.whyIridis.eyebrow }}</div>
+          <h2>{{ home.whyIridis.title }}</h2>
+          <p class="lede">{{ home.whyIridis.lede }}</p>
           <div class="mini-pillars">
-            <div class="mp"><b>Structural clarity</b><span>The argument and the hierarchy of evidence are what a reviewer, an investor or a client reads first.</span></div>
-            <div class="mp"><b>The gap</b><span>Between what a study says and what a headline reports. We close it without losing rigour.</span></div>
-            <div class="mp"><b>Precision in flight</b><span>The hummingbird hovers perfectly still — controlled force. Rigour and clarity enable each other.</span></div>
+            {% for pillar in home.whyIridis.pillars %}
+            <div class="mp"><b>{{ pillar.title }}</b><span>{{ pillar.text }}</span></div>
+            {% endfor %}
           </div>
         </div>
         <div class="demo-col">
           <div class="gap-demo" id="demo1" style="margin-top:0; max-width:none;">
             <div class="gd-head">
-              <span class="gd-label">The manuscript · same finding, two texts</span>
+              <span class="gd-label">{{ home.whyIridis.demo1.label }}</span>
               <div class="gd-switch" role="group" aria-label="Compare versions">
                 <button class="gd-before" aria-pressed="true">Before</button>
                 <button class="gd-after" aria-pressed="false">After</button>
               </div>
             </div>
-            <p class="gd-text jargon">"A statistically significant trend towards amelioration of the evaluated parameters was observed in the intervention cohort, which could potentially suggest therapeutic implications that may warrant further exploration in subsequent investigations."</p>
-            <p class="gd-note">This is what we do: <b>close the gap</b> between the data and its reading.</p>
+            <p class="gd-text jargon" data-before="{{ home.whyIridis.demo1.before }}" data-after="{{ home.whyIridis.demo1.after }}">{{ home.whyIridis.demo1.before }}</p>
+            <p class="gd-note">{{ home.whyIridis.demo1.note }}</p>
           </div>
           <div class="gap-demo" id="demo2" style="margin-top:0; max-width:none;">
             <div class="gd-head">
-              <span class="gd-label">The product claim · same app, two messages</span>
+              <span class="gd-label">{{ home.whyIridis.demo2.label }}</span>
               <div class="gd-switch" role="group" aria-label="Compare versions">
                 <button class="gd-before" aria-pressed="true">Before</button>
                 <button class="gd-after" aria-pressed="false">After</button>
               </div>
             </div>
-            <p class="gd-text jargon">"Our AI optimizes your nervous system through vagus nerve activation."</p>
-            <p class="gd-note">From our science validation line — claims that survive a clinician&rsquo;s reading.</p>
+            <p class="gd-text jargon" data-before="{{ home.whyIridis.demo2.before }}" data-after="{{ home.whyIridis.demo2.after }}">{{ home.whyIridis.demo2.before }}</p>
+            <p class="gd-note">{{ home.whyIridis.demo2.note }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Panel 4 · CTA (Pinion) -->
+  <!-- Panel 4 · CTA -->
   <div class="panel bg-pinion panel-with-footer">
     <div class="panel-inner center">
-      <div class="eyebrow alt">Get started</div>
-      <h2>Tell us what you need to communicate.</h2>
-      <p class="lede" style="margin:0 auto">A 30-minute call, no strings attached. We arrive with questions, not a catalogue.</p>
+      <div class="eyebrow alt">{{ home.cta.eyebrow }}</div>
+      <h2>{{ home.cta.title }}</h2>
+      <p class="lede" style="margin:0 auto">{{ home.cta.lede }}</p>
       <div class="panel-cta">
-        <button class="btn btn-on-dark" data-goto="contact">Book a call</button>
-        <button class="btn btn-ghost-dark" data-goto="work">See our work</button>
+        <button class="btn btn-on-dark" data-goto="contact">{{ home.cta.cta_primary }}</button>
+        <button class="btn btn-ghost-dark" data-goto="work">{{ home.cta.cta_secondary }}</button>
       </div>
     </div>
     <div class="panel-footer-bar">
@@ -154,156 +142,61 @@
 <!-- ═════════ PAGE: SERVICES ═════════ -->
 <section class="page" id="page-services">
 
-  <!-- Intro (Down) — 2 columns: text left, service list right -->
+  <!-- Panel 0 · Intro -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="svc-intro-grid">
         <div>
-          <div class="eyebrow">Services</div>
-          <h1>Four lines of work.<br>One standard.</h1>
-          <p class="lede">Every deliverable starts from the same principle: the structure does the work. We don't sell words — we build and verify arguments that hold up in front of a reviewer, an investor or a feed algorithm.</p>
+          <div class="eyebrow">{{ services.intro.eyebrow }}</div>
+          <h1>{{ services.intro.title }}</h1>
+          <p class="lede">{{ services.intro.lede }}</p>
         </div>
         <div class="svc-index">
-          <button class="svc-index-item" onclick="goToPanel(1)">
-            <span class="svc-index-num">01</span>
-            <div><strong>Publication support</strong><span>Manuscripts, reviews, peer responses, submission packages</span></div>
+          {% for line in services.intro.lines %}
+          <button class="svc-index-item" onclick="goToPanel({{ loop.index }})">
+            <span class="svc-index-num">0{{ loop.index }}</span>
+            <div><strong>{{ line.title }}</strong><span>{{ line.subtitle }}</span></div>
             <span class="svc-index-arrow">→</span>
           </button>
-          <button class="svc-index-item" onclick="goToPanel(2)">
-            <span class="svc-index-num">02</span>
-            <div><strong>Funding &amp; grant writing</strong><span>Grant applications, fellowships, impact sections, lay summaries</span></div>
-            <span class="svc-index-arrow">→</span>
-          </button>
-          <button class="svc-index-item" onclick="goToPanel(3)">
-            <span class="svc-index-num">03</span>
-            <div><strong>Content &amp; medcomms</strong><span>White papers, blogs, LinkedIn ghostwriting, scientific decks</span></div>
-            <span class="svc-index-arrow">→</span>
-          </button>
-          <button class="svc-index-item" onclick="goToPanel(4)">
-            <span class="svc-index-num">04</span>
-            <div><strong>Science validation</strong><span>Claim audits, evidence mapping, pre-launch scientific review</span></div>
-            <span class="svc-index-arrow">→</span>
-          </button>
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 01 Publication support (White) -->
-  <div class="panel bg-white">
+  <!-- Panels 1–4 · Service lines -->
+  {% for line in services.lines %}
+  {% if loop.index == 1 %}<div class="panel bg-white">{% endif %}
+  {% if loop.index == 2 %}<div class="panel bg-ink">{% endif %}
+  {% if loop.index == 3 %}<div class="panel bg-white">{% endif %}
+  {% if loop.index == 4 %}<div class="panel bg-down">{% endif %}
     <div class="panel-inner">
       <div class="svc-panel-grid">
         <div>
-          <div class="svc-num">01</div>
-          <h2>Publication support</h2>
-          <p class="lede">From data to accepted manuscript. We work with your results and your team so the paper says exactly what the evidence allows — and reads the way it deserves.</p>
-          <div class="mt-8">
-            <span class="tag tag-pinion">Medical writing</span>
-            <span class="tag tag-slate">Peer review</span>
-          </div>
+          <div class="svc-num">{{ line.number }}</div>
+          <h2>{{ line.title }}</h2>
+          <p class="lede">{{ line.lede }}</p>
+          {% if line.note %}
+          <p style="font-size:12.5px; color:var(--slate); margin-top:var(--sp-3); line-height:1.55"><strong>Note:</strong> {{ line.note }}</p>
+          {% endif %}
         </div>
         <ul class="svc-list">
-          <li><b>Manuscripts</b><span>Full papers from data and protocol: IMRaD structure, results narrative, honest discussion. Substantive editing of existing drafts too.</span></li>
-          <li><b>Reviews</b><span>Narrative and systematic reviews: search strategy, evidence synthesis, and a structure that earns the citation.</span></li>
-          <li><b>Responses to reviewers</b><span>Point-by-point letters that concede what should be conceded — and defend what shouldn't.</span></li>
-          <li><b>Journal submission packages</b><span>Cover letter, formatting to journal requirements, graphical abstract and highlights. Ready to submit.</span></li>
+          {% for item in line.items %}
+          <li><b>{{ item.title }}</b><span>{{ item.text }}</span></li>
+          {% endfor %}
         </ul>
       </div>
     </div>
   </div>
+  {% endfor %}
 
-  <!-- 02 Funding & grant writing (Ink) -->
-  <div class="panel bg-ink">
-    <div class="panel-inner">
-      <div class="svc-panel-grid">
-        <div>
-          <div class="svc-num">02</div>
-          <h2>Funding &amp; grant writing</h2>
-          <p class="lede">From research idea to fundable proposal. We help turn scientific rationale, work packages and expected impact into a proposal reviewers can understand, trust and defend.</p>
-          <div class="mt-8">
-            <span class="tag tag-pinion">Grant writing</span>
-            <span class="tag tag-slate">Funding strategy</span>
-          </div>
-        </div>
-        <ul class="svc-list">
-          <li><b>Grant applications</b><span>Scientific rationale, objectives, methodology, work packages and project narratives built around a clear fundable argument.</span></li>
-          <li><b>Fellowship proposals</b><span>Personal research statements, training plans, career development sections and host-institution fit.</span></li>
-          <li><b>Impact and lay summaries</b><span>Plain-language and reviewer-facing sections that explain why the project matters beyond the technical niche.</span></li>
-          <li><b>Reviewer-facing revisions</b><span>Resubmissions, rebuttals and targeted improvements after panel or reviewer feedback.</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- 03 Scientific content & medcomms (White) -->
-  <div class="panel bg-white">
-    <div class="panel-inner">
-      <div class="svc-panel-grid">
-        <div>
-          <div class="svc-num">03</div>
-          <h2>Scientific content &amp; medical communications</h2>
-          <p class="lede">Your team knows the science. We turn it into material that builds authority over time: for clients, for investors, for the field. Judgement, not just presence.</p>
-        </div>
-        <ul class="svc-list">
-          <li><b>White papers</b><span>Research, argument structure and writing. The long document is where credibility is won — and it works for years.</span></li>
-          <li><b>Technical blogs and newsletters</b><span>Recurring editorial content a scientist can read without raising an eyebrow.</span></li>
-          <li><b>LinkedIn ghostwriting</b><span>Posts and articles for founders, researchers and company pages — written in your voice, from interviews and your own material.</span></li>
-          <li><b>Scientific decks</b><span>Pitch and conference presentations: the science first, the design in service of the argument.</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- 04 Science validation / evidence audit (Down) -->
-  <div class="panel bg-down">
-    <div class="panel-inner">
-      <div class="svc-panel-grid">
-        <div>
-          <div class="svc-num">04</div>
-          <h2>Science validation &amp; evidence audit</h2>
-          <p class="lede">AI made building health products easy. It didn't make the science reliable. We check whether claims, references and evidence actually support what the product says — before it reaches users, investors or clinicians.</p>
-          <p style="font-size:12.5px; color:var(--slate); margin-top:var(--sp-3); line-height:1.55"><strong>Note:</strong> This is scientific review of claims and evidence — not regulatory certification or legal assessment. We'll flag when regulatory counsel is needed.</p>
-        </div>
-        <div>
-          <ul class="svc-list" style="margin-bottom:var(--sp-4)">
-            <li><b>Claim audit</b><span>Every claim mapped against evidence. Deliverable: claim matrix with risk levels and reformulations.</span></li>
-            <li><b>Evidence mapping</b><span>The science behind your product, module by module. Deliverable: evidence dossier.</span></li>
-            <li><b>Pre-launch review</b><span>Claim audit + evidence mapping + user-flow review, combined, before you go to market.</span></li>
-          </ul>
-          <table class="claim-matrix">
-            <thead>
-              <tr><th>Product claim</th><th>Evidence</th><th>Risk</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="cm-claim">"Improves sleep quality"</td>
-                <td>Indirect studies; acceptable if qualified</td>
-                <td><span class="pill pill-ok">Defensible</span></td>
-              </tr>
-              <tr>
-                <td class="cm-claim">"Reduces anxiety"</td>
-                <td>Weak or extrapolated</td>
-                <td><span class="pill pill-mid">Needs rewording</span></td>
-              </tr>
-              <tr>
-                <td class="cm-claim">"Detects early signs of depression"</td>
-                <td>Requires clinical validation</td>
-                <td><span class="pill pill-risk">Medical device territory</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA (Pinion) -->
+  <!-- CTA panel -->
   <div class="panel bg-pinion panel-with-footer">
     <div class="panel-inner center">
-      <h2>Doesn't fit neatly in a box?</h2>
-      <p class="lede" style="margin:0 auto">Almost nothing does. Write to us with what you have — a dataset, an idea, a half-finished draft — and we'll tell you how we would approach it.</p>
+      <h2>{{ services.cta.title }}</h2>
+      <p class="lede" style="margin:0 auto">{{ services.cta.lede }}</p>
       <div class="panel-cta">
-        <button class="btn btn-on-dark" data-goto="contact">Get in touch</button>
+        <button class="btn btn-on-dark" data-goto="contact">{{ services.cta.cta }}</button>
       </div>
     </div>
     <div class="panel-footer-bar">
@@ -316,15 +209,14 @@
 <!-- ═════════ PAGE: WORK ═════════ -->
 <section class="page" id="page-work">
 
-  <!-- Panel 1 · Selected work (cards, paginated 6 per page) -->
+  <!-- Panel 1 · Cards -->
   <div class="panel bg-down">
     <div class="panel-inner panel-inner-work">
-
       <div class="work-header">
         <div>
-          <div class="eyebrow">Work</div>
-          <h1>Selected work</h1>
-          <p class="lede work-lede">A sample of recent projects across our four lines. Much of what we write is published under our clients&rsquo; names or protected by NDAs — cases are anonymised.</p>
+          <div class="eyebrow">{{ workPage.eyebrow }}</div>
+          <h1>{{ workPage.title }}</h1>
+          <p class="lede work-lede">{{ workPage.lede }}</p>
         </div>
         <div class="filter-row" role="group" aria-label="Filter work by service line">
           <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
@@ -335,7 +227,6 @@
         </div>
       </div>
 
-      <!-- Filled with .work-page blocks (6 cards each) by JS -->
       <div class="work-scroll-track" id="workTrack"></div>
 
       <div class="work-footer-row">
@@ -346,35 +237,37 @@
         </div>
       </div>
 
-           <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
+      <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
       <div id="workSource" hidden>
-        <article class="work-card" data-line="publications" data-slug="manuscript-restructured-q1-journal"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Manuscript restructured and accepted in a Q1 journal</h3><p>Rejected twice for structural issues; rebuilt around reviewer priorities and accepted after a single revision round.</p><div class="work-meta"><span>Manuscript</span><span>Therapeutic area pending</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="publications" data-slug="reviewer-response-methods-critique"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Reviewer response for a contested methods critique</h3><p>Response to reviewers for a contested methods critique — all major points resolved without additional experiments.</p><div class="work-meta"><span>Reviewer response</span><span>Field pending</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="publications" data-slug="systematic-review-preregistered"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Systematic review with pre-registered search strategy</h3><p>Systematic review with a pre-registered search strategy — published in a specialty journal and cited within months.</p><div class="work-meta"><span>Systematic review</span><span>Field pending</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="publications" data-slug="full-submission-package-first-attempt"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Publication support</span><h3>Full submission package accepted on first attempt</h3><p>Cover letter, graphical abstract and journal formatting — accepted on first submission.</p><div class="work-meta"><span>Submission package</span><span>Therapeutic area pending</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="funding" data-slug="grant-proposal-restructured-resubmission"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Grant proposal restructured for resubmission</h3><p>Grant proposal restructured around a clearer scientific rationale, work plan and expected impact before resubmission.</p><div class="work-meta"><span>Grant application</span><span>Academic research</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="funding" data-slug="fellowship-application-narrative-coherence"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Fellowship application edited for narrative coherence</h3><p>Fellowship application edited for narrative coherence, host fit and reviewer-facing clarity.</p><div class="work-meta"><span>Fellowship</span><span>Career development</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="funding" data-slug="impact-lay-summary-rewritten"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Impact and lay summary rewritten for non-specialist panel</h3><p>Impact and lay summary rewritten so a non-specialist panel could understand the value of the project.</p><div class="work-meta"><span>Impact section</span><span>Funding panel</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="funding" data-slug="resubmission-strategy-reviewer-feedback"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Funding &amp; grant writing</span><h3>Resubmission strategy from reviewer feedback</h3><p>Reviewer feedback translated into a sharper resubmission strategy and revised project narrative.</p><div class="work-meta"><span>Resubmission</span><span>Reviewer response</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="content" data-slug="white-paper-biotech-platform"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>White paper that became a sales asset</h3><p>White paper for a biotech platform company — now their most-requested sales document, 18 months on.</p><div class="work-meta"><span>White paper</span><span>Biotech</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="content" data-slug="linkedin-ghostwriting-healthtech-founder"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>LinkedIn ghostwriting for a healthtech founder</h3><p>Six months of LinkedIn ghostwriting for a healthtech founder — follower growth and inbound leads measurable.</p><div class="work-meta"><span>Ghostwriting</span><span>Healthtech</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="content" data-slug="technical-newsletter-diagnostics"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Technical newsletter for a diagnostics company</h3><p>Recurring technical newsletter for a diagnostics company — opened and forwarded across their clinical network.</p><div class="work-meta"><span>Newsletter</span><span>Diagnostics</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="content" data-slug="conference-deck-series-b-pitch"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Content &amp; medcomms</span><h3>Conference deck for a Series B pitch</h3><p>Conference deck for a Series B pitch — the science sequenced to land with non-specialist investors.</p><div class="work-meta"><span>Scientific deck</span><span>Biotech</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="validation" data-slug="claim-audit-sleep-app"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Claim audit for a sleep app pre-launch</h3><p>14 claims mapped, 3 flagged as medical device territory, all reformulated before launch.</p><div class="work-meta"><span>Claim audit</span><span>Digital health</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="validation" data-slug="evidence-dossier-wearable-hrv"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Evidence dossier for a wearable's HRV features</h3><p>Evidence dossier for a wearable's HRV-based features, used in the company's Series A data room.</p><div class="work-meta"><span>Evidence dossier</span><span>Wearables</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="validation" data-slug="pre-launch-review-nutrition-platform"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Pre-launch review for a nutrition platform</h3><p>Pre-launch review combining claim audit, reference check and user-flow audit before public release.</p><div class="work-meta"><span>Pre-launch review</span><span>Nutrition</span><span>202X</span></div></div></article>
-        <article class="work-card" data-line="validation" data-slug="reference-check-marketing-campaign"><div class="work-head"></div><div class="work-body"><span class="work-kicker">Science validation</span><h3>Reference check for a marketing campaign</h3><p>Every cited study verified against its actual findings before the campaign went live.</p><div class="work-meta"><span>Reference check</span><span>Healthtech</span><span>202X</span></div></div></article>
+        {% for case in collections.cases %}
+        {% if case.data.line == "Publication support" %}{% set lineKey = "publications" %}{% endif %}
+        {% if case.data.line == "Funding & grant writing" %}{% set lineKey = "funding" %}{% endif %}
+        {% if case.data.line == "Content & medcomms" %}{% set lineKey = "content" %}{% endif %}
+        {% if case.data.line == "Science validation" %}{% set lineKey = "validation" %}{% endif %}
+        <article class="work-card" data-line="{{ lineKey }}" data-slug="{{ case.fileSlug }}">
+          <div class="work-head"></div>
+          <div class="work-body">
+            <span class="work-kicker">{{ case.data.line }}</span>
+            <h3>{{ case.data.title }}</h3>
+            <p>{{ case.data.summary }}</p>
+            <div class="work-meta">
+              <span>{{ case.data.format }}</span>
+              {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
+              {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
       </div>
-
     </div>
   </div>
 
-  <!-- Panel 2 · Publications strip (White) with footer -->
+  <!-- Panel 2 · Publications strip -->
   <div class="panel bg-white panel-with-footer">
     <div class="panel-inner">
-      <div class="eyebrow">Publications</div>
-      <h2>Peer-reviewed work we&rsquo;ve supported</h2>
-      <p class="lede">Papers where our contribution is acknowledged or where authors have agreed to be listed as references. List pending — entries will follow standard citation format.</p>
+      <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
+      <h2>{{ workPage.publications.title }}</h2>
+      <p class="lede">{{ workPage.publications.lede }}</p>
       <ul class="pub-list">
         <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
         <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
@@ -394,13 +287,12 @@
 <!-- ═════════ PAGE: ABOUT ═════════ -->
 <section class="page" id="page-about">
 
-  <!-- Origin (Down) -->
+  <!-- Origin -->
   <div class="panel bg-down">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.hero.eyebrow }}</div>
       <h1>{{ about.hero.title }}</h1>
       <p class="lede">{{ about.hero.lede }}</p>
-
       <div class="origin-box">
         <div class="eyebrow" style="margin-bottom:var(--sp-2)">{{ about.origin.label }}</div>
         <div class="origin-word">{{ about.origin.word }}</div>
@@ -414,7 +306,7 @@
     </div>
   </div>
 
-  <!-- Team (Ink) -->
+  <!-- Team -->
   <div class="panel bg-ink">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.team.eyebrow }}</div>
@@ -439,7 +331,7 @@
     </div>
   </div>
 
-  <!-- How we work (White) -->
+  <!-- How we work -->
   <div class="panel bg-white panel-with-footer">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.howWeWork.eyebrow }}</div>
@@ -465,19 +357,17 @@
 <section class="page" id="page-contact">
   <div class="panel bg-down panel-with-footer">
     <div class="panel-inner">
-      <div class="eyebrow">Contact</div>
-      <h1>Tell us about your project</h1>
-      <p class="lede">We reply within 48 working hours. If you have a draft, a dataset or a link, even better: we'll arrive at the call with our homework done.</p>
-
+      <div class="eyebrow">{{ contact.eyebrow }}</div>
+      <h1>{{ contact.title }}</h1>
+      <p class="lede">{{ contact.lede }}</p>
       <div class="contact-grid">
         <div class="contact-aside">
-          <h3>Before you write</h3>
-          <p>Three things that speed up any quote: what you need (type of deliverable), by when, and for which audience. With that, we can give you a range in our first reply.</p>
-          <div class="contact-line"><b>Email</b><span>hello@iridis.— <em style="color:var(--slate)">(pending)</em></span></div>
-          <div class="contact-line"><b>Based in</b><span>Spain · Ireland · remote</span></div>
-          <div class="contact-line"><b>Languages</b><span>English · Español · Català</span></div>
+          <h3>{{ contact.aside.title }}</h3>
+          <p>{{ contact.aside.text }}</p>
+          <div class="contact-line"><b>Email</b><span>{{ contact.aside.email }}</span></div>
+          <div class="contact-line"><b>Based in</b><span>{{ contact.aside.location }}</span></div>
+          <div class="contact-line"><b>Languages</b><span>{{ contact.aside.languages }}</span></div>
         </div>
-
         <form onsubmit="event.preventDefault(); alert('Draft: the form does not send data yet.');">
           <div class="field-block">
             <label class="field-label" for="f-name">Name</label>
@@ -514,7 +404,7 @@
 </section>
 </main>
 
-<!-- ═════════ HOME SCROLL NAV (dots + down arrow) ═════════ -->
+<!-- ═════════ HOME SCROLL NAV ═════════ -->
 <div class="page-dots" id="pageDots" aria-hidden="true"></div>
 <button class="scroll-down-btn" id="scrollDownBtn" aria-label="Next section" aria-hidden="true">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -544,146 +434,104 @@ function initScrollNav(pageEl) {
   if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
-
-  // On mobile: free native scroll — no dots, no panel snapping, no interceptors.
   if (isMobile() || currentPanels.length <= 1) {
     currentPanels = [];
     dotsEl.classList.remove('visible');
     downBtn.classList.remove('visible');
     return;
   }
-
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
   activeIndex = 0;
-  // Work has its own ‹ › pager at the bottom; the down-arrow would overlap it.
   if (pageEl.id !== 'page-work') downBtn.classList.add('visible');
   else downBtn.classList.remove('visible');
 
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Go to section ' + (i + 1) + ' of ' + currentPanels.length);
+    dot.setAttribute('aria-label', 'Go to section ' + (i + 1));
     dot.addEventListener('click', () => goToPanel(i));
     dotsEl.appendChild(dot);
   });
 
-  function setActive(i) {
-    activeIndex = i;
-    Array.from(dotsEl.children).forEach((d, j) => d.classList.toggle('active', j === i));
-    downBtn.classList.toggle('is-last', i === currentPanels.length - 1);
-  }
-
   scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) setActive(currentPanels.indexOf(entry.target));
+      if (!entry.isIntersecting) return;
+      activeIndex = currentPanels.indexOf(entry.target);
+      dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+      downBtn.classList.toggle('is-last', activeIndex === currentPanels.length - 1);
     });
-  }, { threshold: 0.55 });
+  }, { threshold: 0.5 });
 
   currentPanels.forEach(p => scrollObserver.observe(p));
-  downBtn.onclick = () => goToPanel(activeIndex + 1);
 }
 
-let wheelBusy = false;
-window.addEventListener('wheel', (e) => {
-  if (isMobile() || !currentPanels.length) return;
-  e.preventDefault();
-  if (wheelBusy) return;
-  wheelBusy = true;
-  goToPanel(activeIndex + (e.deltaY > 0 ? 1 : -1));
-  setTimeout(() => { wheelBusy = false; }, 700);
-}, { passive: false });
-
-window.addEventListener('keydown', (e) => {
-  if (isMobile() || !currentPanels.length) return;
-  if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goToPanel(activeIndex + 1); }
-  if (e.key === 'ArrowUp'   || e.key === 'PageUp')   { e.preventDefault(); goToPanel(activeIndex - 1); }
-});
-
-// Re-evaluate scroll nav when crossing the mobile/desktop breakpoint
-let wasMobile = isMobile();
-window.addEventListener('resize', () => {
-  if (isMobile() !== wasMobile) {
-    wasMobile = isMobile();
-    const active = document.querySelector('.page.active');
-    if (active) initScrollNav(active);
-  }
-});
-
-function goto(name) {
-  pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
-  tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.goto === name ? 'true' : 'false'));
+function goto(id) {
+  pages.forEach(p => p.classList.remove('active'));
+  tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+  const page = document.getElementById('page-' + id);
+  if (page) { page.classList.add('active'); page.scrollTop = 0; }
+  const tab = document.querySelector(`.nav-tabs button[data-goto="${id}"]`);
+  if (tab) tab.setAttribute('aria-selected', 'true');
   navTabs.classList.remove('open');
-  window.scrollTo({ top: 0, behavior: 'instant' });
-  history.replaceState(null, '', '#' + name);
-  const activePage = document.getElementById('page-' + name);
-  if (activePage) initScrollNav(activePage);
+  if (page) { requestAnimationFrame(() => initScrollNav(page)); }
+  history.replaceState(null, '', '#' + id);
 }
 
 document.querySelectorAll('[data-goto]').forEach(el => {
   el.addEventListener('click', () => {
-    goto(el.dataset.goto);
-    if (el.dataset.panel !== undefined) {
-      setTimeout(() => goToPanel(parseInt(el.dataset.panel)), 80);
-    }
+    const target = el.dataset.goto;
+    const panel = el.dataset.panel;
+    goto(target);
+    if (panel) { setTimeout(() => goToPanel(parseInt(panel)), 60); }
   });
 });
-navToggle.addEventListener('click', () => navTabs.classList.toggle('open'));
 
-const initial = location.hash.replace('#','');
-if (initial && document.getElementById('page-' + initial)) {
-  goto(initial);
-} else {
-  goto('home');
-}
-</script>
+navToggle && navToggle.addEventListener('click', () => navTabs.classList.toggle('open'));
+downBtn && downBtn.addEventListener('click', () => goToPanel(activeIndex + 1));
 
-<script>
-// ── Before/after demos ──
-const DEMOS = {
-  demo1: {
-    jargon: '"A statistically significant trend towards amelioration of the evaluated parameters was observed in the intervention cohort, which could potentially suggest therapeutic implications that may warrant further exploration in subsequent investigations."',
-    clear: '"The treatment improved outcomes in the intervention group (p < 0.05). The effect is promising, but needs confirmation in a larger trial."'
-  },
-  demo2: {
-    jargon: '"Our AI optimizes your nervous system through vagus nerve activation."',
-    clear: '"Our app supports breathing-based self-regulation, combining guided respiratory exercises with HRV feedback and routines associated with autonomic balance."'
-  }
-};
-Object.keys(DEMOS).forEach(id => {
-  const root = document.getElementById(id);
-  if (!root) return;
-  const text = root.querySelector('.gd-text');
-  const before = root.querySelector('.gd-before');
-  const after = root.querySelector('.gd-after');
-  function set(showAfter) {
-    text.textContent = showAfter ? DEMOS[id].clear : DEMOS[id].jargon;
-    text.classList.toggle('jargon', !showAfter);
-    before.setAttribute('aria-pressed', String(!showAfter));
-    after.setAttribute('aria-pressed', String(showAfter));
-  }
-  before.addEventListener('click', () => set(false));
-  after.addEventListener('click', () => set(true));
+// ── Gap demos (before/after toggle) ──
+document.querySelectorAll('.gap-demo').forEach(demo => {
+  const text = demo.querySelector('.gd-text');
+  const before = demo.querySelector('.gd-before');
+  const after  = demo.querySelector('.gd-after');
+  if (!text || !before || !after) return;
+  const beforeText = text.dataset.before;
+  const afterText  = text.dataset.after;
+  before.addEventListener('click', () => {
+    text.textContent = beforeText;
+    text.classList.add('jargon');
+    before.setAttribute('aria-pressed', 'true');
+    after.setAttribute('aria-pressed', 'false');
+  });
+  after.addEventListener('click', () => {
+    text.textContent = afterText;
+    text.classList.remove('jargon');
+    after.setAttribute('aria-pressed', 'true');
+    before.setAttribute('aria-pressed', 'false');
+  });
 });
 
-// ── Work: 6-up pages (3 on mobile), fixed card size, filter + arrows + dots ──
+// ── Initial page from hash ──
+const hash = location.hash.replace('#', '') || 'home';
+goto(hash);
+</script>
+
+<!-- ═════════ WORK CARDS SCRIPT ═════════ -->
+<script>
 (function () {
-  const source = document.getElementById('workSource');
   const track  = document.getElementById('workTrack');
   const pager  = document.getElementById('workPager');
   const prev   = document.getElementById('workPrev');
   const next   = document.getElementById('workNext');
-  if (!source || !track || !pager) return;
+  if (!track) return;
 
-  const allCards = Array.from(source.querySelectorAll('.work-card'));
+  const allCards = Array.from(document.querySelectorAll('#workSource .work-card'));
   let currentFilter = 'all';
   let pageCount = 1;
 
-  function perPage() { return window.innerWidth <= 860 ? 3 : 6; }
-
-  function currentIndex() {
-    return Math.round(track.scrollLeft / track.clientWidth);
-  }
+  function perPage() { return window.innerWidth > 860 ? 6 : 3; }
+  function currentIndex() { return Math.round(track.scrollLeft / track.clientWidth); }
 
   function syncControls() {
     const idx = currentIndex();
@@ -697,7 +545,7 @@ Object.keys(DEMOS).forEach(id => {
     if (pgs[p]) pgs[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
   }
 
-function render() {
+  function render() {
     const PER_PAGE = perPage();
     const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
     track.innerHTML = '';
@@ -750,7 +598,6 @@ function render() {
     });
   });
 
-  // re-paginate when crossing the mobile/desktop breakpoint
   let lastPer = perPage();
   window.addEventListener('resize', () => {
     if (perPage() !== lastPer) { lastPer = perPage(); render(); }
