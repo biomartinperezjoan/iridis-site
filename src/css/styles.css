@@ -394,6 +394,43 @@ h3, .h3 {
 .svc-grid.cols-3 { grid-template-columns: repeat(3,1fr); }
 @media (max-width: 860px) { .svc-grid.cols-3 { grid-template-columns:1fr; } }
 
+/* 2-up service grid — home 4 services */
+.svc-grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(340px, 1fr));
+}
+
+/* Home services: wider and taller cards */
+#page-home .svc-grid.cols-2 {
+  gap: 26px;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#page-home .svc-grid.cols-2 .svc-card {
+  min-height: 270px;
+  padding: 36px 34px;
+}
+
+#page-home .svc-grid.cols-2 .svc-card p {
+  flex: 1;
+}
+
+@media (max-width: 860px) {
+  .svc-grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  #page-home .svc-grid.cols-2 {
+    max-width: 100%;
+  }
+
+  #page-home .svc-grid.cols-2 .svc-card {
+    min-height: auto;
+  }
+}
+
+
 /* ───────── PORTFOLIO ───────── */
 .filter-row { display:flex; gap: var(--sp-2); flex-wrap:wrap; margin-top: var(--sp-8); }
 .filter-chip {
@@ -412,6 +449,7 @@ h3, .h3 {
 .work-head { height: 8px; background: var(--pinion); }
 .work-card[data-line="content"] .work-head { background: var(--ink); }
 .work-card[data-line="validation"] .work-head { background: var(--gorget); }
+.work-card[data-line="funding"] .work-head { background: var(--pinion-l); }
 .work-body { padding: var(--sp-5); display:flex; flex-direction:column; gap: var(--sp-2); flex:1; }
 .work-kicker {
   font-family: var(--sans-display); font-size:11.5px; font-weight:700;
