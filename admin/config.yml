@@ -192,7 +192,7 @@ collections:
       # ── WORK PAGE ─────────────────────────
       - name: "work"
         label: "Work page"
-        file: "src/_data/work-page.json"
+        file: "src/_data/workPage.json"
         fields:
           - { label: "Eyebrow label", name: "eyebrow", widget: "string" }
           - { label: "Title", name: "title", widget: "string" }
