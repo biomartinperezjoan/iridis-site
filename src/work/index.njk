@@ -1,0 +1,173 @@
+---
+layout: base.njk
+title: Work
+description: Selected scientific and medical writing projects across publications, funding, content and science validation.
+pagination:
+  data: collections.cases
+  size: 6
+  alias: pageCases
+permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+{% set lineMap = {
+  "Publication support": "publications",
+  "Funding & grant writing": "funding",
+  "Content & medcomms": "content",
+  "Science validation": "validation"
+} %}
+<div class="panel bg-down panel-with-footer blog-index-panel">
+  <div class="panel-inner">
+
+    <div class="eyebrow">{{ workPage.eyebrow }}</div>
+    <h1>{{ workPage.title }}</h1>
+    <p class="lede">{{ workPage.lede }}</p>
+
+    <!-- Topic filter (service lines) -->
+    <div class="blog-controls">
+      <div class="blog-topics" id="workTopics" role="group" aria-label="Filter by service line">
+        <button class="filter-chip" aria-pressed="true" data-topic="all">All</button>
+        <button class="filter-chip" aria-pressed="false" data-topic="publications">Publication support</button>
+        <button class="filter-chip" aria-pressed="false" data-topic="funding">Funding &amp; grant writing</button>
+        <button class="filter-chip" aria-pressed="false" data-topic="content">Content &amp; medcomms</button>
+        <button class="filter-chip" aria-pressed="false" data-topic="validation">Science validation</button>
+      </div>
+    </div>
+
+    <!-- DEFAULT (paginated) grid — shown when no filter is active -->
+    <div class="blog-grid work-grid" id="workGridPaged">
+      {% for case in pageCases %}
+      <a class="blog-card-link work-card-link" href="/work/{{ case.fileSlug }}/">
+        <article class="blog-card work-card">
+          <div class="work-head"></div>
+          <div class="blog-body work-body">
+            <span class="work-kicker">{{ case.data.line }}</span>
+            <h3>{{ case.data.title }}</h3>
+            <p>{{ case.data.summary }}</p>
+            <div class="work-meta">
+              <span>{{ case.data.format }}</span>
+              {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
+              {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
+            </div>
+          </div>
+        </article>
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination (hidden while filtering) -->
+    {% if pagination.pages.length > 1 %}
+    <nav class="blog-pagination" id="workPagination" aria-label="Work pages">
+      {% if pagination.href.previous %}<a class="blog-page-arrow" href="{{ pagination.href.previous }}" aria-label="Previous page">‹</a>{% else %}<span class="blog-page-arrow disabled">‹</span>{% endif %}
+      {%- for pageUrl in pagination.hrefs -%}
+        <a class="blog-page-num{% if page.url == pageUrl %} active{% endif %}" href="{{ pageUrl }}">{{ loop.index }}</a>
+      {%- endfor -%}
+      {% if pagination.href.next %}<a class="blog-page-arrow" href="{{ pagination.href.next }}" aria-label="Next page">›</a>{% else %}<span class="blog-page-arrow disabled">›</span>{% endif %}
+    </nav>
+    {% endif %}
+
+    <!-- FILTER RESULTS grid — populated by JS from the full case index -->
+    <div class="blog-grid work-grid" id="workGridResults" hidden></div>
+    <p class="blog-noresults" id="workNoResults" hidden>No cases in this category yet.</p>
+
+    <!-- Full case index (all cases) for client-side filtering -->
+    <script id="workData" type="application/json">
+    [
+      {%- for case in collections.cases -%}
+      {
+        "url": "/work/{{ case.fileSlug }}/",
+        "title": {{ case.data.title | dump | safe }},
+        "summary": {{ case.data.summary | dump | safe }},
+        "line": {{ case.data.line | dump | safe }},
+        "lineKey": "{{ lineMap[case.data.line] }}",
+        "format": {{ case.data.format | dump | safe }},
+        "area": {{ (case.data.area or "") | dump | safe }},
+        "year": {{ (case.data.year or "") | dump | safe }}
+      }{% if not loop.last %},{% endif %}
+      {%- endfor -%}
+    ]
+    </script>
+
+    <!-- Publications strip (peer-reviewed work) -->
+    <div class="work-pubs">
+      <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
+      <h2>{{ workPage.publications.title }}</h2>
+      <p class="lede">{{ workPage.publications.lede }}</p>
+      <ul class="pub-list">
+        <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+        <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+        <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+      </ul>
+      <div class="mt-10">
+        <a class="btn btn-secondary" href="/#contact">Ask for references</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="panel-footer-bar">
+    <div class="f-brand">
+      <img src="/images/mark-dark-bg.png" alt="">
+      <span class="f-wm">IRIDIS</span>
+    </div>
+    <div>© 2026 Iridis · Scientific writing with structural clarity</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const dataEl = document.getElementById('workData');
+  if (!dataEl) return;
+  let data = [];
+  try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+  const topics     = document.getElementById('workTopics');
+  const paged      = document.getElementById('workGridPaged');
+  const pagination = document.getElementById('workPagination');
+  const results    = document.getElementById('workGridResults');
+  const noResults  = document.getElementById('workNoResults');
+
+  let topic = 'all';
+
+  function esc(s) { return String(s == null ? '' : s); }
+
+  function cardHTML(c) {
+    let meta = '<span>' + esc(c.format) + '</span>';
+    if (c.area) meta += '<span>' + esc(c.area) + '</span>';
+    if (c.year) meta += '<span>' + esc(c.year) + '</span>';
+    return '<a class="blog-card-link work-card-link" href="' + esc(c.url) + '">' +
+      '<article class="blog-card work-card"><div class="work-head"></div>' +
+      '<div class="blog-body work-body"><span class="work-kicker">' + esc(c.line) + '</span>' +
+      '<h3>' + esc(c.title) + '</h3><p>' + esc(c.summary) + '</p>' +
+      '<div class="work-meta">' + meta + '</div></div></article></a>';
+  }
+
+  function isActive() { return topic !== 'all'; }
+
+  function apply() {
+    if (!isActive()) {
+      paged.hidden = false; paged.style.display = '';
+      if (pagination) pagination.style.display = '';
+      results.hidden = true; results.style.display = 'none';
+      noResults.hidden = true; noResults.style.display = 'none';
+      results.innerHTML = '';
+      return;
+    }
+    const filtered = data.filter(function (c) { return c.lineKey === topic; });
+    paged.hidden = true; paged.style.display = 'none';
+    if (pagination) pagination.style.display = 'none';
+    results.innerHTML = filtered.map(cardHTML).join('');
+    results.hidden = filtered.length === 0;
+    results.style.display = filtered.length === 0 ? 'none' : '';
+    noResults.hidden = filtered.length !== 0;
+    noResults.style.display = filtered.length !== 0 ? 'none' : '';
+  }
+
+  if (topics) topics.querySelectorAll('.filter-chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      topics.querySelectorAll('.filter-chip').forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      topic = chip.dataset.topic;
+      apply();
+    });
+  });
+})();
+</script>
