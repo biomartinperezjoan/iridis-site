@@ -1240,4 +1240,55 @@ h3, .h3 {
   outline-offset: 2px;
 }
 
+/* ───────── WORK PAGE: fit panel 1 to one screen + side dots ─────────
+   /work/ is a standalone page (base.njk), so it needs its own copy of the
+   side-dot indicator styles and a tighter rhythm so the grid + pagination
+   fit within one viewport. */
+
+/* Panel 1 (Selected work): compact the vertical rhythm so 6 cards + filters
+   + pagination fit inside 100svh without overflowing. */
+#workPanel1 .panel-inner { padding-top: var(--sp-8); padding-bottom: var(--sp-6); }
+#workPanel1 h1 { margin-bottom: var(--sp-2); }
+#workPanel1 .lede { margin-bottom: var(--sp-4); max-width: 70ch; }
+#workPanel1 .blog-controls { margin-top: var(--sp-3); margin-bottom: var(--sp-5); }
+#workPanel1 .work-grid { gap: var(--sp-3); margin-bottom: 0; }
+#workPanel1 .blog-pagination { margin-top: var(--sp-5); }
+
+/* Slightly tighter cards so two rows of three clear the fold on laptops */
+#workPanel1 .work-card .work-body { padding: var(--sp-4) var(--sp-4) var(--sp-3); gap: 6px; }
+#workPanel1 .work-card .work-body p {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* On shorter laptop screens, let the panel grow rather than clip content */
+@media (max-height: 820px) and (min-width: 861px) {
+  #workPanel1 { min-height: auto; }
+}
+
+/* ── Side page-dots for the Work page (standalone copy) ── */
+.work-dots { display: none; }
+.work-dots.visible { display: flex; }
+.work-dots {
+  position: fixed; right: var(--sp-5); top: 50%;
+  transform: translateY(-50%); z-index: 90;
+  flex-direction: column; align-items: center; gap: 12px;
+  padding: 14px 9px; border-radius: 999px;
+  border: 1px solid rgba(20,36,29,.12);
+  background: rgba(255,255,255,.78); backdrop-filter: blur(6px);
+}
+.work-dots .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  border: 1.5px solid rgba(90,103,95,.4); background: transparent;
+  cursor: pointer; padding: 0;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.work-dots .dot:hover { border-color: var(--pinion); }
+.work-dots .dot.active { background: var(--pinion); border-color: var(--pinion); transform: scale(1.25); }
+
+@media (max-width: 860px) {
+  .work-dots { display: none !important; }
+}
+
+
 
