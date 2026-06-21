@@ -1377,3 +1377,15 @@ h3, .h3 {
 /* Prevent the whole nav row from reflowing if the web font swaps in late */
 .nav-tabs { min-height: var(--nav-h); }
 
+/* ───────── Kill the horizontal "jump" when navigating between pages ─────────
+   The home (SPA) and the static pages (Work, Blog) differ in content height,
+   so the vertical scrollbar shows on some pages and not others. That ~15px
+   width change shifts the whole layout — including the fixed nav — sideways
+   on navigation. Reserving the gutter permanently keeps page width constant.
+
+   scrollbar-gutter:stable is the modern, snap-safe way to do this (it does
+   NOT alter scroll behaviour, unlike forcing overflow-y:scroll). */
+html { scrollbar-gutter: stable; }
+
+/* Mobile uses overlay scrollbars (zero width), so there's no empty track to
+   worry about; nothing extra needed there. */
