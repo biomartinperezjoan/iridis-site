@@ -554,94 +554,32 @@ const hash = location.hash.replace('#', '') || 'home';
 goto(hash);
 </script>
 
-<!-- ═════════ WORK CARDS SCRIPT ═════════ -->
+<!-- ═════════ WORK FILTER SCRIPT (fluid grid) ═════════ -->
 <script>
 (function () {
-  const track  = document.getElementById('workTrack');
-  const pager  = document.getElementById('workPager');
-  const prev   = document.getElementById('workPrev');
-  const next   = document.getElementById('workNext');
-  if (!track) return;
+  const grid  = document.getElementById('workGrid');
+  const empty = document.getElementById('workEmpty');
+  if (!grid) return;
 
-  const allCards = Array.from(document.querySelectorAll('#workSource .work-card'));
-  let currentFilter = 'all';
-  let pageCount = 1;
-
-  function perPage() { return window.innerWidth > 860 ? 6 : 3; }
-  function currentIndex() { return Math.round(track.scrollLeft / track.clientWidth); }
-
-  function syncControls() {
-    const idx = currentIndex();
-    pager.querySelectorAll('.wp-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
-    if (prev) prev.disabled = idx <= 0;
-    if (next) next.disabled = idx >= pageCount - 1;
-  }
-
-  function goToPage(p) {
-    const pgs = track.querySelectorAll('.work-page');
-    if (pgs[p]) pgs[p].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-  }
-
-  function render() {
-    const PER_PAGE = perPage();
-    const cards = allCards.filter(c => currentFilter === 'all' || c.dataset.line === currentFilter);
-    track.innerHTML = '';
-    pager.innerHTML = '';
-    pageCount = Math.max(1, Math.ceil(cards.length / PER_PAGE));
-
-    for (let p = 0; p < pageCount; p++) {
-      const page = document.createElement('div');
-      page.className = 'work-page';
-      cards.slice(p * PER_PAGE, p * PER_PAGE + PER_PAGE).forEach(card => {
-        const slug = card.dataset.slug;
-        if (slug) {
-          const link = document.createElement('a');
-          link.className = 'work-card-link';
-          link.href = '/work/' + slug + '/';
-          link.setAttribute('aria-label', card.querySelector('h3') ? card.querySelector('h3').textContent : 'View case');
-          link.appendChild(card.cloneNode(true));
-          page.appendChild(link);
-        } else {
-          page.appendChild(card.cloneNode(true));
-        }
-      });
-      track.appendChild(page);
-    }
-
-    for (let p = 0; p < pageCount; p++) {
-      const dot = document.createElement('button');
-      dot.className = 'wp-dot' + (p === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to work page ' + (p + 1));
-      dot.addEventListener('click', () => goToPage(p));
-      pager.appendChild(dot);
-    }
-
-    track.scrollLeft = 0;
-    const navCluster = track.parentElement.querySelector('.work-nav');
-    if (navCluster) navCluster.style.visibility = pageCount > 1 ? 'visible' : 'hidden';
-    syncControls();
-  }
-
-  track.addEventListener('scroll', syncControls);
-  if (prev) prev.addEventListener('click', () => goToPage(currentIndex() - 1));
-  if (next) next.addEventListener('click', () => goToPage(currentIndex() + 1));
+  const cards = Array.from(grid.querySelectorAll('.work-card-link'));
 
   document.querySelectorAll('#page-work .filter-chip').forEach(chip => {
     chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
       document.querySelectorAll('#page-work .filter-chip')
         .forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-      currentFilter = chip.dataset.filter;
-      render();
+
+      let visible = 0;
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.line === filter;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (empty) empty.hidden = visible > 0;
     });
   });
-
-  let lastPer = perPage();
-  window.addEventListener('resize', () => {
-    if (perPage() !== lastPer) { lastPer = perPage(); render(); }
-  });
-
-  render();
 })();
 </script>
+
 </body>
 </html>
