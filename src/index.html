@@ -31,7 +31,7 @@ permalink: /index.html
   <ul class="nav-tabs" id="navTabs" role="tablist">
     <li><button role="tab" aria-selected="true" data-goto="home">Home</button></li>
     <li><button role="tab" aria-selected="false" data-goto="services">Services</button></li>
-    <li><button role="tab" aria-selected="false" data-goto="work">Work</button></li>
+    <li><a href="/work/">Work</a></li>
     <li><button role="tab" aria-selected="false" data-goto="about">About</button></li>
     <li><a href="/blog/">Blog</a></li>
     <li><button role="tab" aria-selected="false" data-goto="contact">Contact</button></li>
@@ -129,7 +129,7 @@ permalink: /index.html
       <p class="lede" style="margin:0 auto">{{ home.cta.lede }}</p>
       <div class="panel-cta">
         <button class="btn btn-on-dark" data-goto="contact">{{ home.cta.cta_primary }}</button>
-        <button class="btn btn-ghost-dark" data-goto="work">{{ home.cta.cta_secondary }}</button>
+        <a class="btn btn-ghost-dark" href="/work/">{{ home.cta.cta_secondary }}</a>
       </div>
     </div>
     <div class="panel-footer-bar">
@@ -198,78 +198,6 @@ permalink: /index.html
       <div class="panel-cta">
         <button class="btn btn-on-dark" data-goto="contact">{{ services.cta.cta }}</button>
       </div>
-    </div>
-    <div class="panel-footer-bar">
-      <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
-      <div>© 2026 Iridis · Scientific writing with structural clarity</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ PAGE: WORK ═════════ -->
-<section class="page" id="page-work">
-
-  <!-- Single flowing panel: header + filters + fluid card grid + publications -->
-  <div class="panel bg-down work-flow-panel panel-with-footer">
-    <div class="panel-inner">
-
-      <div class="work-header">
-        <div>
-          <div class="eyebrow">{{ workPage.eyebrow }}</div>
-          <h1>{{ workPage.title }}</h1>
-          <p class="lede work-lede">{{ workPage.lede }}</p>
-        </div>
-        <div class="filter-row" role="group" aria-label="Filter work by service line">
-          <button class="filter-chip" aria-pressed="true" data-filter="all">All</button>
-          <button class="filter-chip" aria-pressed="false" data-filter="publications">Publication support</button>
-          <button class="filter-chip" aria-pressed="false" data-filter="funding">Funding &amp; grant writing</button>
-          <button class="filter-chip" aria-pressed="false" data-filter="content">Content &amp; medcomms</button>
-          <button class="filter-chip" aria-pressed="false" data-filter="validation">Science validation</button>
-        </div>
-      </div>
-
-      <!-- Fluid grid: all cards flow in rows of 3, page scrolls vertically -->
-      <div class="work-grid" id="workGrid">
-        {% for case in collections.cases %}
-        {% if case.data.line == "Publication support" %}{% set lineKey = "publications" %}{% endif %}
-        {% if case.data.line == "Funding & grant writing" %}{% set lineKey = "funding" %}{% endif %}
-        {% if case.data.line == "Content & medcomms" %}{% set lineKey = "content" %}{% endif %}
-        {% if case.data.line == "Science validation" %}{% set lineKey = "validation" %}{% endif %}
-        <a class="work-card-link" href="/work/{{ case.fileSlug }}/" data-line="{{ lineKey }}" aria-label="{{ case.data.title }}">
-          <article class="work-card">
-            <div class="work-head"></div>
-            <div class="work-body">
-              <span class="work-kicker">{{ case.data.line }}</span>
-              <h3>{{ case.data.title }}</h3>
-              <p>{{ case.data.summary }}</p>
-              <div class="work-meta">
-                <span>{{ case.data.format }}</span>
-                {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
-                {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
-              </div>
-            </div>
-          </article>
-        </a>
-        {% endfor %}
-      </div>
-
-      <p class="work-empty" id="workEmpty" hidden>No cases in this category yet.</p>
-
-      <!-- Publications strip (peer-reviewed work) -->
-      <div class="work-pubs">
-        <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
-        <h2>{{ workPage.publications.title }}</h2>
-        <p class="lede">{{ workPage.publications.lede }}</p>
-        <ul class="pub-list">
-          <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-          <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-          <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        </ul>
-        <div class="mt-10">
-          <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
-        </div>
-      </div>
-
     </div>
     <div class="panel-footer-bar">
       <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
@@ -552,33 +480,6 @@ window.addEventListener('resize', () => {
 // ── Initial page from hash ──
 const hash = location.hash.replace('#', '') || 'home';
 goto(hash);
-</script>
-
-<!-- ═════════ WORK FILTER SCRIPT (fluid grid) ═════════ -->
-<script>
-(function () {
-  const grid  = document.getElementById('workGrid');
-  const empty = document.getElementById('workEmpty');
-  if (!grid) return;
-
-  const cards = Array.from(grid.querySelectorAll('.work-card-link'));
-
-  document.querySelectorAll('#page-work .filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const filter = chip.dataset.filter;
-      document.querySelectorAll('#page-work .filter-chip')
-        .forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-
-      let visible = 0;
-      cards.forEach(card => {
-        const show = filter === 'all' || card.dataset.line === filter;
-        card.hidden = !show;
-        if (show) visible++;
-      });
-      if (empty) empty.hidden = visible > 0;
-    });
-  });
-})();
 </script>
 
 </body>
