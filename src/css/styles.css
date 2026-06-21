@@ -1012,3 +1012,104 @@ h3, .h3 {
   height: 100%;
 }
 
+/* ───────── WORK: FLUID GRID, FREE VERTICAL SCROLL ─────────
+   Replaces the old horizontal-paging system. Work now behaves like the
+   blog index: the panel grows with content and scrolls vertically, which
+   removes the wheel/horizontal-scroll conflict that caused the lag. */
+
+/* The Work panel is a flowing page, not a fixed-height one screen. */
+.work-flow-panel {
+  min-height: calc(100svh - var(--nav-h));
+  scroll-snap-align: none;          /* opt out of panel snapping */
+  justify-content: flex-start;
+}
+.work-flow-panel .panel-inner {
+  flex: 1 0 auto;
+  justify-content: flex-start;
+  padding-top: var(--sp-12);
+  padding-bottom: var(--sp-10);
+}
+
+/* Header: intro left, filters right (wraps on narrow screens) */
+.work-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--sp-6);
+  margin-bottom: var(--sp-8);
+}
+.work-header > div:first-child { flex: 1 1 460px; max-width: 760px; }
+.work-header .filter-row { margin-top: var(--sp-2); align-self: flex-start; }
+.work-lede { margin-bottom: 0; max-width: none; }
+
+/* The fluid grid — 3 columns that wrap into as many rows as needed */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-16);
+}
+@media (max-width: 860px) { .work-grid { grid-template-columns: 1fr; gap: var(--sp-4); } }
+@media (min-width: 861px) and (max-width: 1040px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Card link wrapper */
+.work-card-link {
+  text-decoration: none; color: inherit;
+  display: block;
+}
+.work-card-link[hidden] { display: none; }
+
+/* Card itself — equal heights within a row via stretch (grid default) */
+.work-card {
+  display: flex; flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--mist);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.work-card-link:hover .work-card {
+  border-color: var(--pinion);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(30,106,78,.12);
+}
+.work-card .work-head { height: 4px; background: var(--pinion); }
+.work-card .work-body {
+  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  display: flex; flex-direction: column; gap: var(--sp-2);
+  flex: 1;
+}
+.work-card .work-kicker {
+  font-family: var(--sans-display); font-size: 11px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--slate);
+}
+.work-card .work-body h3 {
+  font-size: var(--fs-h3); margin: 0; line-height: 1.25; color: var(--ink);
+}
+.work-card .work-body p {
+  font-size: var(--fs-body); line-height: 1.55; color: var(--slate);
+  margin: 0; flex: 1;
+}
+.work-card .work-meta {
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+.work-card .work-meta span {
+  font-family: var(--sans-body); font-size: 11.5px; color: var(--slate);
+  background: var(--down); border-radius: var(--r-sm);
+  padding: 2px 8px;
+}
+
+.work-empty {
+  text-align: center; color: var(--slate);
+  font-size: 15px; padding: var(--sp-12) 0; margin-bottom: var(--sp-12);
+}
+
+/* Publications strip sits below the grid, separated by a hairline */
+.work-pubs {
+  border-top: 1px solid var(--mist);
+  padding-top: var(--sp-12);
+}
+
+
+
+
