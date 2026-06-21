@@ -209,9 +209,10 @@ permalink: /index.html
 <!-- ═════════ PAGE: WORK ═════════ -->
 <section class="page" id="page-work">
 
-  <!-- Panel 1 · Cards -->
-  <div class="panel bg-down">
-    <div class="panel-inner panel-inner-work">
+  <!-- Single flowing panel: header + filters + fluid card grid + publications -->
+  <div class="panel bg-down work-flow-panel panel-with-footer">
+    <div class="panel-inner">
+
       <div class="work-header">
         <div>
           <div class="eyebrow">{{ workPage.eyebrow }}</div>
@@ -227,55 +228,48 @@ permalink: /index.html
         </div>
       </div>
 
-      <div class="work-scroll-track" id="workTrack"></div>
-
-      <div class="work-footer-row">
-        <div class="work-nav">
-          <button class="work-arrow" id="workPrev" aria-label="Previous page">‹</button>
-          <div class="work-pager" id="workPager" aria-label="Work pages"></div>
-          <button class="work-arrow" id="workNext" aria-label="Next page">›</button>
-        </div>
-      </div>
-
-      <!-- SOURCE CARDS (hidden; cloned into pages by JS) -->
-      <div id="workSource" hidden>
+      <!-- Fluid grid: all cards flow in rows of 3, page scrolls vertically -->
+      <div class="work-grid" id="workGrid">
         {% for case in collections.cases %}
         {% if case.data.line == "Publication support" %}{% set lineKey = "publications" %}{% endif %}
         {% if case.data.line == "Funding & grant writing" %}{% set lineKey = "funding" %}{% endif %}
         {% if case.data.line == "Content & medcomms" %}{% set lineKey = "content" %}{% endif %}
         {% if case.data.line == "Science validation" %}{% set lineKey = "validation" %}{% endif %}
-        <article class="work-card" data-line="{{ lineKey }}" data-slug="{{ case.fileSlug }}">
-          <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">{{ case.data.line }}</span>
-            <h3>{{ case.data.title }}</h3>
-            <p>{{ case.data.summary }}</p>
-            <div class="work-meta">
-              <span>{{ case.data.format }}</span>
-              {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
-              {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
+        <a class="work-card-link" href="/work/{{ case.fileSlug }}/" data-line="{{ lineKey }}" aria-label="{{ case.data.title }}">
+          <article class="work-card">
+            <div class="work-head"></div>
+            <div class="work-body">
+              <span class="work-kicker">{{ case.data.line }}</span>
+              <h3>{{ case.data.title }}</h3>
+              <p>{{ case.data.summary }}</p>
+              <div class="work-meta">
+                <span>{{ case.data.format }}</span>
+                {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
+                {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </a>
         {% endfor %}
       </div>
-    </div>
-  </div>
 
-  <!-- Panel 2 · Publications strip -->
-  <div class="panel bg-white panel-with-footer">
-    <div class="panel-inner">
-      <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
-      <h2>{{ workPage.publications.title }}</h2>
-      <p class="lede">{{ workPage.publications.lede }}</p>
-      <ul class="pub-list">
-        <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-      </ul>
-      <div class="mt-10">
-        <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
+      <p class="work-empty" id="workEmpty" hidden>No cases in this category yet.</p>
+
+      <!-- Publications strip (peer-reviewed work) -->
+      <div class="work-pubs">
+        <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
+        <h2>{{ workPage.publications.title }}</h2>
+        <p class="lede">{{ workPage.publications.lede }}</p>
+        <ul class="pub-list">
+          <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+          <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+          <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+        </ul>
+        <div class="mt-10">
+          <button class="btn btn-secondary" data-goto="contact">Ask for references</button>
+        </div>
       </div>
+
     </div>
     <div class="panel-footer-bar">
       <div class="f-brand"><img src="/images/mark-dark-bg.png" alt=""> <span class="f-wm">IRIDIS</span></div>
