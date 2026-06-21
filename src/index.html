@@ -413,17 +413,18 @@ const navToggle = document.getElementById('navToggle');
 const dotsEl = document.getElementById('pageDots');
 const downBtn = document.getElementById('scrollDownBtn');
 
-// ── Scroll nav (dots + down arrow) ──
+// Pages that scroll freely (no panel snapping, no wheel interception)
+const FREE_SCROLL_PAGES = ['page-work', 'page-blog'];
+
 let scrollObserver = null;
 let currentPanels = [];
 let activeIndex = 0;
-let wheelLock = false;          // debounce so one fast scroll = one panel
+let wheelLock = false;
 let wheelHandler = null;
 let keyHandler = null;
 
 function isMobile() { return window.innerWidth <= 860; }
 
-// Navigate to a panel index — shared by wheel, arrow, dots and keyboard
 function goToPanel(i) {
   const clamped = Math.max(0, Math.min(currentPanels.length - 1, i));
   const target = currentPanels[clamped];
@@ -434,15 +435,14 @@ function goToPanel(i) {
 }
 
 function initScrollNav(pageEl) {
-  // Tear down any previous listeners
   if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
   if (wheelHandler) { window.removeEventListener('wheel', wheelHandler, { passive: false }); wheelHandler = null; }
   if (keyHandler) { window.removeEventListener('keydown', keyHandler); keyHandler = null; }
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
 
-  // On mobile: free native scroll — no dots, no snapping, no interceptors.
-  if (isMobile() || currentPanels.length <= 1) {
+  // Mobile, single-panel pages, and free-scroll pages: native scroll only.
+  if (isMobile() || currentPanels.length <= 1 || FREE_SCROLL_PAGES.includes(pageEl.id)) {
     currentPanels = [];
     dotsEl.classList.remove('visible');
     downBtn.classList.remove('visible');
@@ -451,11 +451,8 @@ function initScrollNav(pageEl) {
 
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
+  downBtn.classList.add('visible');
   activeIndex = 0;
-
-  // Work has its own ‹ › pager at the bottom; the down-arrow would overlap it.
-  if (pageEl.id !== 'page-work') downBtn.classList.add('visible');
-  else downBtn.classList.remove('visible');
 
   currentPanels.forEach((panel, i) => {
     const dot = document.createElement('button');
@@ -465,7 +462,6 @@ function initScrollNav(pageEl) {
     dotsEl.appendChild(dot);
   });
 
-  // Track which panel is in view → update dots + arrow state
   scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -476,14 +472,11 @@ function initScrollNav(pageEl) {
   }, { threshold: 0.55 });
   currentPanels.forEach(p => scrollObserver.observe(p));
 
-  // ── Wheel interception: convert the browser's slow snap into a direct
-  //    scrollIntoView, debounced so a fast spin doesn't skip two panels. ──
+  // Wheel interception: turn the browser's slow snap into a direct,
+  // debounced scrollIntoView so one spin = one panel.
   wheelHandler = (e) => {
-    // Let horizontal scroll (Work cards) and zoom gestures pass through
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     if (e.ctrlKey) return;
-    // If the cursor is over the horizontally-scrolling work track, don't hijack
-    if (e.target.closest && e.target.closest('.work-scroll-track')) return;
     e.preventDefault();
     if (wheelLock) return;
     wheelLock = true;
@@ -493,7 +486,6 @@ function initScrollNav(pageEl) {
   };
   window.addEventListener('wheel', wheelHandler, { passive: false });
 
-  // ── Keyboard navigation ──
   keyHandler = (e) => {
     if (['ArrowDown', 'PageDown'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex + 1); }
     else if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex - 1); }
@@ -547,7 +539,7 @@ document.querySelectorAll('.gap-demo').forEach(demo => {
   });
 });
 
-// ── Re-init on resize (desktop ⇆ mobile crossing) ──
+// ── Re-init on resize ──
 let resizeTimer = null;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
