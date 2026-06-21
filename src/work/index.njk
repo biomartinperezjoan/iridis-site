@@ -117,18 +117,23 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 
 <!-- ═════════ SIDE DOTS + PANEL SCROLL NAV (Work page) ═════════ -->
 <div class="work-dots" id="workDots" aria-hidden="true"></div>
+<button class="work-down-btn" id="workDownBtn" aria-label="Next section" aria-hidden="true">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
 
 <script>
 (function () {
   if (window.innerWidth <= 860) return;            // mobile: native scroll, no dots
   const panels = Array.from(document.querySelectorAll('.panel'));
   const dotsEl = document.getElementById('workDots');
+  const downBtn = document.getElementById('workDownBtn');
   if (!dotsEl || panels.length <= 1) return;
 
   let activeIndex = 0;
   let wheelLock = false;
 
   dotsEl.classList.add('visible');
+  if (downBtn) downBtn.classList.add('visible');
   panels.forEach((panel, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -149,9 +154,12 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
       if (!entry.isIntersecting) return;
       activeIndex = panels.indexOf(entry.target);
       dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+      if (downBtn) downBtn.classList.toggle('is-last', activeIndex === panels.length - 1);
     });
   }, { threshold: 0.55 });
   panels.forEach(p => obs.observe(p));
+
+  if (downBtn) downBtn.addEventListener('click', () => goToPanel(activeIndex + 1));
 
   // Wheel interception for lag-free one-spin-one-panel — but let the user
   // scroll freely inside a panel that is taller than the viewport.
