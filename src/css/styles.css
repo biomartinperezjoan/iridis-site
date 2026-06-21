@@ -647,6 +647,12 @@ h3, .h3 {
 .svc-index-arrow { font-size: 18px; color: var(--pinion); font-weight: 600; transition: transform .15s; }
 .svc-index-item:hover .svc-index-arrow { transform: translateX(4px); }
 
+/* ───────── UTILITIES (global) ───────── */
+.mt-8 { margin-top: var(--sp-8); }
+.mt-10 { margin-top: var(--sp-10); }
+.center { text-align: center; }
+.panel-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; margin-top: var(--sp-8); }
+
 /* ───────── BLOG ARTICLE (Eleventy pages) ───────── */
 .post-header {
   border-bottom: 1px solid var(--mist);
