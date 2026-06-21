@@ -1389,3 +1389,18 @@ html { scrollbar-gutter: stable; }
 
 /* Mobile uses overlay scrollbars (zero width), so there's no empty track to
    worry about; nothing extra needed there. */
+
+/* ───────── WORK PANEL 1: lift content up so the floating ↓ arrow
+   doesn't overlap the pagination row ─────────
+   There's spare room above the title; shifting the panel's content toward
+   the top moves the pagination clear of the bottom-centre arrow. */
+#workPanel1 {
+  justify-content: flex-start;     /* anchor content to top, not centre */
+}
+#workPanel1 .panel-inner {
+  padding-top: var(--sp-6);
+  padding-bottom: var(--sp-12);    /* clearance under pagination for the arrow */
+}
+
+/* Tighten the gap below pagination so nothing sits under the arrow zone */
+#workPanel1 .blog-pagination { margin-bottom: var(--sp-2); }
