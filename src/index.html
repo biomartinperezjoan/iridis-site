@@ -419,30 +419,47 @@ const navToggle = document.getElementById('navToggle');
 const dotsEl = document.getElementById('pageDots');
 const downBtn = document.getElementById('scrollDownBtn');
 
+// ── Scroll nav (dots + down arrow) ──
 let scrollObserver = null;
 let currentPanels = [];
 let activeIndex = 0;
-
-function goToPanel(i) {
-  const target = currentPanels[Math.max(0, Math.min(currentPanels.length - 1, i))];
-  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+let wheelLock = false;          // debounce so one fast scroll = one panel
+let wheelHandler = null;
+let keyHandler = null;
 
 function isMobile() { return window.innerWidth <= 860; }
 
+// Navigate to a panel index — shared by wheel, arrow, dots and keyboard
+function goToPanel(i) {
+  const clamped = Math.max(0, Math.min(currentPanels.length - 1, i));
+  const target = currentPanels[clamped];
+  if (target) {
+    activeIndex = clamped;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function initScrollNav(pageEl) {
+  // Tear down any previous listeners
   if (scrollObserver) { scrollObserver.disconnect(); scrollObserver = null; }
+  if (wheelHandler) { window.removeEventListener('wheel', wheelHandler, { passive: false }); wheelHandler = null; }
+  if (keyHandler) { window.removeEventListener('keydown', keyHandler); keyHandler = null; }
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
+
+  // On mobile: free native scroll — no dots, no snapping, no interceptors.
   if (isMobile() || currentPanels.length <= 1) {
     currentPanels = [];
     dotsEl.classList.remove('visible');
     downBtn.classList.remove('visible');
     return;
   }
+
   dotsEl.classList.add('visible');
   downBtn.classList.remove('is-last');
   activeIndex = 0;
+
+  // Work has its own ‹ › pager at the bottom; the down-arrow would overlap it.
   if (pageEl.id !== 'page-work') downBtn.classList.add('visible');
   else downBtn.classList.remove('visible');
 
@@ -454,6 +471,7 @@ function initScrollNav(pageEl) {
     dotsEl.appendChild(dot);
   });
 
+  // Track which panel is in view → update dots + arrow state
   scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -461,16 +479,39 @@ function initScrollNav(pageEl) {
       dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === activeIndex));
       downBtn.classList.toggle('is-last', activeIndex === currentPanels.length - 1);
     });
-  }, { threshold: 0.5 });
-
+  }, { threshold: 0.55 });
   currentPanels.forEach(p => scrollObserver.observe(p));
+
+  // ── Wheel interception: convert the browser's slow snap into a direct
+  //    scrollIntoView, debounced so a fast spin doesn't skip two panels. ──
+  wheelHandler = (e) => {
+    // Let horizontal scroll (Work cards) and zoom gestures pass through
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    if (e.ctrlKey) return;
+    // If the cursor is over the horizontally-scrolling work track, don't hijack
+    if (e.target.closest && e.target.closest('.work-scroll-track')) return;
+    e.preventDefault();
+    if (wheelLock) return;
+    wheelLock = true;
+    setTimeout(() => { wheelLock = false; }, 700);
+    if (e.deltaY > 0) goToPanel(activeIndex + 1);
+    else goToPanel(activeIndex - 1);
+  };
+  window.addEventListener('wheel', wheelHandler, { passive: false });
+
+  // ── Keyboard navigation ──
+  keyHandler = (e) => {
+    if (['ArrowDown', 'PageDown'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex + 1); }
+    else if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex - 1); }
+  };
+  window.addEventListener('keydown', keyHandler);
 }
 
 function goto(id) {
   pages.forEach(p => p.classList.remove('active'));
   tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
   const page = document.getElementById('page-' + id);
-  if (page) { page.classList.add('active'); page.scrollTop = 0; }
+  if (page) { page.classList.add('active'); window.scrollTo(0, 0); }
   const tab = document.querySelector(`.nav-tabs button[data-goto="${id}"]`);
   if (tab) tab.setAttribute('aria-selected', 'true');
   navTabs.classList.remove('open');
@@ -481,9 +522,9 @@ function goto(id) {
 document.querySelectorAll('[data-goto]').forEach(el => {
   el.addEventListener('click', () => {
     const target = el.dataset.goto;
-    const panel = el.dataset.panel;
+    const panel = el.dataset.panel ? parseInt(el.dataset.panel) : 0;
     goto(target);
-    if (panel) { setTimeout(() => goToPanel(parseInt(panel)), 60); }
+    if (panel > 0) { setTimeout(() => goToPanel(panel), 80); }
   });
 });
 
@@ -510,6 +551,16 @@ document.querySelectorAll('.gap-demo').forEach(demo => {
     after.setAttribute('aria-pressed', 'true');
     before.setAttribute('aria-pressed', 'false');
   });
+});
+
+// ── Re-init on resize (desktop ⇆ mobile crossing) ──
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const active = document.querySelector('.page.active');
+    if (active) initScrollNav(active);
+  }, 200);
 });
 
 // ── Initial page from hash ──
