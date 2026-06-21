@@ -1290,5 +1290,59 @@ h3, .h3 {
   .work-dots { display: none !important; }
 }
 
+/* ───────── WORK PAGE: equal card heights + down-arrow ───────── */
+
+/* Force every card in the grid to the same height so the bottom row never
+   stretches when a card has more meta tags or a longer title. Fixed rows
+   = identical card sizes = no jump between pages. */
+#workPanel1 .work-grid {
+  grid-template-rows: repeat(2, 1fr);
+}
+#workPanel1 .work-grid .work-card-link,
+#workPanel1 .work-grid .work-card { height: 100%; }
+
+/* Title clamped to 2 lines, description to 3 — keeps every card identical
+   regardless of how long the copy is. */
+#workPanel1 .work-card .work-body h3 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+#workPanel1 .work-card .work-body p {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Meta row pinned to the bottom so cards with fewer tags still align */
+#workPanel1 .work-card .work-body { display: flex; flex-direction: column; }
+#workPanel1 .work-card .work-meta { margin-top: auto; }
+
+/* On short laptop screens the panel grows; rows fall back to auto so the
+   cards aren't squashed. */
+@media (max-height: 820px) and (min-width: 861px) {
+  #workPanel1 .work-grid { grid-template-rows: auto auto; }
+}
+@media (max-width: 860px) {
+  #workPanel1 .work-grid { grid-template-rows: none; }
+}
+
+/* ── Down-arrow: jump from Selected work → Publications ── */
+.work-down-btn { display: none; }
+.work-down-btn.visible { display: flex; }
+.work-down-btn {
+  position: fixed; bottom: var(--sp-6); left: 50%;
+  transform: translateX(-50%); z-index: 90;
+  align-items: center; justify-content: center;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(20,36,29,.12);
+  background: rgba(255,255,255,.78); backdrop-filter: blur(6px);
+  color: var(--ink); cursor: pointer;
+  transition: opacity .25s, transform .2s, background .15s;
+  animation: bob 2.2s ease-in-out infinite;
+}
+.work-down-btn:hover { background: var(--pinion); color: var(--down); }
+.work-down-btn.is-last { opacity: 0; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .work-down-btn { display: none !important; }
+}
 
 
