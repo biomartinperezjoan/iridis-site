@@ -14,7 +14,9 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
   "Content & medcomms": "content",
   "Science validation": "validation"
 } %}
-<div class="panel bg-down panel-with-footer blog-index-panel">
+
+<!-- ═════════ PANEL 1 · SELECTED WORK ═════════ -->
+<div class="panel bg-down">
   <div class="panel-inner">
 
     <div class="eyebrow">{{ workPage.eyebrow }}</div>
@@ -86,21 +88,23 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
     ]
     </script>
 
-    <!-- Publications strip (peer-reviewed work) -->
-    <div class="work-pubs">
-      <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
-      <h2>{{ workPage.publications.title }}</h2>
-      <p class="lede">{{ workPage.publications.lede }}</p>
-      <ul class="pub-list">
-        <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-        <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
-      </ul>
-      <div class="mt-10">
-        <a class="btn btn-secondary" href="/#contact">Ask for references</a>
-      </div>
-    </div>
+  </div>
+</div>
 
+<!-- ═════════ PANEL 2 · PEER-REVIEWED PUBLICATIONS ═════════ -->
+<div class="panel bg-white panel-with-footer">
+  <div class="panel-inner">
+    <div class="eyebrow">{{ workPage.publications.eyebrow }}</div>
+    <h2>{{ workPage.publications.title }}</h2>
+    <p class="lede">{{ workPage.publications.lede }}</p>
+    <ul class="pub-list">
+      <li><span class="pub-year">202X</span><span>Author A, Author B, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+      <li><span class="pub-year">202X</span><span>Author C, Author D, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+      <li><span class="pub-year">202X</span><span>Author E, et al. Title of the publication pending. <span class="pub-src">Journal Name.</span> DOI pending.</span></li>
+    </ul>
+    <div class="mt-10">
+      <a class="btn btn-secondary" href="/#contact">Ask for references</a>
+    </div>
   </div>
   <div class="panel-footer-bar">
     <div class="f-brand">
