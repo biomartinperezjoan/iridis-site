@@ -1208,5 +1208,36 @@ h3, .h3 {
   padding-top: var(--sp-12);
 }
 
+/* ───────── FOCUS: premium look — keyboard yes, mouse no ─────────
+   The browser's default focus ring (and our :focus-visible ring) should
+   appear ONLY for keyboard users. Mouse clicks must leave no box. */
+
+/* Belt-and-braces: kill any default outline on mouse :focus everywhere.
+   :focus-visible below re-adds a clean ring for keyboard navigation only. */
+*:focus { outline: none; }
+
+/* Keyboard navigation keeps a clear, on-brand ring */
+*:focus-visible {
+  outline: 2px solid var(--pinion);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* Card links: never show a focus box on click; the hover lift is the feedback.
+   (Cards are large; an outline around them looks like a selection artefact.) */
+.work-card-link:focus,
+.blog-card-link:focus,
+.svc-card:focus,
+.svc-index-item:focus,
+.work-card-link:focus-visible,
+.blog-card-link:focus-visible {
+  outline: none;
+}
+/* …but keyboard users still get a visible cue: ring the inner card */
+.work-card-link:focus-visible .work-card,
+.blog-card-link:focus-visible .blog-card {
+  outline: 2px solid var(--pinion);
+  outline-offset: 2px;
+}
 
 
