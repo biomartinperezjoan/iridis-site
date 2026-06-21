@@ -1345,4 +1345,35 @@ h3, .h3 {
   .work-down-btn { display: none !important; }
 }
 
+/* ───────── NAV: eliminate the tab "jump" between <button> and <a> ─────────
+   Home/Services/About/Contact are <button>; Work/Blog are <a>. The two
+   element types have subtly different default box metrics, so on page reload
+   (navigating to Work/Blog) the labels shift by a sub-pixel. Forcing both to
+   the exact same flex box removes the movement. */
+.nav-tabs button,
+.nav-tabs a {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  line-height: 1;
+  font-size: 13.5px;
+  font-weight: 500;
+  /* Reserve space for the bold-ish active state so width never changes.
+     (We keep weight 500 in both states, but this guards against font fallback
+     reflow while the web font loads.) */
+  font-family: var(--sans-body);
+}
+
+/* The active underline uses box-shadow (no layout impact) — good.
+   Ensure the active state changes NOTHING that affects box size: same
+   padding, same height, same weight. Only colour + background + inset line. */
+.nav-tabs button[aria-selected="true"],
+.nav-tabs a[aria-selected="true"] {
+  font-weight: 500;   /* explicitly identical to the resting weight */
+}
+
+/* Prevent the whole nav row from reflowing if the web font swaps in late */
+.nav-tabs { min-height: var(--nav-h); }
 
