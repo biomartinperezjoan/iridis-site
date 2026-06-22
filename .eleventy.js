@@ -1,12 +1,18 @@
 const { DateTime } = require("luxon");
+const markdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
+  // ── Markdown with HTML enabled ──────────────────────────────────────────
+  // Allows <div class="case-sample"> and other HTML blocks in .md files.
+  const md = markdownIt({ html: true, linkify: true, typographer: true });
+  eleventyConfig.setLibrary("md", md);
+
   // Static passthroughs — copied as-is to the output folder
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy("src/files");
   eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy({ "src/files": "files" });
 
   // Human-friendly date filter, e.g. "12 June 2026"
   eleventyConfig.addFilter("readableDate", (dateObj) => {
