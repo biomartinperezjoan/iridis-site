@@ -3,8 +3,8 @@ title: Patient resource on Alzheimer’s disease
 summary: A patient-facing educational deck translating Alzheimer’s disease into clear, clinically grounded language for families.
 line: Content & medcomms
 format: Patient education deck
-area: Patient education · Neuroscience
-year: "202X"
+area: Neuroscience
+year: "2026"
 result: Complex Alzheimer’s science translated into an accessible 8-slide patient education resource for families.
 layout: case.njk
 permalink: /work/alzheimers-patient-resource/
