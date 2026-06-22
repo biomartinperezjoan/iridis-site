@@ -6,9 +6,8 @@ line: Content & medcomms
 format: Patient education deck
 area: Neuroscience
 year: ""
-result: 8-slide educational resource covering symptoms, brain changes,
-  diagnosis, daily life, treatment options, caregiver support, and emotional
-  wellbeing.
+result: Complex Alzheimer’s science translated into an accessible 8-slide
+  patient education resource for families.
 layout: case.njk
 permalink: /work/claim-audit-sleep-app/
 ---
