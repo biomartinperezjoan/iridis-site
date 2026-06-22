@@ -963,3 +963,52 @@ html { scrollbar-gutter: stable; }
 .case-sample p {
   font-size: 16px; line-height: 1.75; color: var(--slate); margin-bottom: var(--sp-4);
 }
+
+/* ───────── PERSON PROFILE PAGE ───────── */
+.person-page { max-width: 820px; }
+
+.person-header {
+  display: flex; align-items: flex-start; gap: var(--sp-8);
+  margin-bottom: var(--sp-10); flex-wrap: wrap;
+}
+.person-photo-wrap { flex: none; }
+.person-photo {
+  width: 140px; height: 140px; border-radius: 50%;
+  object-fit: cover; border: 3px solid var(--mist);
+  display: block;
+}
+.person-photo--placeholder {
+  width: 140px; height: 140px; border-radius: 50%;
+  background: var(--down); border: 1px solid var(--mist);
+  display: flex; align-items: center; justify-content: center;
+}
+.person-photo--placeholder span {
+  font-family: var(--sans-display); font-weight: 800;
+  font-size: 36px; color: var(--pinion);
+}
+.person-header-text { flex: 1; min-width: 200px; }
+.person-role {
+  font-family: var(--sans-display); font-size: 13px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--slate); margin-top: var(--sp-2); margin-bottom: var(--sp-3);
+}
+.person-linkedin {
+  font-family: var(--sans-display); font-size: 13px; font-weight: 700;
+  color: var(--pinion); text-decoration: none;
+}
+.person-linkedin:hover { text-decoration: underline; }
+.person-prose { margin-bottom: var(--sp-16); }
+
+/* Team card: "See profile →" link */
+.team-see-profile {
+  font-family: var(--sans-display); font-size: 12px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--pinion-l); margin-top: var(--sp-3); display: block;
+  text-decoration: none;
+}
+.team-card:hover .team-see-profile { color: var(--down); }
+
+@media (max-width: 860px) {
+  .person-header { flex-direction: column; align-items: center; text-align: center; }
+  .person-header-text { text-align: center; }
+}
