@@ -9,7 +9,7 @@ year: ""
 result: Complex Alzheimer’s science translated into an accessible 8-slide
   patient education resource for families.
 layout: case.njk
-permalink: /work/claim-audit-sleep-app/
+permalink: /work/alzheimers-patient-resource/
 ---
 ## The situation
 
