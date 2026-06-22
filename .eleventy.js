@@ -6,6 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy({ "src/files": "files" });
 
   // Human-friendly date filter, e.g. "12 June 2026"
   eleventyConfig.addFilter("readableDate", (dateObj) => {
