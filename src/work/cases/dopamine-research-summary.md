@@ -1,5 +1,5 @@
 ---
-title: Research summary on subsecond dopamine fluctuations
+title: Does dopamine control how fast we move?
 summary: A concise literature summary translating a 2025 Nature Neuroscience paper on dopamine and movement vigor into clear, accessible language for a scientifically literate audience.
 line: Content & medcomms
 format: Research summary
