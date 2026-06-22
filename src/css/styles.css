@@ -485,7 +485,8 @@ h3, .h3 {
   font-family: var(--sans-display); font-weight:700; font-size:12px;
   letter-spacing:.14em; text-transform:uppercase; color: rgba(241,244,241,.4);
 }
-.team-body { padding: var(--sp-5); }
+.team-body { padding: var(--sp-5); display: flex; flex-direction: column; flex: 1; }
+.team-body p { flex: 1; }
 .team-body h3 { color: var(--down); margin-bottom:4px; }
 .team-role { font-family: var(--sans-display); font-size:12px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color: var(--pinion-l); margin-bottom: var(--sp-3); }
 .team-body p { font-size:13.5px; color: rgba(241,244,241,.62); line-height:1.6; }
