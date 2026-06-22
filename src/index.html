@@ -247,7 +247,7 @@ permalink: /index.html
             <div class="team-role">{{ person.role }}</div>
             <p>{{ person.bio }}</p>
             {% if person.url %}
-            <a class="team-see-profile" href="{{ person.url }}">See profile →</a>
+            <a class="team-card-overlay" href="{{ person.url }}" aria-label="See profile of {{ person.name }}"></a>
             {% endif %}
           </div>
         </div>
