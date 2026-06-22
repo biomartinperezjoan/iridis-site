@@ -1,13 +1,11 @@
 ---
 title: Patient resource on Alzheimer’s disease
-summary: A patient-facing educational deck translating Alzheimer’s disease into
-  clear, clinically grounded language for families.
+summary: A patient-facing educational deck translating Alzheimer’s disease into clear, clinically grounded language for families.
 line: Content & medcomms
 format: Patient education deck
-area: Neuroscience
-year: ""
-result: Complex Alzheimer’s science translated into an accessible 8-slide
-  patient education resource for families.
+area: Patient education · Neuroscience
+year: "202X"
+result: Complex Alzheimer’s science translated into an accessible 8-slide patient education resource for families.
 layout: case.njk
 permalink: /work/alzheimers-patient-resource/
 ---
@@ -19,10 +17,10 @@ The topic was both scientifically complex and emotionally sensitive. The resourc
 
 We built the presentation around the questions patients and families are likely to ask first:
 
-What is Alzheimer’s?
-What signs should we look for?
-What happens in the brain?
-How is it diagnosed?
+What is Alzheimer’s?  
+What signs should we look for?  
+What happens in the brain?  
+How is it diagnosed?  
 What support is available?
 
 We simplified the language, clarified the sequence, and used a calm visual structure to make the content easier to read and remember.
@@ -30,3 +28,25 @@ We simplified the language, clarified the sequence, and used a calm visual struc
 ## The outcome
 
 A clear, compassionate educational resource that helps families understand Alzheimer’s disease without overwhelming them.
+
+## View the resource
+
+Browse the full patient education deck below.
+
+<div class="case-deck-preview">
+  <a href="/work/alzheimers-patient-resource.pdf" target="_blank" rel="noopener">
+    <img src="/work/alzheimers-patient-resource-cover.jpg" alt="Cover of the Alzheimer’s patient education resource">
+  </a>
+</div>
+
+<div class="case-deck-embed">
+  <iframe
+    src="/work/alzheimers-patient-resource.pdf#toolbar=0&navpanes=0&scrollbar=0"
+    title="Alzheimer’s patient education resource"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p class="case-deck-link">
+  <a href="/work/alzheimers-patient-resource.pdf" target="_blank" rel="noopener">Open full PDF</a>
+</p>
