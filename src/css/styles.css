@@ -1013,3 +1013,11 @@ html { scrollbar-gutter: stable; }
   .person-header { flex-direction: column; align-items: center; text-align: center; }
   .person-header-text { text-align: center; }
 }
+
+/* Team card: full card clickable via JS overlay */
+.team-card { position: relative; }
+.team-card-overlay {
+  position: absolute; inset: 0;
+  z-index: 1; cursor: pointer;
+}
+.team-body a { position: relative; z-index: 2; }
