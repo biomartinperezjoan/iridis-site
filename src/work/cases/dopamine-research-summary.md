@@ -12,15 +12,15 @@ permalink: /work/dopamine-research-summary/
 
 ## The situation
 
-A 2025 paper in *Nature Neuroscience* challenged one of the most widely cited ideas in dopamine research: that brief, subsecond dopamine spikes control the speed and force of individual movements in real time. The findings had clear implications for Parkinson's disease research and treatment, but the study design was technically dense — involving optogenetics, fluorescent dopamine sensors, and a lever-press paradigm in mice.
+A 2025 paper in *Nature Neuroscience* challenged one of the most widely cited ideas in dopamine research: that brief, subsecond dopamine spikes control the speed and force of individual movements in real time. The findings had clear implications for Parkinson's disease research and treatment, but the study design was technically dense, involving optogenetics, fluorescent dopamine sensors, and a lever-press paradigm in mice.
 
 The piece needed to serve a scientifically literate audience that was not necessarily familiar with dopamine pharmacology, motor circuit anatomy, or the distinction between phasic and tonic signalling.
 
 ## What we did
 
-We read the original paper and identified the single conceptual shift at its core: dopamine does not act as a real-time dial for movement intensity — it sets a permissive background level that allows motor circuits to function.
+We read the original paper and identified the single conceptual shift at its core: dopamine does not act as a real-time dial for movement intensity, it sets a permissive background level that allows motor circuits to function.
 
-From there, we built the summary around the questions a reader unfamiliar with the field would ask first: what was the prevailing assumption, how was it tested, and what do the results actually change? We explained the methods in plain language without stripping out the scientific logic, and framed the Parkinson's disease implications carefully — acknowledging what the study does and does not show.
+From there, we built the summary around the questions a reader unfamiliar with the field would ask first: what was the prevailing assumption, how was it tested, and what do the results actually change? We explained the methods in plain language without stripping out the scientific logic, and framed the Parkinson's disease implications carefully, acknowledging what the study does and does not show.
 
 ## The outcome
 
