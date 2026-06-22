@@ -1,25 +1,33 @@
 ---
-title: "Claim audit for a sleep app pre-launch"
-summary: "Fourteen marketing claims audited before launch — three identified as medical device territory, all reformulated to be defensible without losing their commercial appeal."
-line: "Science validation"
-format: "Claim audit"
-area: "Digital health"
-year: "202X"
-result: "14 claims mapped. 3 flagged as medical device territory. All reformulated and cleared for launch."
+title: Patient resource on Alzheimer’s disease
+summary: A patient-facing educational deck translating Alzheimer’s disease into
+  clear, clinically grounded language for families.
+line: Content & medcomms
+format: Patient education deck
+area: Neuroscience
+year: ""
+result: 8-slide educational resource covering symptoms, brain changes,
+  diagnosis, daily life, treatment options, caregiver support, and emotional
+  wellbeing.
 layout: case.njk
 permalink: /work/claim-audit-sleep-app/
 ---
-
 ## The situation
 
-The app was three weeks from launch. Marketing had written copy that was compelling but the scientific team had concerns about some of the health claims. No one had done a systematic review.
+The topic was both scientifically complex and emotionally sensitive. The resource needed to be accurate enough for clinical use, but simple enough for non-specialist readers.
 
 ## What we did
 
-We built a claim matrix — every marketing claim mapped against its evidence base. For each claim: the studies cited (or that should have been cited), the strength of that evidence, the regulatory risk category, and a reformulated version that was defensible.
+We built the presentation around the questions patients and families are likely to ask first:
 
-Three claims were flagged as medical device territory under EU MDR and FDA digital health frameworks. These weren't edge cases — they would have been a serious problem if the app had launched as written.
+What is Alzheimer’s?
+What signs should we look for?
+What happens in the brain?
+How is it diagnosed?
+What support is available?
+
+We simplified the language, clarified the sequence, and used a calm visual structure to make the content easier to read and remember.
 
 ## The outcome
 
-All 14 claims were reformulated. The three high-risk claims were rewritten entirely. The app launched with a clean audit trail and marketing copy that was both accurate and commercially usable.
+A clear, compassionate educational resource that helps families understand Alzheimer’s disease without overwhelming them.
