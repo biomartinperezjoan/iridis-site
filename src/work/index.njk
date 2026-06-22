@@ -2,11 +2,7 @@
 layout: base.njk
 title: Work
 description: Selected scientific and medical writing projects across publications, funding, content and science validation.
-pagination:
-  data: collections.cases
-  size: 6
-  alias: pageCases
-permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+permalink: "/work/index.html"
 ---
 {% set lineMap = {
   "Publication support": "publications",
@@ -18,16 +14,15 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 <style>
 /* ═══════════════ WORK PAGE — self-contained styles ═══════════════
    All Work-page layout lives here so styles.css stays untouched.
+   Pagination is client-side: 6 cards/page on tall screens, 3 on short.
    ================================================================= */
 
-/* PANEL 1 — exactly fill the viewport below the fixed nav.
-   Cancel the inherited .panel:first-child margin-top and replace it with
-   padding, so the panel's box is at least 100svh tall and panel 2 can't peek. */
+/* PANEL 1 — fill the viewport below the fixed nav (panel 2 must not peek) */
 #workPanel1.panel {
   justify-content: center;
   min-height: 100svh;
   margin-top: 0;
-  padding-top: calc(var(--nav-h) + var(--sp-4));
+  padding-top: calc(var(--nav-h) + var(--sp-2));
   padding-bottom: var(--sp-10);
   box-sizing: border-box;
 }
@@ -42,19 +37,19 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
   margin: var(--sp-3) 0 var(--sp-5);
 }
 
-/* GRID — fixed-height cards so every card on every page is identical */
+/* GRID — fixed-height cards so every card is identical */
 #workPanel1 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 250px;
+  grid-auto-rows: 260px;
   gap: var(--sp-5);
   margin: 0;
 }
 #workPanel1 .work-grid[hidden] { display: none; }
 
-#workPanel1 .work-card-link { display: block; height: 250px; text-decoration: none; color: inherit; }
+#workPanel1 .work-card-link { display: block; height: 260px; text-decoration: none; color: inherit; }
 #workPanel1 .work-card {
-  height: 250px;
+  height: 260px;
   display: flex; flex-direction: column;
   background: #fff; border: 1px solid var(--mist); border-radius: var(--r-lg);
   overflow: hidden;
@@ -69,7 +64,7 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 #workPanel1 .work-card .work-body {
   flex: 1; min-height: 0;
   display: flex; flex-direction: column; gap: var(--sp-3);
-  padding: var(--sp-6); overflow: hidden;
+  padding: var(--sp-6) var(--sp-6) var(--sp-5); overflow: hidden;
 }
 #workPanel1 .work-card .work-kicker {
   flex: none;
@@ -85,9 +80,9 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 #workPanel1 .work-card .work-meta {
-  flex: none; margin-top: auto;
+  flex: none; margin-top: auto; padding-top: var(--sp-4);
   display: flex; flex-wrap: wrap; gap: var(--sp-2);
-  max-height: 58px; overflow: hidden; align-content: flex-end;
+  max-height: 62px; overflow: hidden; align-content: flex-start;
 }
 #workPanel1 .work-card .work-meta span {
   font-family: var(--sans-body); font-size: 11.5px; color: var(--slate);
@@ -105,7 +100,7 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
   min-width: 38px; height: 38px; padding: 0 10px;
   display: inline-flex; align-items: center; justify-content: center;
   border: 1px solid var(--mist); border-radius: var(--r-sm);
-  background: #fff; color: var(--slate); text-decoration: none;
+  background: #fff; color: var(--slate); text-decoration: none; cursor: pointer;
   transition: background .15s, color .15s, border-color .15s;
 }
 #workPanel1 .pg-num:hover, #workPanel1 .pg-arrow:hover { border-color: var(--pinion); color: var(--pinion); }
@@ -161,19 +156,6 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 @media (min-width: 861px) and (max-width: 1040px) {
   #workPanel1 .work-grid { grid-template-columns: repeat(2, 1fr); }
 }
-/* Shorter desktop screens: shrink cards so all 6 still fit one screen
-   without the publications panel peeking through underneath. */
-@media (min-width: 861px) and (max-height: 1000px) {
-  #workPanel1 .work-grid { grid-auto-rows: 224px; }
-  #workPanel1 .work-card-link,
-  #workPanel1 .work-card { height: 224px; }
-}
-@media (min-width: 861px) and (max-height: 880px) {
-  #workPanel1 .work-grid { grid-auto-rows: 200px; }
-  #workPanel1 .work-card-link,
-  #workPanel1 .work-card { height: 200px; }
-  #workPanel1 .work-card .work-body { padding: var(--sp-5); gap: var(--sp-2); }
-}
 @media (max-width: 860px) {
   #workPanel1.panel { min-height: 0; padding-top: calc(var(--nav-h) + var(--sp-6)); }
   #workPanel1 .work-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: var(--sp-4); }
@@ -199,41 +181,14 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
       <button class="filter-chip" aria-pressed="false" data-topic="validation">Science validation</button>
     </div>
 
-    <!-- Paginated grid (default) -->
-    <div class="work-grid" id="workGridPaged">
-      {% for case in pageCases %}
-      <a class="work-card-link" href="/work/{{ case.fileSlug }}/">
-        <article class="work-card">
-          <div class="work-head"></div>
-          <div class="work-body">
-            <span class="work-kicker">{{ case.data.line }}</span>
-            <h3>{{ case.data.title }}</h3>
-            <p class="work-summary">{{ case.data.summary }}</p>
-            <div class="work-meta">
-              <span>{{ case.data.format }}</span>
-              {% if case.data.area %}<span>{{ case.data.area }}</span>{% endif %}
-              {% if case.data.year %}<span>{{ case.data.year }}</span>{% endif %}
-            </div>
-          </div>
-        </article>
-      </a>
-      {% endfor %}
-    </div>
-
-    {% if pagination.pages.length > 1 %}
-    <nav class="work-pagination" id="workPagination" aria-label="Work pages">
-      {% if pagination.href.previous %}<a class="pg-arrow" href="{{ pagination.href.previous }}" aria-label="Previous page">‹</a>{% else %}<span class="pg-arrow disabled">‹</span>{% endif %}
-      {%- for pageUrl in pagination.hrefs -%}
-        <a class="pg-num{% if page.url == pageUrl %} active{% endif %}" href="{{ pageUrl }}">{{ loop.index }}</a>
-      {%- endfor -%}
-      {% if pagination.href.next %}<a class="pg-arrow" href="{{ pagination.href.next }}" aria-label="Next page">›</a>{% else %}<span class="pg-arrow disabled">›</span>{% endif %}
-    </nav>
-    {% endif %}
-
-    <!-- Filtered grid (JS-populated) -->
-    <div class="work-grid" id="workGridResults" hidden></div>
+    <!-- Cards rendered here by JS -->
+    <div class="work-grid" id="workGrid"></div>
     <p class="work-noresults" id="workNoResults" hidden>No cases in this category yet.</p>
 
+    <!-- Pagination rendered here by JS -->
+    <nav class="work-pagination" id="workPagination" aria-label="Work pages" hidden></nav>
+
+    <!-- Full case index for client-side pagination + filtering -->
     <script id="workData" type="application/json">
     [
       {%- for case in collections.cases -%}
@@ -282,6 +237,114 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 </button>
 
 <script>
+/* ── Client-side paginate + filter (6/page tall screens, 3/page short) ── */
+(function () {
+  const dataEl = document.getElementById('workData');
+  if (!dataEl) return;
+  let all = [];
+  try { all = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+  const grid      = document.getElementById('workGrid');
+  const pager      = document.getElementById('workPagination');
+  const noResults  = document.getElementById('workNoResults');
+  const topics     = document.getElementById('workTopics');
+
+  let topic = 'all';
+  let pageIndex = 0;
+
+  function perPage() {
+    // 3 per page when the viewport is short OR narrow (one column),
+    // 6 per page on roomy screens.
+    if (window.innerWidth <= 860) return 3;
+    if (window.innerHeight <= 880) return 3;
+    return 6;
+  }
+
+  function filtered() {
+    return topic === 'all' ? all : all.filter(c => c.lineKey === topic);
+  }
+
+  function esc(s) { return String(s == null ? '' : s); }
+
+  function cardHTML(c) {
+    let meta = '<span>' + esc(c.format) + '</span>';
+    if (c.area) meta += '<span>' + esc(c.area) + '</span>';
+    if (c.year) meta += '<span>' + esc(c.year) + '</span>';
+    return '<a class="work-card-link" href="' + esc(c.url) + '">' +
+      '<article class="work-card"><div class="work-head"></div>' +
+      '<div class="work-body"><span class="work-kicker">' + esc(c.line) + '</span>' +
+      '<h3>' + esc(c.title) + '</h3><p class="work-summary">' + esc(c.summary) + '</p>' +
+      '<div class="work-meta">' + meta + '</div></div></article></a>';
+  }
+
+  function render() {
+    const items = filtered();
+    const pp = perPage();
+    const pageCount = Math.max(1, Math.ceil(items.length / pp));
+    if (pageIndex >= pageCount) pageIndex = pageCount - 1;
+    if (pageIndex < 0) pageIndex = 0;
+
+    // Cards for the current page
+    const start = pageIndex * pp;
+    const slice = items.slice(start, start + pp);
+
+    if (items.length === 0) {
+      grid.hidden = true; grid.innerHTML = '';
+      noResults.hidden = false;
+      pager.hidden = true; pager.innerHTML = '';
+      return;
+    }
+    noResults.hidden = true;
+    grid.hidden = false;
+    grid.innerHTML = slice.map(cardHTML).join('');
+
+    // Pagination controls
+    if (pageCount <= 1) {
+      pager.hidden = true; pager.innerHTML = '';
+      return;
+    }
+    pager.hidden = false;
+    let html = '';
+    html += pageIndex === 0
+      ? '<span class="pg-arrow disabled">‹</span>'
+      : '<button class="pg-arrow" data-go="' + (pageIndex - 1) + '" aria-label="Previous page">‹</button>';
+    for (let p = 0; p < pageCount; p++) {
+      html += '<button class="pg-num' + (p === pageIndex ? ' active' : '') + '" data-go="' + p + '">' + (p + 1) + '</button>';
+    }
+    html += pageIndex === pageCount - 1
+      ? '<span class="pg-arrow disabled">›</span>'
+      : '<button class="pg-arrow" data-go="' + (pageIndex + 1) + '" aria-label="Next page">›</button>';
+    pager.innerHTML = html;
+
+    pager.querySelectorAll('[data-go]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        pageIndex = parseInt(btn.dataset.go, 10);
+        render();
+        document.getElementById('workPanel1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  // Filter chips
+  if (topics) topics.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      topics.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      topic = chip.dataset.topic;
+      pageIndex = 0;
+      render();
+    });
+  });
+
+  // Re-paginate if per-page count changes on resize
+  let lastPP = perPage();
+  window.addEventListener('resize', () => {
+    const now = perPage();
+    if (now !== lastPP) { lastPP = now; pageIndex = 0; render(); }
+  });
+
+  render();
+})();
+
 /* ── Panel scroll-nav: side dots + down arrow (desktop only) ── */
 (function () {
   if (window.innerWidth <= 860) return;
@@ -337,57 +400,6 @@ permalink: "/work/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
   window.addEventListener('keydown', (e) => {
     if (['ArrowDown', 'PageDown'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex + 1); }
     else if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); goToPanel(activeIndex - 1); }
-  });
-})();
-
-/* ── Filter chips ── */
-(function () {
-  const dataEl = document.getElementById('workData');
-  if (!dataEl) return;
-  let data = [];
-  try { data = JSON.parse(dataEl.textContent); } catch (e) { return; }
-
-  const topics     = document.getElementById('workTopics');
-  const paged      = document.getElementById('workGridPaged');
-  const pagination = document.getElementById('workPagination');
-  const results    = document.getElementById('workGridResults');
-  const noResults  = document.getElementById('workNoResults');
-  let topic = 'all';
-
-  function esc(s) { return String(s == null ? '' : s); }
-  function cardHTML(c) {
-    let meta = '<span>' + esc(c.format) + '</span>';
-    if (c.area) meta += '<span>' + esc(c.area) + '</span>';
-    if (c.year) meta += '<span>' + esc(c.year) + '</span>';
-    return '<a class="work-card-link" href="' + esc(c.url) + '">' +
-      '<article class="work-card"><div class="work-head"></div>' +
-      '<div class="work-body"><span class="work-kicker">' + esc(c.line) + '</span>' +
-      '<h3>' + esc(c.title) + '</h3><p class="work-summary">' + esc(c.summary) + '</p>' +
-      '<div class="work-meta">' + meta + '</div></div></article></a>';
-  }
-
-  function apply() {
-    if (topic === 'all') {
-      paged.hidden = false;
-      if (pagination) pagination.hidden = false;
-      results.hidden = true; results.innerHTML = '';
-      noResults.hidden = true;
-      return;
-    }
-    const filtered = data.filter(c => c.lineKey === topic);
-    paged.hidden = true;
-    if (pagination) pagination.hidden = true;
-    results.innerHTML = filtered.map(cardHTML).join('');
-    results.hidden = filtered.length === 0;
-    noResults.hidden = filtered.length !== 0;
-  }
-
-  if (topics) topics.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      topics.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-      topic = chip.dataset.topic;
-      apply();
-    });
   });
 })();
 </script>
