@@ -953,11 +953,12 @@ html { scrollbar-gutter: stable; }
   padding-left: var(--sp-4); margin: var(--sp-4) 0 var(--sp-8);
 }
 .case-sample h2 {
-  font-size: var(--fs-h2); margin-bottom: var(--sp-2);
+  font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin-bottom: var(--sp-3);
+  color: var(--ink); line-height: 1.2;
 }
 .case-sample h3 {
-  font-size: var(--fs-h3); margin-top: var(--sp-8); margin-bottom: var(--sp-3);
-  color: var(--ink);
+  font-size: 17px; font-weight: 700; margin-top: var(--sp-8); margin-bottom: var(--sp-3);
+  color: var(--ink); text-transform: uppercase; letter-spacing: .04em;
 }
 .case-sample p {
   font-size: 16px; line-height: 1.75; color: var(--slate); margin-bottom: var(--sp-4);
