@@ -236,7 +236,7 @@ permalink: /index.html
       <p class="lede">{{ about.team.lede }}</p>
       <div class="team-grid">
         {% for person in about.team.members %}
-        <a class="team-card" href="{{ person.url or '#' }}" style="text-decoration:none;display:block;">
+        <div class="team-card">
           {% if person.photo %}
           <div class="team-photo" style="background-image:url('{{ person.photo }}'); background-size:cover; background-position:center;"></div>
           {% else %}
@@ -250,7 +250,7 @@ permalink: /index.html
             <a class="team-see-profile" href="{{ person.url }}">See profile →</a>
             {% endif %}
           </div>
-        </a>
+        </div>
         {% endfor %}
       </div>
     </div>
