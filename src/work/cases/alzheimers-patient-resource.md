@@ -33,20 +33,19 @@ A clear, compassionate educational resource that helps families understand Alzhe
 
 Browse the full patient education deck below.
 
-<div class="case-deck-preview">
-  <a href="/work/alzheimers-patient-resource.pdf" target="_blank" rel="noopener">
-    <img src="/work/alzheimers-patient-resource-cover.jpg" alt="Cover of the Alzheimer’s patient education resource">
-  </a>
-</div>
+## View the resource
 
-<div class="case-deck-embed">
-  <iframe
-    src="/work/alzheimers-patient-resource.pdf#toolbar=0&navpanes=0&scrollbar=0"
-    title="Alzheimer’s patient education resource"
-    loading="lazy">
-  </iframe>
+Browse the full patient education deck below.
+
+<div class="case-deck-preview">
+  <img
+    src="/files/work/alzheimers/alzheimers-patient-resource-cover.jpg"
+    alt="Cover of the Alzheimer’s patient education resource"
+  >
 </div>
 
 <p class="case-deck-link">
-  <a href="/work/alzheimers-patient-resource.pdf" target="_blank" rel="noopener">Open full PDF</a>
+  <a href="/files/work/alzheimers/alzheimers-patient-resource.pdf" target="_blank" rel="noopener">
+    Open full PDF
+  </a>
 </p>
