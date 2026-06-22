@@ -41,15 +41,15 @@ permalink: "/work/index.html"
 #workPanel1 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 260px;
+  grid-auto-rows: 280px;
   gap: var(--sp-5);
   margin: 0;
 }
 #workPanel1 .work-grid[hidden] { display: none; }
 
-#workPanel1 .work-card-link { display: block; height: 260px; text-decoration: none; color: inherit; }
+#workPanel1 .work-card-link { display: block; height: 280px; text-decoration: none; color: inherit; }
 #workPanel1 .work-card {
-  height: 260px;
+  height: 280px;
   display: flex; flex-direction: column;
   background: #fff; border: 1px solid var(--mist); border-radius: var(--r-lg);
   overflow: hidden;
@@ -64,7 +64,7 @@ permalink: "/work/index.html"
 #workPanel1 .work-card .work-body {
   flex: 1; min-height: 0;
   display: flex; flex-direction: column; gap: var(--sp-3);
-  padding: var(--sp-6) var(--sp-6) var(--sp-5); overflow: hidden;
+  padding: var(--sp-6) var(--sp-6) var(--sp-6); overflow: hidden;
 }
 #workPanel1 .work-card .work-kicker {
   flex: none;
@@ -82,7 +82,7 @@ permalink: "/work/index.html"
 #workPanel1 .work-card .work-meta {
   flex: none; margin-top: auto; padding-top: var(--sp-4);
   display: flex; flex-wrap: wrap; gap: var(--sp-2);
-  max-height: 62px; overflow: hidden; align-content: flex-start;
+  max-height: 70px; overflow: hidden; align-content: flex-start;
 }
 #workPanel1 .work-card .work-meta span {
   font-family: var(--sans-body); font-size: 11.5px; color: var(--slate);
@@ -298,11 +298,8 @@ permalink: "/work/index.html"
     grid.hidden = false;
     grid.innerHTML = slice.map(cardHTML).join('');
 
-    // Pagination controls
-    if (pageCount <= 1) {
-      pager.hidden = true; pager.innerHTML = '';
-      return;
-    }
+    // Pagination controls — always shown (even a single page renders "1"),
+    // so the controls don't vanish when a filter narrows results to one page.
     pager.hidden = false;
     let html = '';
     html += pageIndex === 0
