@@ -246,6 +246,9 @@ permalink: /index.html
             <h3>{{ person.name }}</h3>
             <div class="team-role">{{ person.role }}</div>
             <p>{{ person.bio }}</p>
+            {% if person.url %}
+            <a class="team-see-profile" href="{{ person.url }}">See profile →</a>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
