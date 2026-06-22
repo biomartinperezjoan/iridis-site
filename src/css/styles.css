@@ -931,3 +931,34 @@ html { scrollbar-gutter: stable; }
 .case-deck-link a:hover {
   text-decoration: underline;
 }
+
+/* ───────── CASE SAMPLE: embedded writing sample block ───────── */
+.case-sample {
+  margin-top: var(--sp-10);
+  border: 1px solid var(--mist);
+  border-top: 3px solid var(--pinion);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8) var(--sp-8) var(--sp-10);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(20,36,29,.04);
+}
+.case-sample-label {
+  font-family: var(--sans-display); font-size: 11px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--slate);
+  margin-bottom: var(--sp-6);
+}
+.case-sample-ref {
+  font-size: 13.5px; color: var(--slate); line-height: 1.6;
+  border-left: 3px solid var(--mist);
+  padding-left: var(--sp-4); margin: var(--sp-4) 0 var(--sp-8);
+}
+.case-sample h2 {
+  font-size: var(--fs-h2); margin-bottom: var(--sp-2);
+}
+.case-sample h3 {
+  font-size: var(--fs-h3); margin-top: var(--sp-8); margin-bottom: var(--sp-3);
+  color: var(--ink);
+}
+.case-sample p {
+  font-size: 16px; line-height: 1.75; color: var(--slate); margin-bottom: var(--sp-4);
+}
