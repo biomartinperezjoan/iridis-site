@@ -33,10 +33,6 @@ A clear, compassionate educational resource that helps families understand Alzhe
 
 Browse the full patient education deck below.
 
-## View the resource
-
-Browse the full patient education deck below.
-
 <div class="case-deck-preview">
   <img
     src="/files/work/alzheimers/alzheimers-patient-resource-cover.jpg"
