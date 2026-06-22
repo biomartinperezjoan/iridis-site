@@ -1,0 +1,37 @@
+---
+layout: base.njk
+---
+<article class="post-page person-page">
+
+  <a class="back-link" href="/#about">← Back to the team</a>
+
+  <header class="person-header">
+    <div class="person-photo-wrap">
+      {% if photo %}
+      <img class="person-photo" src="{{ photo }}" alt="{{ name }}">
+      {% else %}
+      <div class="person-photo person-photo--placeholder">
+        <span>{{ name | truncate(2, true, '') }}</span>
+      </div>
+      {% endif %}
+    </div>
+    <div class="person-header-text">
+      <div class="eyebrow">{{ eyebrow }}</div>
+      <h1>{{ name }}</h1>
+      <div class="person-role">{{ role }}</div>
+      {% if linkedin %}
+      <a class="person-linkedin" href="{{ linkedin }}" target="_blank" rel="noopener">LinkedIn →</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="prose person-prose">
+    {{ content | safe }}
+  </div>
+
+  <div class="post-cta">
+    <p>Want to work with us?</p>
+    <a class="btn btn-primary" href="/#contact">Get in touch</a>
+  </div>
+
+</article>
