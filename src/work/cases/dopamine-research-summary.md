@@ -41,7 +41,7 @@ Dopamine is a chemical messenger in the brain that most people associate with pl
 
 Dopamine is also known to be essential for movement. Patients with Parkinson's disease lose dopamine-producing neurons in a brain region called the substantia nigra, and the result is bradykinesia, a slowing and reduction in the size of voluntary movements. Levodopa, the main treatment for Parkinson's, works by boosting dopamine levels and partially restoring normal movement.
 
-A popular hypothesis in neuroscience holds that dopamine does more than just enable movement in a general sense — it may fine-tune the speed and force of each individual movement in real time. According to this idea, brief spikes in dopamine that last less than a second (called "phasic" or "subsecond" transients) function as a live gain signal, amplifying the brain's motor commands moment by moment. This study sets out to test that idea directly.
+A popular hypothesis in neuroscience holds that dopamine does more than just enable movement in a general sense, it may fine-tune the speed and force of each individual movement in real time. According to this idea, brief spikes in dopamine that last less than a second (called "phasic" or "subsecond" transients) function as a live gain signal, amplifying the brain's motor commands moment by moment. This study sets out to test that idea directly.
 
 ### Methods and results
 
