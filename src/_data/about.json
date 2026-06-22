@@ -2,7 +2,7 @@
   "hero": {
     "eyebrow": "About",
     "title": "Three people. One shared standard.",
-    "lede": "Iridis was born from the conviction that well-written science is not a concession to popularisation: it is the standard to aspire to. We are a small team on purpose \u2014 every project goes through the same hands that scope it."
+    "lede": "Iridis was born from the conviction that well-written science is not a concession to popularisation: it is the standard to aspire to. We are a small team on purpose — every project goes through the same hands that scope it."
   },
   "origin": {
     "label": "The name",
@@ -15,7 +15,7 @@
       },
       {
         "title": "Iris",
-        "text": "Precision of vision. Seeing clearly what the data says \u2014 and what it doesn't."
+        "text": "Precision of vision. Seeing clearly what the data says — and what it doesn't."
       },
       {
         "title": "Iris, the messenger",
@@ -29,22 +29,25 @@
     "lede": "Complementary profiles: science, writing and strategy.",
     "members": [
       {
-        "name": "Name Surname",
-        "role": "Role \u00b7 Specialty",
-        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
-        "photo": ""
+        "name": "Joan Martín Pérez",
+        "role": "Co-founder · Editor-in-chief",
+        "bio": "Biologist and geneticist (UAB). Published researcher in nanoplastics and genotoxicology. Leads publication support and scientific content. Based in Terrassa, Spain.",
+        "photo": "",
+        "url": "/about/joan/"
       },
       {
-        "name": "Name Surname",
-        "role": "Role \u00b7 Specialty",
-        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
-        "photo": ""
+        "name": "Michelle Morataya-Reyes",
+        "role": "Co-founder · Science & Strategy",
+        "bio": "Biologist specialising in toxicology, genotoxicity and nanoplastics (UAB, Grupo de Mutagénesis). Leads science validation and research strategy. Based in Spain.",
+        "photo": "",
+        "url": "/about/michelle/"
       },
       {
-        "name": "Name Surname",
-        "role": "Role \u00b7 Specialty",
-        "bio": "Short bio: background, years of experience, therapeutic areas or sectors of expertise. Two or three lines at most.",
-        "photo": ""
+        "name": "Laura Bilbao Broch",
+        "role": "Co-founder · Neuroscience specialist",
+        "bio": "MSc, Clinical Scientist in Neuropathology. Specialises in neurodegeneration, prion diseases and clinical science communication. Based in Dublin, Ireland.",
+        "photo": "",
+        "url": "/about/laura/"
       }
     ]
   },
