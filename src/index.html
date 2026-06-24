@@ -229,7 +229,7 @@ permalink: /index.html
   </div>
 
   <!-- Team -->
-  <div class="panel bg-ink">
+  <div class="panel bg-ink" id="team-panel">
     <div class="panel-inner">
       <div class="eyebrow">{{ about.team.eyebrow }}</div>
       <h2>{{ about.team.title }}</h2>
@@ -347,7 +347,6 @@ const navToggle = document.getElementById('navToggle');
 const dotsEl = document.getElementById('pageDots');
 const downBtn = document.getElementById('scrollDownBtn');
 
-// Pages that scroll freely (no panel snapping, no wheel interception)
 const FREE_SCROLL_PAGES = ['page-work', 'page-blog'];
 
 let scrollObserver = null;
@@ -375,7 +374,6 @@ function initScrollNav(pageEl) {
   dotsEl.innerHTML = '';
   currentPanels = Array.from(pageEl.querySelectorAll('.panel'));
 
-  // Mobile, single-panel pages, and free-scroll pages: native scroll only.
   if (isMobile() || currentPanels.length <= 1 || FREE_SCROLL_PAGES.includes(pageEl.id)) {
     currentPanels = [];
     dotsEl.classList.remove('visible');
@@ -406,8 +404,6 @@ function initScrollNav(pageEl) {
   }, { threshold: 0.55 });
   currentPanels.forEach(p => scrollObserver.observe(p));
 
-  // Wheel interception: turn the browser's slow snap into a direct,
-  // debounced scrollIntoView so one spin = one panel.
   wheelHandler = (e) => {
     if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
     if (e.ctrlKey) return;
@@ -483,9 +479,26 @@ window.addEventListener('resize', () => {
   }, 200);
 });
 
-// ── Initial page from hash ──
-const hash = location.hash.replace('#', '') || 'home';
-goto(hash);
+// ── Back from person profile: activate About and scroll to Team panel ──
+// person.njk links to /?team=1#about — detect it here and scroll to #team-panel
+(function () {
+  const params = new URLSearchParams(location.search);
+  if (params.get('team') === '1') {
+    history.replaceState(null, '', '/#about');
+    requestAnimationFrame(function () {
+      goto('about');
+      setTimeout(function () {
+        const teamPanel = document.getElementById('team-panel');
+        if (teamPanel) teamPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 120);
+    });
+    return; // skip the default hash routing below
+  }
+
+  // ── Initial page from hash ──
+  const hash = location.hash.replace('#', '') || 'home';
+  goto(hash);
+})();
 </script>
 
 </body>
