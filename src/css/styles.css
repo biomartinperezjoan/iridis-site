@@ -1135,3 +1135,25 @@ html { scrollbar-gutter: stable; }
   #page-home .svc-grid.cols-2 .svc-card { padding: 14px 16px; }
   .svc-list li { padding: var(--sp-2) var(--sp-3); font-size: 13px; }
 }
+
+/* ───────── FOOTER: pin to bottom on short screens ─────────
+   On laptop viewports (height ≤ 900px) the panel-with-footer uses
+   space-between but the reduced padding leaves a gap above the footer.
+   Force the footer to always stick to the panel's bottom edge. */
+@media (min-width: 861px) and (max-height: 900px) {
+  .panel-with-footer {
+    justify-content: space-between;
+    padding-bottom: 0;
+  }
+  .panel-with-footer .panel-inner {
+    padding-bottom: var(--sp-6);
+  }
+}
+
+/* ───────── WORK: pagination sits higher to clear the ↓ arrow ─────────
+   On normal (tall) screens the pagination row and the floating down-arrow
+   overlap slightly. A small increase in bottom padding on the work panel
+   pushes the pagination up just enough. */
+#workPanel1.panel {
+  padding-bottom: var(--sp-12);
+}
