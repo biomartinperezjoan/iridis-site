@@ -475,21 +475,59 @@ h3, .h3 {
 
 .team-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--sp-4); margin-top: var(--sp-10); }
 @media (max-width: 760px) { .team-grid { grid-template-columns:1fr; } }
-.team-card { border:1px solid rgba(241,244,241,.14); border-radius: var(--r-lg); overflow:hidden; }
+.team-card {
+  border: 1px solid rgba(241,244,241,.14);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .15s, transform .15s;
+}
+.team-card:hover { border-color: rgba(241,244,241,.35); transform: translateY(-2px); }
+
+/* Invisible overlay — makes the whole card clickable */
+.team-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .team-photo {
-  height: 230px; background: rgba(241,244,241,.06);
-  display:flex; align-items:center; justify-content:center;
+  height: 230px;
+  background: rgba(241,244,241,.06);
+  display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid rgba(241,244,241,.14);
+  flex-shrink: 0;
 }
 .team-photo span {
-  font-family: var(--sans-display); font-weight:700; font-size:12px;
-  letter-spacing:.14em; text-transform:uppercase; color: rgba(241,244,241,.4);
+  font-family: var(--sans-display); font-weight: 700; font-size: 12px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(241,244,241,.4);
 }
-.team-body { padding: var(--sp-5); display: flex; flex-direction: column; flex: 1; }
-.team-body p { flex: 1; }
-.team-body h3 { color: var(--down); margin-bottom:4px; }
-.team-role { font-family: var(--sans-display); font-size:12px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color: var(--pinion-l); margin-bottom: var(--sp-3); }
-.team-body p { font-size:13.5px; color: rgba(241,244,241,.62); line-height:1.6; }
+.team-body {
+  padding: var(--sp-5);
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.team-body h3 { color: var(--down); margin-bottom: 4px; }
+.team-role {
+  font-family: var(--sans-display); font-size: 12px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--pinion-l); margin-bottom: var(--sp-3);
+}
+.team-body p {
+  font-size: 13.5px; color: rgba(241,244,241,.62); line-height: 1.6;
+  flex: 1;
+}
+.team-see-profile {
+  font-family: var(--sans-display); font-size: 12px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--pinion-l); margin-top: var(--sp-4);
+  display: block; position: relative; z-index: 2;
+}
+.team-card:hover .team-see-profile { color: var(--down); }
 
 /* ───────── BLOG ───────── */
 .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap: var(--sp-5); margin-top: var(--sp-8); }
