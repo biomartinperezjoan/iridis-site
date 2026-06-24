@@ -237,6 +237,9 @@ permalink: /index.html
       <div class="team-grid">
         {% for person in about.team.members %}
         <div class="team-card">
+          {% if person.url %}
+          <a class="team-card-overlay" href="{{ person.url }}" aria-label="See profile of {{ person.name }}"></a>
+          {% endif %}
           {% if person.photo %}
           <div class="team-photo" style="background-image:url('{{ person.photo }}'); background-size:cover; background-position:center;"></div>
           {% else %}
@@ -247,7 +250,7 @@ permalink: /index.html
             <div class="team-role">{{ person.role }}</div>
             <p>{{ person.bio }}</p>
             {% if person.url %}
-            <a class="team-card-overlay" href="{{ person.url }}" aria-label="See profile of {{ person.name }}"></a>
+            <span class="team-see-profile">See profile →</span>
             {% endif %}
           </div>
         </div>
